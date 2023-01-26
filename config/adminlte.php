@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'CRM Data Solution',
+    'title' => 'CRM Inventory',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>CRM</b>Data Solution',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>CRM</b> Inventory',
+    'logo_img' => 'vendor/adminlte/dist/img/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -324,58 +324,6 @@ return [
             'icon' => 'fas fa-fw fa-save',
             'can' => 'ver-rol',
         ],
-        [
-            'text'    => 'Orden de Trabajo  ',
-            'icon'    => 'fas fa-fw fa-file',
-            'can' => 'ver orden de trabajo',
-            'submenu' => [
-                [
-                    'text' => 'Nueva Orden de Trabajo',
-                    'url'  => 'trabajo/nuevo',
-                    'can' => 'crear orden de trabajo',
-                    'icon'    => 'fas fa-fw fa-filse',
-                ],
-                [
-                    'text' => 'Ver Ordenes de Trabajo',
-                    'url'  => 'trabajos',
-                    'can' => 'ver orden de trabajo',
-                    'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['trabajos', 'trabajo/editar*','trabajos/detalle*'],
-                ],
-                [
-                    'text' => 'Vista General',
-                    'url'  => 'trabajo/general',
-                    'can' => 'ver-trabajo-general',
-                    'icon'    => 'fas fa-fw fa-filse',
-                ],
-            ]
-        ],
-        [
-            'text'    => 'Inventario',
-            'icon'    => 'fas fa-fw fa-boxes',
-            'can' => 'ver-inventario',
-            'submenu' => [
-                [
-                    'text' => 'Nuevo Disco',
-                    'url'  => 'inventario/nuevo',
-                    'can' => 'crear-inventario',
-                    'icon'    => 'fas fa-fw fa-filse',
-                ],
-                [
-                    'text' => 'Ver Inventario',
-                    'url'  => 'inventario',
-                    'can' => 'ver-inventario',
-                    'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['inventario', 'inventario/editar*'],
-                ],
-                [
-                    'text' => 'Discos en Uso',
-                    'url'  => 'inventario/discosUso',
-                    'can' => 'ver-inventario',
-                    'icon'    => 'fas fa-fw fa-filse',
-                ],
-            ]
-        ],
        /* [
             'text'    => 'Facturación',
             'icon'    => 'fas fa-fw fa-file-invoice',
@@ -403,6 +351,26 @@ return [
             ]
         ],*/
         [
+            'text'    => 'Inventario',
+            'icon'    => 'fas fa-fw fa-dolly-flatbed',
+            'can' => 'ver-clientes',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Producto',
+                    'url'  => 'inventario/nuevo',
+                    'can' => 'crear-clientes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Inventario',
+                    'url'  => 'inventario',
+                    'can' => 'ver-clientes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['clientes', 'cliente/editar*'],
+                ],
+            ]
+        ],
+        [
             'text'    => 'Clientes',
             'icon'    => 'fas fa-fw fa-users',
             'can' => 'ver-clientes',
@@ -423,22 +391,76 @@ return [
             ]
         ],
         [
-            'text'    => 'Productos',
-            'icon'    => 'fas fa-fw fa-barcode',
-            'can' => 'ver-productos',
+            'text'    => 'Ventas',
+            'icon'    => 'fas fa-fw fa-cash-register',
+            'can' => 'ver-clientes',
             'submenu' => [
                 [
-                    'text' => 'Nuevo Producto',
-                    'url'  => 'producto/nuevo',
-                    'can' => 'crear-productos',
+                    'text' => 'Nueva Venta',
+                    'url'  => 'venta/nuevo',
+                    'can' => 'crear-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
-                    'text' => 'Ver Productos',
-                    'url'  => 'productos',
-                    'can' => 'ver-productos',
+                    'text' => 'Ver Ventas',
+                    'url'  => 'venta',
+                    'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['productos', 'producto/editar*'],
+                    'active' => ['clientes', 'cliente/editar*'],
+                ],
+            ]
+        ],
+        [
+            'text'    => 'Compras',
+            'icon'    => 'fas fa-fw fa-money-check-alt',
+            'can' => 'ver-clientes',
+            'submenu' => [
+                [
+                    'text' => 'Nueva Compra',
+                    'url'  => 'compra/nuevo',
+                    'can' => 'crear-clientes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Compras',
+                    'url'  => 'compra',
+                    'can' => 'ver-clientes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['clientes', 'cliente/editar*'],
+                ],
+            ]
+        ],
+        [
+            'text'    => 'Reportes',
+            'icon'    => 'fas fa-fw fa-file-pdf',
+            'can' => 'ver-clientes',
+            'submenu' => [
+                [
+                    'text' => 'Ver Reportes',
+                    'url'  => 'reporte',
+                    'can' => 'ver-clientes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['clientes', 'cliente/editar*'],
+                ],
+            ]
+        ],
+        [
+            'text'    => 'Transferencia',
+            'icon'    => 'fas fa-fw fa-people-carry',
+            'can' => 'ver-clientes',
+            'submenu' => [
+                [
+                    'text' => 'Nueva Solicitud',
+                    'url'  => 'compra/nuevo',
+                    'can' => 'crear-clientes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Historial',
+                    'url'  => 'reporte',
+                    'can' => 'ver-clientes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['clientes', 'cliente/editar*'],
                 ],
             ]
         ],
