@@ -35,10 +35,13 @@ Auth::routes();
 //HOME
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-//LOGIN CLIENTE
-Route::get('/login/cliente', [LoginClienteController::class, 'index']);
-Route::get('/login/cliente/{id}', [LoginClienteController::class, 'vistaCliente']);
-Route::post('/login/cliente', [LoginClienteController::class, 'start']);
+//CLIENTE
+
+Route::get('/clientes',[ClienteController::class,'index']);
+Route::get('/cliente/nuevo',[ClienteController::class,'create']);
+Route::post('/cliente/nuevo',[ClienteController::class,'store']);
+Route::get('/cliente/editar/{id}',[ClienteController::class,'edit']);
+Route::post('/cliente/editar/{id}',[ClienteController::class,'update']);
 
 //ROLES
 Route::get('/roles',[RolesController::class,'index']);

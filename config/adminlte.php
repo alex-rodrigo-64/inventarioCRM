@@ -366,7 +366,6 @@ return [
                     'url'  => 'inventario',
                     'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['clientes', 'cliente/editar*'],
                 ],
             ]
         ],
@@ -406,7 +405,6 @@ return [
                     'url'  => 'venta',
                     'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['clientes', 'cliente/editar*'],
                 ],
             ]
         ],
@@ -426,7 +424,6 @@ return [
                     'url'  => 'compra',
                     'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['clientes', 'cliente/editar*'],
                 ],
             ]
         ],
@@ -440,7 +437,6 @@ return [
                     'url'  => 'reporte',
                     'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['clientes', 'cliente/editar*'],
                 ],
             ]
         ],
@@ -460,7 +456,6 @@ return [
                     'url'  => 'reporte',
                     'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['clientes', 'cliente/editar*'],
                 ],
             ]
         ],
