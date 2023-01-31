@@ -31,17 +31,12 @@
 <table class="table table-striped table-hover table-responsive">
   <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
     <tr>
-      <th class="text-center">Nombre</th>
-      <th class="text-center">Direccion</th>
-      <th class="text-center">CIF</th>
-      <th class="text-center">Numero</th>
-      <th class="text-center">CodigoPostal</th>
-      <th class="text-center">Poblacion</th>
-      <th class="text-center">Provincia</th>
-      <th class="text-center">Pais</th>
-      <th class="text-center">Idioma</th>
-      <th class="text-center">Fecha</th>
-      <th class="text-center">Nota</th>
+      <th class="text-center"style="width: 25%">Nombre</th>
+      <th class="text-center"style="width: 15%">Direccion</th>
+      <th class="text-center"style="width: 20%;">Numero Departamento</th>
+      <th class="text-center"style="width: 10%">Provincia</th>
+      <th class="text-center"style="width: 10%">Nota</th>
+      <th class="text-center"style="width: 15%">Fecha</th>
       <th class="text-center" style="width: 10%">Acciones</th>
     </tr>
   </thead>
@@ -49,16 +44,11 @@
     @foreach ($cliente as $cliente)
       <tr>
         <td >{{$cliente->nombreCliente}}</td>
-        <td class="text-center">{{$cliente->calle}}</td>
-        <td class="text-center">{{$cliente->cif}}</td>
-        <td class="text-center">{{$cliente->numero}}</td>
-        <td class="text-center">{{$cliente->codigoPostal}}</td>
-        <td class="text-center">{{$cliente->poblacion}}</td>
+        <td class="text-center">{{$cliente->direccion}}</td>
+        <td class="text-center">{{$cliente->numero_departamento}}</td>
         <td class="text-center">{{$cliente->provincia}}</td>
-        <td class="text-center">{{$cliente->pais}}</td>
-        <td class="text-center">{{$cliente->idioma}}</td>
-        <td class="text-center">{{$cliente->created_at}}</td>
         <td class="text-center">{{$cliente->nota}}</td>
+        <td class="text-center">{{$cliente->created_at}}</td>
         <td style="width: 10%">
 
           <div style="text-align: center;width:90px">
@@ -118,6 +108,6 @@
 </div>
 </div>
 
-<script src="{{ asset('js/cliente/index.js')}}"></script>
+{{--<script src="{{ asset('js/cliente/index.js')}}"></script>--}}
 
 @endsection
