@@ -351,6 +351,46 @@ return [
             ]
         ],*/
         [
+            'text'    => 'Sucursales',
+            'icon'    => 'fas fa-bezier-curve',
+            'can' => 'ver-sucursales',
+            'submenu' => [
+                [
+                    'text' => 'Nueva Sucursal',
+                    'url'  => 'sucursal/nuevo',
+                    'can' => 'crear-sucursales',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Sucursales',
+                    'url'  => 'sucursales',
+                    'can' => 'ver-sucursales',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['almacenes', 'almacenes/editar*'],
+                ],
+            ]
+        ],
+        [
+            'text'    => 'Almacen',
+            'icon'    => 'fas fa-fw fa-warehouse',
+            'can' => 'ver-almacenes',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Almacen',
+                    'url'  => 'almacen/nuevo',
+                    'can' => 'crear-almacenes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Almacenes',
+                    'url'  => 'almacenes',
+                    'can' => 'ver-almacenes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['almacenes', 'almacenes/editar*'],
+                ],
+            ]
+        ],
+        [
             'text'    => 'Inventario',
             'icon'    => 'fas fa-fw fa-dolly-flatbed',
             'can' => 'ver-clientes',
@@ -504,6 +544,22 @@ return [
                 ],
             ]
         ],
+        ['header' => 'SISTEMA',
+       ],[
+        'text'    => 'Configuracion  ',
+        'icon'    => 'fas fa-fw fa-pen-square',
+        'can' => 'ver-rol',
+        'submenu' => [
+            
+            [
+                'text' => 'Nuevo Rol  ',
+                'url'  => 'roles/nuevo',
+                'icon'    => 'fas fa-fw fa-filse',
+                'can' => 'crear-rol',
+
+            ],
+        ]
+    ],
         ],
 
     /*
