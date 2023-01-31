@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClonesController;
 use App\Http\Controllers\InventarioController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FacturacionController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\SucursalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +59,30 @@ Route::get('/usuario/editar/{id}',[UsuarioController::class,'edit']);
 Route::post('/usuario/editar/{id}',[UsuarioController::class,'update']);
 //Route::post('/imagen/validar' ,[UsuarioController::class,'validar']);
 Route::delete('/usuario/{id}',[UsuarioController::class,'destroy']);
+
+//SUCURSALES
+Route::get('/sucursales',[SucursalController::class,'index']);
+Route::get('/sucursal/nuevo',[SucursalController::class,'create']);
+Route::post('/sucursal/nuevo',[SucursalController::class,'store']);
+Route::get('/sucursal/editar/{id}',[SucursalController::class,'edit']);
+Route::post('/sucursal/editar/{id}',[SucursalController::class,'update']);
+Route::delete('/sucursal/{id}',[SucursalController::class,'destroy']);
+
+//ALMACENES
+Route::get('/almacenes',[AlmacenController::class,'index']);
+Route::get('/almacen/nuevo',[AlmacenController::class,'create']);
+Route::post('/almacen/nuevo',[AlmacenController::class,'store']);
+Route::get('/almacen/editar/{id}',[AlmacenController::class,'edit']);
+Route::post('/almacen/editar/{id}',[AlmacenController::class,'update']);
+Route::delete('/almacen/{id}',[AlmacenController::class,'destroy']);
+
+//INVENTARIOS
+Route::get('/inventario',[InventarioController::class,'index']);
+Route::get('/inventario/nuevo',[InventarioController::class,'create']);
+Route::post('/inventario/nuevo',[InventarioController::class,'store']);
+Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
+Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
+Route::delete('/inventario/{id}',[InventarioController::class,'destroy']);
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);

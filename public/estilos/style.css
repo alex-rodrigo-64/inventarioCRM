@@ -23,7 +23,9 @@ textarea{
 
    .tabla-general{
     font-size: 14px;
+    justify-content: center;
   }
+  
    .btn{
      /* box-shadow: 2px 2px 2px rgb(95, 93, 93); */
      transform: translateY(0px);
