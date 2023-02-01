@@ -15,6 +15,7 @@ use App\Http\Controllers\FacturacionController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\VentaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,6 +87,14 @@ Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
 Route::delete('/inventario/{id}',[InventarioController::class,'destroy']);
+
+//VENTAS
+Route::get('/ventas',[VentaController::class,'index']);
+Route::get('/venta/nuevo',[VentaController::class,'create']);
+Route::post('/venta/nuevo',[VentaController::class,'store']);
+Route::get('/venta/editar/{id}',[VentaController::class,'edit']);
+Route::post('/venta/editar/{id}',[VentaController::class,'update']);
+Route::delete('/venta/{id}',[VentaController::class,'destroy']);
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);

@@ -17,7 +17,7 @@ class SucursalController extends Controller
     {
         $sucursal = DB::table('sucursals')
                 ->select('*')
-                ->get();
+                ->paginate(25);
 
         return view('sucursal.index', compact('sucursal'));
     }
@@ -44,7 +44,7 @@ class SucursalController extends Controller
 
         $sucursal-> nombre_sucursal = $request->get('nombreSucursal');
         $sucursal-> nombre_propietario = $request->get('nombrePropietario');
-        $sucursal-> direccion = $request->get('direccion');
+        $sucursal-> direccion_sucursal = $request->get('direccion');
         $sucursal-> save();
 
         return redirect('/sucursales');
@@ -94,7 +94,8 @@ class SucursalController extends Controller
         $sucursal = Sucursal::find($id);
         $sucursal->nombre_sucursal = request('nombreSucursal');
         $sucursal->nombre_propietario = request('nombrePropietario');
-        $sucursal->direccion = request('direccion');
+        $sucursal->direccion_sucursal = request('direccion');
+        $sucursal->update();
 
         return redirect('/sucursales');
     }
@@ -105,8 +106,11 @@ class SucursalController extends Controller
      * @param  \App\Models\Sucursal  $sucursal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sucursal $sucursal)
+    public function destroy($id)
     {
-        //
+        $sucursal=Sucursal::findOrFail($id);
+        $sucursal->delete();
+
+        return redirect('/sucursales');
     }
 }

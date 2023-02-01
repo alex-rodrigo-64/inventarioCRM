@@ -2,7 +2,9 @@
 @section('content')
 <h1 align="center" style="font-weight: 700">LISTA DE ALMACENES </h1>
 
-<div class="row d-flex justify-content-center">
+<div class="container">
+  <br>
+    <div class="row d-flex justify-content-center">
     <div class="tabla-general" >
         <table class="table table-striped table-hover table-responsive" id="Table">
         <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
@@ -20,7 +22,7 @@
             <tr>
                 <td class="text-center" >{{$almacen->id}}</td>
                 <td class="text-center" >{{$almacen->nombre_almacen}}</td>
-                <td class="text-center" >{{$almacen->direccion}}</td>
+                <td class="text-center" >{{$almacen->direccion_almacen}}</td>
                 <td class="text-center" >{{$almacen->id_sucursal}}</td>
                 <td class="text-center" >{{$almacen->created_at}}</td>
                 <td class="text-center" >
@@ -66,7 +68,7 @@
                         <div class="modal-body">
                          ¿Realmente Desea Borrar el Almacen?
                         </div>
-                        <form action="{{url('/producto/'.$almacen->id)}}" method="POST">
+                        <form action="{{url('/almacen/'.$almacen->id)}}" method="POST">
                           @csrf
                           @method('DELETE')
                         <div class="modal-footer">
@@ -88,6 +90,8 @@
         </table>
         </div>
 </div>
+</div>
+
 
     
     <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">

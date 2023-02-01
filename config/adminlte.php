@@ -552,10 +552,10 @@ return [
         'submenu' => [
             
             [
-                'text' => 'Nuevo Rol  ',
-                'url'  => 'roles/nuevo',
+                'text' => 'Opciones',
+                'url'  => 'opciones/nuevo',
                 'icon'    => 'fas fa-fw fa-filse',
-                'can' => 'crear-rol',
+                'can' => 'ver-opciones',
 
             ],
         ]
