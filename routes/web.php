@@ -3,6 +3,8 @@
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClonesController;
+use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\ConfiguracionVentaController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
@@ -95,6 +97,13 @@ Route::post('/venta/nuevo',[VentaController::class,'store']);
 Route::get('/venta/editar/{id}',[VentaController::class,'edit']);
 Route::post('/venta/editar/{id}',[VentaController::class,'update']);
 Route::delete('/venta/{id}',[VentaController::class,'destroy']);
+
+//CONFIGURACION
+Route::get('/configuraciones',[ConfiguracionController::class,'index']);
+
+//CONFIGURACION_VENTAS
+Route::post('/configuraciones/agregarTipoUnidad',[ConfiguracionVentaController::class,'agregarUnidad']);
+Route::post('/configuraciones/agregarTipoUnidad/datos',[ConfiguracionVentaController::class,'datosUnidad']);
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);
