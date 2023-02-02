@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inventario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InventarioController extends Controller
 {
@@ -24,7 +25,21 @@ class InventarioController extends Controller
      */
     public function create()
     {
-        return view('inventario.create');
+        $sucursales = DB::table('sucursals')
+                        ->select('*')
+                        ->get();
+        return view('inventario.create',compact('sucursales'));
+    }
+
+    public function datosAlmacen()
+    {
+        
+        $almacen =  DB::table('almacens')
+            ->select('*')
+            ->where('id_sucursal',$_POST["sucursal"])
+            ->get();
+        
+        return json_encode(array('data'=>$almacen));
     }
 
     /**
@@ -35,7 +50,22 @@ class InventarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd( $request->get('paquete'));
+
+        $inventario = new Inventario();
+        $inventario->codigo = $request->get('codigo');
+        $inventario->nombre_producto = $request->get('nombreProducto');
+        $inventario->proveedor = $request->get('proveedor');
+        $inventario->paquete = $request->get('paquete');
+        $inventario->cantidad_unitaria = $request->get('cantidadUnitaria');
+        $inventario->cantidad_total = $request->get('paquete');
+        $inventario->costo_adquisicion = $request->get('costoAdqui');
+        $inventario->costo_venta =$request->get('costoVenta');
+        $inventario->fecha = $request->get('fecha');
+        $inventario->detalle = $request->get('nota');
+        $inventario->id_sucursal =$request->get('sucursal');
+        $inventario->id_almacen =$request->get('almacen');
+        $inventario->save();
     }
 
     /**

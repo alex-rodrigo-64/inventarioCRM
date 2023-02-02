@@ -86,6 +86,8 @@ Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
 Route::delete('/inventario/{id}',[InventarioController::class,'destroy']);
+Route::post('/inventario/getAlmacen',[InventarioController::class,'datosAlmacen']);
+
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);
