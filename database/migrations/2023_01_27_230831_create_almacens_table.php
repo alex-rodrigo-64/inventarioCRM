@@ -17,7 +17,7 @@ class CreateAlmacensTable extends Migration
             
             $table->bigIncrements('id');
             $table->String('nombre_almacen')->nullable();
-            $table->String('direccion')->nullable();
+            $table->String('direccion_almacen')->nullable();
             $table->unsignedBigInteger('id_sucursal')->nullable();
             $table->timestamps();
 

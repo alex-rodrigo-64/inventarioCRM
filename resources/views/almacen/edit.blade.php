@@ -18,7 +18,7 @@
                         <div class="col-6">
                             <div class="input-group">
                               <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre de Almacen</span>
-                              <input type="text" name="nombreAlmacen" id="nombreAlmacen" required value="{{$almacenes_elegidos->nombre_almacen}}" class="form-control" onkeyup="validarNombre()" placeholder="Nueva Sucursal" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)) ">
+                              <input type="text" name="nombreAlmacen" id="nombreAlmacen" required value="{{$sucursal_elegida->nombre_almacen}}" class="form-control" onkeyup="validarNombre()" placeholder="Nueva Sucursal" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)) ">
                             </div>
                           <span id="estadoNombre"></span>
                         </div>
@@ -29,8 +29,8 @@
                                 class="form-control" >
                                 <option selected value="Elige un Rol" disabled>Elige una Sucursal</option>
                                     @foreach ($sucursal as $sucursal)
-                                    @if ($sucursal_elegida == $sucursal)
-                                    <option   value="{{$sucursal->id}}"> {{$sucursal->nombre_sucursal}}</option>
+                                    @if ($sucursal_elegida->id == $sucursal->id)
+                                    <option   value="{{$sucursal->id}}" selected> {{$sucursal->nombre_sucursal}}</option>
                                     @else
                                     <option   value="{{$sucursal->id}}"> {{$sucursal->nombre_sucursal}}</option>
                                     @endIf
@@ -45,8 +45,8 @@
                       <div class="col-6">
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Direccion</span>
-                             <input type="text" id="direccion" name="direccion" class="form-control" value="{{$almacenes_elegidos->direccion}}"
-                                 required autocomplete="off"  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)) ">
+                             <input type="text" id="direccion" name="direccion" class="form-control" value="{{$sucursal_elegida->direccion_almacen}}"
+                                 required autocomplete="off"  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209))">
                         </div>
                          <span id="estadoCostoA"></span>
                       </div>

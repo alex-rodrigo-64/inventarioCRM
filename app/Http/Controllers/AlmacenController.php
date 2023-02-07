@@ -17,7 +17,7 @@ class AlmacenController extends Controller
     {
         $almacen = DB::table('almacens')
                 ->select('*')
-                ->get();
+                ->paginate(25);
 
         return view('almacen.index', compact('almacen'));
     }
@@ -48,7 +48,7 @@ class AlmacenController extends Controller
 
         $almacen-> nombre_almacen = $request->get('nombreAlmacen');
         $almacen-> id_sucursal = $request->get('sucursal');
-        $almacen-> direccion = $request->get('direccion');
+        $almacen-> direccion_almacen = $request->get('direccion');
         $almacen-> save();
 
         return redirect('/almacenes');
@@ -74,23 +74,19 @@ class AlmacenController extends Controller
     public function edit($id)
     {
         try {
-            
-            $almacenes_elegidos = DB::table('almacens')
-                        ->select('*')
-                        ->where('id','=', $id)
-                        ->first();
 
             $sucursal_elegida = DB::table('almacens')
                         ->join('sucursals','almacens.id_sucursal','=','sucursals.id')
                         ->select('*')
-                        ->where('sucursals.id','=',$id)
+                        ->where('almacens.id_sucursal','=',$id)
                         ->first();
 
             $sucursal = DB::table('sucursals')
                         ->select('*')
                         ->get();
 
-                return view('almacen.edit',compact('almacenes_elegidos','sucursal_elegida','sucursal'));
+                       // dd($sucursal_elegida);
+                return view('almacen.edit',compact('sucursal_elegida','sucursal'));
 
         } catch (\Throwable $th) {
 
@@ -105,9 +101,15 @@ class AlmacenController extends Controller
      * @param  \App\Models\Almacen  $almacen
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Almacen $almacen)
+    public function update($id)
     {
-        //
+        $almacen = Almacen::find($id);
+        $almacen-> nombre_almacen = request('nombreAlmacen');
+        $almacen-> id_sucursal = request('sucursal');
+        $almacen-> direccion_almacen = request('direccion');
+        $almacen->update();
+
+        return redirect('/almacenes');
     }
 
     /**
@@ -116,8 +118,11 @@ class AlmacenController extends Controller
      * @param  \App\Models\Almacen  $almacen
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Almacen $almacen)
+    public function destroy($id)
     {
-        //
+        $almacen=Almacen::findOrFail($id);
+        $almacen->delete();
+
+        return redirect('/almacenes');
     }
 }

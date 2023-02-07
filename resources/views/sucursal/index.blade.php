@@ -2,7 +2,9 @@
 @section('content')
 <h1 align="center" style="font-weight: 700">LISTA DE SUCURSALES </h1>
 
-<div class="row d-flex justify-content-center">
+<div class="container">
+  <br>
+    <div class="row d-flex justify-content-center">
     <div class="tabla-general" >
         <table class="table table-striped table-hover table-responsive" id="Table">
         <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
@@ -10,7 +12,7 @@
             <th class="column1 text-center">Id</th>
             <th class="column2 text-center">Nombre de Sucursal</th>
             <th class="column3 text-center">Nombre de Propietario</th>
-            <th class="column4 text-center">Direccion</th>
+            <th class="column4 text-center" >Direccion</th>
             <th class="column5 text-center">Fecha de Alta</th>
             <th class="column6 text-center">Acciones &nbsp;&nbsp;&nbsp;</th>
             </tr>
@@ -21,7 +23,7 @@
                 <td class="text-center" >{{$sucursales->id}}</td>
                 <td class="text-center" >{{$sucursales->nombre_sucursal}}</td>
                 <td class="text-center" >{{$sucursales->nombre_propietario}}</td>
-                <td class="text-center" >{{$sucursales->direccion}}</td>
+                <td class="text-center" >{{$sucursales->direccion_sucursal}}</td>
                 <td class="text-center" >{{$sucursales->created_at}}</td>
                 <td class="text-center" >
 
@@ -66,7 +68,7 @@
                         <div class="modal-body">
                          ¿Realmente Desea Borrar la Sucursal?
                         </div>
-                        <form action="{{url('/producto/'.$sucursales->id)}}" method="POST">
+                        <form action="{{url('/sucursal/'.$sucursales->id)}}" method="POST">
                           @csrf
                           @method('DELETE')
                         <div class="modal-footer">
@@ -88,6 +90,9 @@
         </table>
         </div>
 </div>
+</div>
+
+
 
     
     <link rel="stylesheet" href="{{ URL::asset('estilos/style.css') }} ">
