@@ -366,7 +366,7 @@ return [
                     'url'  => 'sucursales',
                     'can' => 'ver-sucursales',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['almacenes', 'almacenes/editar*'],
+                    'active' => ['sucursales', 'sucursales/editar*'],
                 ],
             ]
         ],
@@ -406,6 +406,7 @@ return [
                     'url'  => 'inventario',
                     'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['inventario', 'inventario/*'],
                 ],
             ]
         ],

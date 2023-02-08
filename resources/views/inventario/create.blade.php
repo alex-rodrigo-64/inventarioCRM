@@ -8,7 +8,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="{{url('/cliente/nuevo')}}" id="formulario" method="POST">
+            <form action="{{url('/inventario/nuevo')}}" id="formulario" method="POST">
               @csrf
               <div class="card">
                   <div class="card-body">
@@ -18,7 +18,7 @@
                         <div class="col-4">
                             <div class="input-group">
                               <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Sucursal</span>
-                              <select name="sucursal[]" required id="sucursal" onchange="getAlmacen()" class="form-control">
+                              <select name="sucursal" required id="sucursal" onchange="getAlmacen()" class="form-control">
                                 <option disabled value="" selected>Seleccione una Sucursal</option>
                                 @foreach ($sucursales as $sucursales)
                                   <option value="{{$sucursales->id}}">{{$sucursales->nombre_sucursal}}</option>
@@ -30,7 +30,7 @@
                         <div class="col-4">
                             <div class="input-group">
                               <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Almacen</span>
-                              <select name="almacen[]" required id="almacen" class="form-control">
+                              <select name="almacen" required id="almacen" class="form-control">
                                 <option value="" disabled selected>Seleccione una Sucursal</option>
                               </select>
                             </div>
@@ -61,7 +61,7 @@
                           <div class="input-group">
                             <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Proveedor</span>
                           <input type="text" id="proveedor" name="proveedor" class="form-control" 
-                            required onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
+                            required onkeyup=""  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)) ">
                           </div>
                         </div>
                     </div>
@@ -71,8 +71,8 @@
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">cantidad</span>
                             <input type="text" id="cantidad" name="cantidad" class="form-control text-center"
-                        required  autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
-                          <select name="cantidadP[]" required id="cantidadP" class="form-control">
+                        required   onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                          <select name="cantidadP" required id="cantidadP" class="form-control">
                             <option disabled value="" selected>Seleccione una Unidad</option>
                           </select> 
                         </div>
@@ -82,7 +82,7 @@
                       <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Cantidad Unitaria</span>
                       <input type="text" id="cantidadUnitaria" name="cantidadUnitaria" class="form-control text-center" 
-                        required onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                        required onkeyup=""  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                         
                       </div>
                     </div>
@@ -90,7 +90,7 @@
                       <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Costo de Adquisicion</span>
                            <input type="text" id="costoAdqui" name="costoAdqui" class="form-control text-right" 
-                               required autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
+                               required  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
                                <span class="input-group-text" id="basic-addon1" >Bs.</span>
                       </div>
                        <span id="estadoCostoA"></span>
@@ -102,7 +102,7 @@
                       <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Precio de Venta</span>
                       <input type="text" id="costoVenta" name="costoVenta" class="form-control text-right" 
-                        required onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
+                        required onkeyup=""  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
                         <span class="input-group-text" id="basic-addon1" >Bs.</span>
                       </div>
                     </div>
@@ -110,18 +110,10 @@
                       <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Precio Venta Unitario</span>
                            <input type="text" id="costoUni" name="costoUni" class="form-control text-right" 
-                               required autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
+                               required  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
                                <span class="input-group-text" id="basic-addon1" >Bs.</span>
                       </div>
                        <span id="estadoCostoA"></span>
-                    </div>
-                    <div class="col-4">
-                      <div class="input-group">
-                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Fecha</span>
-                           <input type="date" id="fecha" name="fecha" class="form-control" 
-                               required autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
-                      </div>
-                       <span id="estadoFecha"></span>
                     </div>
                   </div>
                      

@@ -19,12 +19,13 @@ class CreateInventariosTable extends Migration
             $table->String('codigo')->nullable();
             $table->String('nombre_producto')->nullable();
             $table->String('proveedor')->nullable();
-            $table->String('paquete')->nullable();
+            $table->String('cantidad')->nullable();
+            $table->String('unidad')->nullable();
             $table->String('cantidad_unitaria')->nullable();
-            $table->String('cantidad_total')->nullable();
+            $table->String('cantidad_unitaria_total')->nullable();
             $table->String('costo_adquisicion')->nullable();
-            $table->String('costo_venta')->nullable(); 
-            $table->String('fecha')->nullable();
+            $table->String('precio_venta')->nullable(); 
+            $table->String('precio_venta_unitario')->nullable(); 
             $table->String('detalle')->nullable();
             $table->unsignedBigInteger('id_sucursal')->nullable();
             $table->unsignedBigInteger('id_almacen')->nullable();
