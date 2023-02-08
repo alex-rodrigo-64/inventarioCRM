@@ -1,4 +1,4 @@
-<div class="active tab-pane" id="inventario">
+<div class="active tab-pane" id="tipoUnidad">
     <div class="card">
     <div class="card-body">
       <h6 class="row justify-content-center"><strong>AGREGAR TIPO DE UNIDAD</strong></h6>

@@ -33,7 +33,11 @@ class VentaController extends Controller
                 ->select('*')
                 ->get();
 
-        return view('venta.create',compact('sucursal','almacen'));
+        $unidad = DB::table('tipo_unidads')
+                ->select('*')
+                ->get();
+
+        return view('venta.create',compact('sucursal','almacen','unidad'));
     }
 
     /**
@@ -90,5 +94,16 @@ class VentaController extends Controller
     public function destroy(Venta $venta)
     {
         //
+    }
+
+    public function datosAlmacen()
+    {
+        
+        $almacen =  DB::table('almacens')
+            ->select('*')
+            ->where('id_sucursal',$_POST["sucursal"])
+            ->get();
+        
+        return json_encode(array('data'=>$almacen));
     }
 }

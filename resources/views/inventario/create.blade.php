@@ -12,7 +12,7 @@
               @csrf
               <div class="card">
                   <div class="card-body">
-                    <h5><strong>DATOS DEL INVENTARIO</strong></h5>
+                    <h5><strong>DATOS DEL INVENTARIO</strong></h5> 
                     <br>
                     <div class="row">
                         <div class="col-4">

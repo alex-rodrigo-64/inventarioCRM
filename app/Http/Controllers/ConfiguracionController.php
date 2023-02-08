@@ -19,9 +19,13 @@ class ConfiguracionController extends Controller
                 ->select('*')
                 ->first();
 
+        $tipoPago = DB::table('tipo_pagos')
+                ->select('*')
+                ->get();
+
         //dd($unidadVenta);
 
-        return view('configuracion.index',compact('unidad'));
+        return view('configuracion.index',compact('unidad','tipoPago'));
     }
 
     /**

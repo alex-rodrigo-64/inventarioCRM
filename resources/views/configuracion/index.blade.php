@@ -21,8 +21,8 @@
                      <div class="card">
                              <div class="card-header" id="card">
                                  <ul class="nav nav-pills">
-                                 <li class="nav-item"><a class="nav-link active" href="#inventario" data-toggle="tab">Inventario</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="#dispositivosTrabajo" data-toggle="tab">Dispositivos de Trabajo</a></li>
+                                 <li class="nav-item"><a class="nav-link active" href="#tipoUnidad" data-toggle="tab">Tipo de Unidad</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="#tipoPago" data-toggle="tab">Tipo de Pago</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#venta" data-toggle="tab">Venta</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#imagenes" data-toggle="tab">Imagenes</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#adjuntarArchivo" data-toggle="tab">Archivos adjuntos</a></li>
@@ -33,12 +33,12 @@
                              <div class="card-body">
                                  <div class="tab-content">
                                  <!--General-->
-                                    @include('configuracion/inventario')
+                                    @include('configuracion/tipoUnidad')
                                  <!--/General-->
  
                                  <!--Dispositivos de trabajo-->
-                                 <div class="tab-pane" id="dispositivosTrabajo">
-                                    {{-- @include('trabajo/informacion/dispositivos-de-trabajo')--}}
+                                 <div class="tab-pane" id="tipoPago">
+                                    @include('configuracion/tipoPago')
                                  </div>
                                  <!--/Dispositivos de trabajo-->
                                 

@@ -18,7 +18,7 @@
                         <div class="col-4">
                             <div class="input-group">
                                 <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Sucursal</span>
-                                <select name="sucursal" id="sucursal" onblur="validarRoles()" onchange="validarRoles()"
+                                <select name="sucursal" id="sucursal" onchange="getAlmacen()"
                                 class="form-control" >
                                 <option selected value="Elige un Rol" disabled>Elige una Sucursal</option>
                                         @foreach ($sucursal as $sucursal)
@@ -31,23 +31,11 @@
                         <div class="col-4">
                             <div class="input-group">
                                 <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Almacen</span>
-                                <select name="almacen" id="almacen" onblur="validarRoles()" onchange="validarRoles()"
-                                class="form-control" >
-                                <option selected value="Elige un Rol" disabled>Elige un Almacen</option>
-                                        @foreach ($almacen as $almacen)
-                                        <option   value="{{$almacen->id}}"> {{$almacen->nombre_almacen}}</option>
-                                         @endforeach
+                                <select name="almacen" id="almacen"  class="form-control" >
+                                <option selected value="Elige un Rol" disabled>Almacenes Disponibles</option>
                                 </select>               
                             </div>
                             <span id="estadoRol"></span>
-                        </div>
-                        <div class="col-4">
-                          <div class="input-group">
-                            <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Fecha</span>
-                               <input type="date" id="costoAdqui" name="costoAdqui" class="form-control" 
-                                   required autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
-                          </div>
-                           <span id="estadoFecha"></span>
                         </div>
                     </div>
                     <br>
@@ -121,8 +109,9 @@
                           <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Unidad</span>
                             <select name="rol[]" id="rol" class="form-control">
                               <option disabled selected>Seleccione una Unidad</option>
-                              <option value="Paquete">Paquete</option>
-                              <option value="Unidad">Unidad</option>
+                                 @foreach ($unidad as $unidades)
+                                  <option   value="{{$unidades->nombre_unidad}}"> {{$unidades->nombre_unidad}}</option>
+                                  @endforeach
                             </select>
                         </div>
                       <span id="estado"></span>
@@ -208,5 +197,30 @@
 
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+   function getAlmacen(){
+      var sucursal = $("#sucursal").val();
+      $.ajax({
+                    url: "/venta/getAlmacen",
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "sucursal": sucursal,
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function (dataResult) {
+                        //console.log(dataResult);
+                        $("#almacen").empty();
+                        $("#almacen").append("<option selected disabled>Seleccione un Almacen</option>");
+                        dataResult.data.forEach(element => {
+                          //console.log(element.nombre_almacen);
+                          $("#almacen").append("<option value='"+element.id+"'>"+element.nombre_almacen+"</option>");
+                        });
+                        
+                    }
+                });
+    }
+</script>
 
 @endsection
