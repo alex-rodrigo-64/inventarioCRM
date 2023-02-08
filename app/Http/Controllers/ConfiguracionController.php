@@ -15,13 +15,13 @@ class ConfiguracionController extends Controller
      */
     public function index()
     {
-        $unidadVenta = DB::table('configuracion_ventas')
+        $unidad = DB::table('tipo_unidads')
                 ->select('*')
                 ->first();
 
         //dd($unidadVenta);
 
-        return view('configuracion.index',compact('unidadVenta'));
+        return view('configuracion.index',compact('unidad'));
     }
 
     /**

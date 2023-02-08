@@ -33,7 +33,8 @@
         <table class="table table-light" id="tablaUnidad">
             <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
                 <tr>
-                  <th class="text-center" style="width: 500px">Nombre de Unidad</th>
+                  <th class="text-center" >Nombre de Unidad</th>
+                  <th class="text-center" style="width: 15%"></th>
                 </tr>
               </thead>
             <tbody class="table-bordered" id="unidadesGuardadas">
@@ -116,7 +117,7 @@
                         '<div class="modal-dialog" role="document">'+
                         '<div class="modal-content">'+
                             '<div class="modal-header">'+
-                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Dispositivo</h5>'+
+                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Tipo de Unidad</h5>'+
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                 '<span aria-hidden="true">&times;</span>'+
                             '</button>'+
@@ -126,7 +127,7 @@
                                 '<div class="row justify-content-center">'+
                                     '<div class="input-group-prepend col-10">'+
                                         '<div class="input-group">'+
-                                            '<span class="input-group-text" >Dispositivo</span>'+
+                                            '<span class="input-group-text" >Tipo de Unidad</span>'+
                                             '<input type="text" id="editNombreUnidad'+dataResult.data[i].id+'" name="editNombreUnidad" class="form-control" autocomplete="off" value="'+[dataResult.data[i].nombre_unidad]+'">'+
                                         '</div>'+
                                     '</div>'+
@@ -154,13 +155,13 @@
                             '<div class="modal-dialog" role="document">'+
                             '<div class="modal-content">'+
                                 '<div class="modal-header">'+
-                                '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Dispositivo</h5>'+
+                                '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Tipo de Unidad</h5>'+
                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                     '<span aria-hidden="true">&times;</span>'+
                                 '</button>'+
                                 '</div>'+
                                 '<div class="modal-body">'+
-                                '¿Realmente Desea Borrar el Dispositivo?'+
+                                '¿Realmente Desea Borrar el Tipo de Unidad?'+
                                 '</div>'+
                                 '<div class="modal-footer">'+
                                 '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
