@@ -118,9 +118,9 @@
                       </div>
                       <div class="col-4">
                         <div class="input-group">
-                          <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo</span>
+                          <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Unidad</span>
                             <select name="rol[]" id="rol" class="form-control">
-                              <option disabled selected>Seleccione una opcion</option>
+                              <option disabled selected>Seleccione una Unidad</option>
                               <option value="Paquete">Paquete</option>
                               <option value="Unidad">Unidad</option>
                             </select>
@@ -176,7 +176,7 @@
                               <tr>
                                 <th class="text-center" >Cantidad</th>
                                 <th class="text-center" >Codigo</th>
-                                <th class="text-center" >Tipo</th>
+                                <th class="text-center" >Unidad</th>
                                 <th class="text-center" >Detalle</th>
                                 <th class="text-center" >Precio Unitario</th>
                                 <th class="text-center" >Precio Total</th>

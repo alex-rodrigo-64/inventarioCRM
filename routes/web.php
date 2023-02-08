@@ -17,6 +17,7 @@ use App\Http\Controllers\FacturacionController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\TipoUnidadController;
 use App\Http\Controllers\VentaController;
 use Illuminate\Support\Facades\Route;
 
@@ -103,9 +104,11 @@ Route::delete('/venta/{id}',[VentaController::class,'destroy']);
 //CONFIGURACION
 Route::get('/configuraciones',[ConfiguracionController::class,'index']);
 
-//CONFIGURACION_VENTAS
-Route::post('/configuraciones/agregarTipoUnidad',[ConfiguracionVentaController::class,'agregarUnidad']);
-Route::post('/configuraciones/agregarTipoUnidad/datos',[ConfiguracionVentaController::class,'datosUnidad']);
+//CONFIGURACION DE INVENTARIO
+Route::post('/configuracion/agregarTipoUnidad',[TipoUnidadController::class,'agregarUnidad']);
+Route::post('/configuracion/datosUnidaed',[TipoUnidadController::class,'datosTipoUnidad']);
+Route::post('/configuracion/actualizarUnidad',[TipoUnidadController::class,'actualizarTipoUnidad']);
+Route::post('/configuracion/eliminar',[TipoUnidadController::class,'eliminarTipoUnidad']);
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConfiguracionVentasTable extends Migration
+class CreateTipoUnidadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateConfiguracionVentasTable extends Migration
      */
     public function up()
     {
-        Schema::create('configuracion_ventas', function (Blueprint $table) {
-            
+        Schema::create('tipo_unidads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->String('nombre_unidad')->nullable();
             $table->timestamps();
-            
         });
     }
 
@@ -29,6 +27,6 @@ class CreateConfiguracionVentasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('configuracion_ventas');
+        Schema::dropIfExists('tipo_unidads');
     }
 }

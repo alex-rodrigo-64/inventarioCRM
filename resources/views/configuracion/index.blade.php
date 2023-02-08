@@ -21,7 +21,7 @@
                      <div class="card">
                              <div class="card-header" id="card">
                                  <ul class="nav nav-pills">
-                                 <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
+                                 <li class="nav-item"><a class="nav-link active" href="#inventario" data-toggle="tab">Inventario</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#dispositivosTrabajo" data-toggle="tab">Dispositivos de Trabajo</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#venta" data-toggle="tab">Venta</a></li>
                                  <li class="nav-item"><a class="nav-link" href="#imagenes" data-toggle="tab">Imagenes</a></li>
@@ -33,7 +33,7 @@
                              <div class="card-body">
                                  <div class="tab-content">
                                  <!--General-->
-                                     {{--@include('trabajo.informacion.general')--}}
+                                    @include('configuracion/inventario')
                                  <!--/General-->
  
                                  <!--Dispositivos de trabajo-->
@@ -44,7 +44,7 @@
                                 
                                   <!--venta-->
                                   <div class="tab-pane" id="venta">
-                                    @include('configuracion/venta')
+                                    
                                  </div>
                                  <!-- /venta -->
  
