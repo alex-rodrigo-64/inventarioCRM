@@ -14,8 +14,11 @@ class InventarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $sucursales = DB::table('sucursals')
+                        ->select('*')
+                        ->get();
+        return view('inventario.index',compact('sucursales'));
     }
 
     /**
@@ -50,30 +53,44 @@ class InventarioController extends Controller
      */
     public function store(Request $request)
     {
-        dd( $request->get('paquete'));
+        $valor = $request->get('cantidad')* $request->get('cantidadUnitaria');
+        //dd( $request->all());
 
         $inventario = new Inventario();
         $inventario->codigo = $request->get('codigo');
         $inventario->nombre_producto = $request->get('nombreProducto');
         $inventario->proveedor = $request->get('proveedor');
-        $inventario->paquete = $request->get('paquete');
+        $inventario->cantidad = $request->get('cantidad');
+        $inventario->unidad = $request->get('cantidadP');
         $inventario->cantidad_unitaria = $request->get('cantidadUnitaria');
-        $inventario->cantidad_total = $request->get('paquete');
+        $inventario->cantidad_unitaria_total = $valor;
         $inventario->costo_adquisicion = $request->get('costoAdqui');
-        $inventario->costo_venta =$request->get('costoVenta');
-        $inventario->fecha = $request->get('fecha');
+        $inventario->precio_venta =$request->get('costoVenta');
+        $inventario->precio_venta_unitario =$request->get('costoUni');
         $inventario->detalle = $request->get('nota');
         $inventario->id_sucursal =$request->get('sucursal');
         $inventario->id_almacen =$request->get('almacen');
         $inventario->save();
+
+        return redirect('/inventario');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Inventario  $inventario
-     * @return \Illuminate\Http\Response
-     */
+    public function inventarioSucursal($id){
+
+        $sucursal = DB::table('sucursals')
+                    ->select('nombre_sucursal')
+                    ->where('id',$id)
+                    ->first();
+
+
+        $almacenes = DB::table('almacens')
+                    ->select('*')
+                    ->where('id_sucursal',$id)
+                    ->get();
+
+        return view('inventario.sucursal',compact('almacenes','sucursal'));
+    }
+
     public function show(Inventario $inventario)
     {
         //
