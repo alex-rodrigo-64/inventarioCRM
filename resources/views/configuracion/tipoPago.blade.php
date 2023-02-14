@@ -36,24 +36,24 @@
                 <div class="col-5">
                     <div class="input-group">
                         <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Detalle</span>
-                        <input type="text" class="form-control " name="pagoDetalle"id="pagoDetalle"
+                        <input type="text" class="form-control " name="pagoDetalle" id="pagoDetalle"
                         onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57))">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="input-group">
                         <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Pago</span>
-                        <select name="idPago" id="idPago" class="form-control" > 
+                        <select name="pago" id="pago" class="form-control" > 
                         <option selected value="Elige un Rol" disabled>Tipo</option>
                             @foreach ($tipoPago as $tipoPago)
-                             <option   value="{{$tipoPago->nombre_pago}}"> {{$tipoPago->nombre_pago}}</option>
+                             <option   value="{{$tipoPago->id}}"> {{$tipoPago->nombre_pago}}</option>
                             @endforeach
                         </select>               
                     </div>
                 </div>
             
                 <div class="col-1">
-                    <button class='btn btn-icon btn-success' type='button' id='guardarPagoDetalles' name='guardarPagoDetalles'>
+                    <button class='btn btn-icon btn-success' type='button' id='guardaDetalles' name='guardaDetalles'>
                         <svg xmlns="http://www.w3.org/2000/svg" width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox="0 0 448 512">
                             <path d="M433.941 129.941l-83.882-83.882A48 48 0 0 0 316.118 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 
                             48-21.49 48-48V163.882a48 48 0 0 0-14.059-33.941zM272 80v80H144V80h128zm122 352H54a6 6 0 0 1-6-6V86a6 6 0 0 1 6-6h42v104c0 13.255 
@@ -113,45 +113,6 @@
     </div>
     </div>
    
-    <div class="row justify-content-center">
-        <div class="card">
-            <div class="card-body">
-                    <table class="table table-light" id="tablaPagos">
-                    <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
-                        <tr>
-                        <th class="text-center" style="width: 70%">Tipo de Pago</th>
-                        <th class="text-center" style="width: 15%"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-bordered" id="pagosGuardadas">
-                        <tr>
-                        
-                        <tr>
-                    </tbody>
-                </table>
-            </div>
-     </div>
-
-        <div class="card">
-            <div class="card-body">
-                <table class="table table-light" id="tablaPagoDetalles">
-                    <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
-                        <tr>
-                        <th class="text-center" >Detallefa-spin</th>
-                        <th class="text-center" style="width: 15%"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-bordered" id="pagosDetallesGuardadas">
-                        <tr>
-                        
-                        <tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    
 
 </div>
 
@@ -163,6 +124,7 @@
     $(document).ready(function() {
 
         datosPagos();
+        datosDetalles();
 
         });
 
@@ -334,33 +296,31 @@
 
           // detalle de pago
 
-          $("#guardarPagoDetalles").on('click',function(){
-            var url1 = $('#pagoDetalle').val();
-            var url2 = $('#idPago').val();
+          $("#guardaDetalles").on('click',function(){
+            var url3 = $('#pagoDetalle').val();
+            var url4 = $('#pago').val();
 
-            $('#pagoDetalle').val('');
-            $('#idPago').val('');
-           //console.log(url1);
+           console.log(url4);
                 $.ajax({
-                    url: "/configuracion/nuevoTipoPagoDetalle",
+                    url: "/configuracion/nuevoPagoDetalle",
                     type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
-                        pagoDetalle: url1,
-                        idPago: url2,
+                        pagoDetalle: url3,
+                        pago: url4,
                     },
                     cache: false,
                     dataType: 'json',
                     success: function (dataResult) {
-                        //console.log(dataResult);
-                        datosPagos();
+                       // console.log(dataResult);
+                        datosDetalles();
                     }
                 });
         });
 
-        function datosPagos(){
+        function datosDetalles(){
         $.ajax({
-                url: "/configuracion/datosPago",
+                url: "/configuracion/datosDetalle",
                 type: "POST",
                 data:{ 
                     "_token": "{{ csrf_token() }}",
@@ -369,7 +329,7 @@
                 dataType: 'json',
                 success: function(dataResult){
                 //console.log(dataResult);
-                $('#tablaPagos > tbody').empty();
+                $('#tablaPagoDetalles > tbody').empty();
                 var filas = dataResult.data.length;
                 var count = 0;
 
@@ -382,66 +342,30 @@
                         }
                             
                             var nuevafila= "<tr><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
+                                dataResult.data[i].pago_detalle  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].nombre_pago  + 
                             "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
-                                '<button type="button" class="btn" data-toggle="modal" data-target="#pagoEditar'+dataResult.data[i].id+'">'+
-                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(168, 166, 14)" class="bi bi-trash" viewBox="0 0 16 16">'+
-                '<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>'+
-              '</svg>'+
-            '</button>'+
-            '<div class="modal fade" id="pagoEditar'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                        '<div class="modal-dialog" role="document">'+
-                        '<div class="modal-content">'+
-                            '<div class="modal-header">'+
-                            '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Tipo de Pago</h5>'+
-                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                                '<span aria-hidden="true">&times;</span>'+
-                            '</button>'+
-                            '</div>'+
-                            '<div class="modal-body">'+
-                            '</br>'+
-                                '<div class="row justify-content-center">'+
-                                    '<div class="input-group-prepend col-10">'+
-                                        '<div class="input-group">'+
-                                            '<span class="input-group-text" >Tipo de Pago</span>'+
-                                            '<input type="text" id="editNombrePago'+dataResult.data[i].id+'" name="editNombrePago" class="form-control" autocomplete="off" value="'+[dataResult.data[i].nombre_pago]+'">'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</br>'+
-                            '</div>'+
-                            
-                            '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>'+
-                            '<button class="btn btn-primary" onclick="actualizarPago('+dataResult.data[i].id+')" >'+
-                                'Actualizar'+
-                            '</button>'+
-                            '</div>'+
-                        '</form> '+
-                        '</div>'+
-                        '</div>'+
-                    ' </div> '+
-                        '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModalPago'+dataResult.data[i].id+'">'+
+                        '<button type="button" class="btn" data-toggle="modal" data-target="#exampleModalDetalle'+dataResult.data[i].id+'">'+
                             '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'+
                             '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'+
                             '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'+
                             '</svg>'+
                         '</button>'+
-                        '<div class="modal fade" id="exampleModalPago'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                        '<div class="modal fade" id="exampleModalDetalle'+dataResult.data[i].id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
                             '<div class="modal-dialog" role="document">'+
                             '<div class="modal-content">'+
                                 '<div class="modal-header">'+
-                                '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Tipo de Pago</h5>'+
+                                '<h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Detalle de Pago</h5>'+
                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                                     '<span aria-hidden="true">&times;</span>'+
                                 '</button>'+
                                 '</div>'+
                                 '<div class="modal-body">'+
-                                '¿Realmente Desea Borrar el Tipo de Pago?'+
+                                '¿Realmente Desea Borrar el Detalle de Pago?'+
                                 '</div>'+
                                 '<div class="modal-footer">'+
                                 '<button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazar</button>'+
-                                '<button class="btn btn-primary" onclick="eliminarPago('+dataResult.data[i].id+')">'+
+                                '<button class="btn btn-primary" onclick="eliminarDetalle('+dataResult.data[i].id+')">'+
                                     'Aceptar'+
                                 '</button>'+
                                 '</div>'+
@@ -450,41 +374,16 @@
                         ' </div> '+
                         "</td></tr>"
                         
-                        $("#pagosGuardadas").append(nuevafila);
+                        $("#pagosDetallesGuardadas").append(nuevafila);
                     }
                     
                     }
                 });
     }
 
-
-    function actualizarPago(id_pago){
-            
-            var pago = $("#editNombrePago"+id_pago).val();
-
-            $.ajax({
-                url: "/configuracion/actualizarPago",
-                type: "POST",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id_pago": id_pago,
-                    "pago": pago,
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (dataResult) {
-                    //console.log(dataResult);
-                    datosPagos();
-                    $('#pagoEditar'+id_pago).modal('hide');
-               
-                }
-                
-            });
-        }
-
-        function eliminarPago(id){
+        function eliminarDetalle(id){
              $.ajax({
-                    url: "/configuracion/eliminarPago",
+                    url: "/configuracion/eliminarPagoDetalle",
                     type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
@@ -494,8 +393,8 @@
                     dataType: 'json',
                     success: function (dataResult) {
                         //console.log(dataResult);
-                        datosPagos();
-                        $('#exampleModalPago'+id).modal('hide')
+                        datosDetalles();
+                        $('#exampleModalDetalle'+id).modal('hide')
                     }
                 });
           }

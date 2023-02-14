@@ -62,21 +62,20 @@
                       <div class="col-4">
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo de Pago</span>
-                              <select name="rol[]" id="rol" class="form-control">
+                              <select name="pago" id="pago" onchange="getPago()" class="form-control"> 
                                 <option disabled selected>Seleccione una opcion</option>
-                                <option value="Contado">Contado</option>
-                                <option value="Credito">Credito</option>
+                                @foreach ($tipoPago as $tipoPagos)
+                                        <option   value="{{$tipoPagos->id}}"> {{$tipoPagos->nombre_pago}}</option>
+                                         @endforeach
                               </select>
                           </div>
                         <span id="estado"></span>
                       </div>
                       <div class="col-4">
                         <div class="input-group">
-                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo de Pago</span>
-                              <select name="rol[]" id="rol" class="form-control">
-                                <option disabled selected>Seleccione una opcion</option>
-                                <option value="Contado">Contado</option>
-                                <option value="Credito">Credito</option>
+                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Detalle de Pago</span>
+                              <select name="detallePago" id="detallePago" class="form-control">
+                                <option disabled selected>Tipo de Pago </option>
                               </select>
                           </div>
                         <span id="estado"></span>
@@ -216,6 +215,31 @@
                         dataResult.data.forEach(element => {
                           //console.log(element.nombre_almacen);
                           $("#almacen").append("<option value='"+element.id+"'>"+element.nombre_almacen+"</option>");
+                        });
+                        
+                    }
+                });
+    }
+
+    function getPago(){
+      var pago = $("#pago").val();
+     // console.log(pago);
+      $.ajax({
+                    url: "/venta/getPago",
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "pago": pago,
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function (dataResult) {
+                        //console.log(dataResult);
+                        $("#detallePago").empty();
+                        $("#detallePago").append("<option selected disabled>Seleccione el detalle</option>");
+                        dataResult.data.forEach(element => {
+                          //console.log(element.nombre_almacen);
+                          $("#detallePago").append("<option value='"+element.id+"'>"+element.pago_detalle+"</option>");
                         });
                         
                     }

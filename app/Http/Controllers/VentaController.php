@@ -37,7 +37,11 @@ class VentaController extends Controller
                 ->select('*')
                 ->get();
 
-        return view('venta.create',compact('sucursal','almacen','unidad'));
+        $tipoPago = DB::table('tipo_pagos')
+                ->select('*')
+                ->get();
+
+        return view('venta.create',compact('sucursal','almacen','unidad','tipoPago'));
     }
 
     /**
@@ -98,12 +102,21 @@ class VentaController extends Controller
 
     public function datosAlmacen()
     {
-        
         $almacen =  DB::table('almacens')
             ->select('*')
             ->where('id_sucursal',$_POST["sucursal"])
             ->get();
         
         return json_encode(array('data'=>$almacen));
+    }
+
+    public function datosPagos()
+    {
+        $detalle =  DB::table('tipo_pago_detalles')
+            ->select('*')
+            ->where('id_tipo_pago',$_POST["pago"])
+            ->get();
+        
+        return json_encode(array('data'=>$detalle));
     }
 }

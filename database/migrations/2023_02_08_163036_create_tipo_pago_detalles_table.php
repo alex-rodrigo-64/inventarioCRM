@@ -16,13 +16,14 @@ class CreateTipoPagoDetallesTable extends Migration
         Schema::create('tipo_pago_detalles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->String('pago_detalle')->nullable();
-            $table->unsignedBigInteger('id_pago')->nullable();
+            $table->unsignedBigInteger('id_tipo_pago')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_pago')
+            $table->foreign('id_tipo_pago')
             ->references('id')
             ->on('tipo_pagos')
             ->onDelete('cascade');
+
         });
     }
 
