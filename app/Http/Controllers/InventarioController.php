@@ -100,7 +100,7 @@ class InventarioController extends Controller
         $inventario->id_almacen =$request->get('almacen');
         $inventario->save();
 
-        return redirect('/inventario');
+        return redirect('/inventarios');
     }
 
     public function inventarioSucursal($id){
