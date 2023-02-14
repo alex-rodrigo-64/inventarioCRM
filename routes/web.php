@@ -3,6 +3,8 @@
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClonesController;
+use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\ConfiguracionVentaController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
@@ -15,7 +17,11 @@ use App\Http\Controllers\FacturacionController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\TipoPagoController;
+use App\Http\Controllers\TipoPagoDetallesController;
+use App\Http\Controllers\TipoUnidadController;
 use App\Http\Controllers\VentaController;
+use App\Models\TipoPago;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -98,6 +104,28 @@ Route::post('/venta/nuevo',[VentaController::class,'store']);
 Route::get('/venta/editar/{id}',[VentaController::class,'edit']);
 Route::post('/venta/editar/{id}',[VentaController::class,'update']);
 Route::delete('/venta/{id}',[VentaController::class,'destroy']);
+Route::post('/venta/getAlmacen',[VentaController::class,'datosAlmacen']);
+
+//CONFIGURACION
+Route::get('/configuraciones',[ConfiguracionController::class,'index']);
+
+//CONFIGURACION DE TIPO DE UNIDAD
+Route::post('/configuracion/agregarTipoUnidad',[TipoUnidadController::class,'agregarUnidad']);
+Route::post('/configuracion/datosUnidaed',[TipoUnidadController::class,'datosTipoUnidad']);
+Route::post('/configuracion/actualizarUnidad',[TipoUnidadController::class,'actualizarTipoUnidad']);
+Route::post('/configuracion/eliminar',[TipoUnidadController::class,'eliminarTipoUnidad']);
+
+//CONFIGURACION DE TIPO DE PAGO
+Route::post('/configuracion/nuevoTipoPago',[TipoPagoController::class,'agregarTipoPago']);
+Route::post('/configuracion/datosPago',[TipoPagoController::class,'datosTipoPago']);
+Route::post('/configuracion/actualizarPago',[TipoPagoController::class,'actualizarTipoPago']);
+Route::post('/configuracion/eliminarPago',[TipoPagoController::class,'eliminarTipoPago']);
+
+//Detalle de tipo de pago
+Route::post('/configuracion/nuevoTipoPagoDetalle',[TipoPagoDetallesController::class,'agregarTipoPagoDetalles']);
+Route::post('/configuracion/datosPagoDetalle',[TipoPagoDetallesController::class,'datosTipoPagoDetalles']);
+Route::post('/configuracion/actualizarPagoDetalle',[TipoPagoDetallesController::class,'actualizarTipoPagoDetalles']);
+Route::post('/configuracion/eliminarPagoDetalle',[TipoPagoDetallesController::class,'eliminarTipoPagoDetalles']);
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);

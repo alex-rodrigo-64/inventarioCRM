@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Venta;
+use App\Models\Configuracion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class VentaController extends Controller
+class ConfiguracionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,17 @@ class VentaController extends Controller
      */
     public function index()
     {
-        //
+        $unidad = DB::table('tipo_unidads')
+                ->select('*')
+                ->first();
+
+        $tipoPago = DB::table('tipo_pagos')
+                ->select('*')
+                ->get();
+
+        //dd($unidadVenta);
+
+        return view('configuracion.index',compact('unidad','tipoPago'));
     }
 
     /**
@@ -25,19 +35,7 @@ class VentaController extends Controller
      */
     public function create()
     {
-        $sucursal = DB::table('sucursals')
-                ->select('*')
-                ->get();
-
-        $almacen = DB::table('almacens')
-                ->select('*')
-                ->get();
-
-        $unidad = DB::table('tipo_unidads')
-                ->select('*')
-                ->get();
-
-        return view('venta.create',compact('sucursal','almacen','unidad'));
+        //
     }
 
     /**
@@ -54,10 +52,10 @@ class VentaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Venta  $venta
+     * @param  \App\Models\Configuracion  $configuracion
      * @return \Illuminate\Http\Response
      */
-    public function show(Venta $venta)
+    public function show(Configuracion $configuracion)
     {
         //
     }
@@ -65,10 +63,10 @@ class VentaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Venta  $venta
+     * @param  \App\Models\Configuracion  $configuracion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Venta $venta)
+    public function edit(Configuracion $configuracion)
     {
         //
     }
@@ -77,10 +75,10 @@ class VentaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Venta  $venta
+     * @param  \App\Models\Configuracion  $configuracion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Venta $venta)
+    public function update(Request $request, Configuracion $configuracion)
     {
         //
     }
@@ -88,22 +86,11 @@ class VentaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Venta  $venta
+     * @param  \App\Models\Configuracion  $configuracion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Venta $venta)
+    public function destroy(Configuracion $configuracion)
     {
         //
-    }
-
-    public function datosAlmacen()
-    {
-        
-        $almacen =  DB::table('almacens')
-            ->select('*')
-            ->where('id_sucursal',$_POST["sucursal"])
-            ->get();
-        
-        return json_encode(array('data'=>$almacen));
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAlmacensTable extends Migration
+class CreateTipoPagoDetallesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,16 @@ class CreateAlmacensTable extends Migration
      */
     public function up()
     {
-        Schema::create('almacens', function (Blueprint $table) {
-            
+        Schema::create('tipo_pago_detalles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('nombre_almacen')->nullable();
-            $table->String('direccion_almacen')->nullable();
-            $table->unsignedBigInteger('id_sucursal')->nullable();
-            
+            $table->String('pago_detalle')->nullable();
+            $table->unsignedBigInteger('id_pago')->nullable();
             $table->timestamps();
 
-
-            $table->foreign('id_sucursal')
+            $table->foreign('id_pago')
             ->references('id')
-            ->on('sucursals')
+            ->on('tipo_pagos')
             ->onDelete('cascade');
-
-
         });
     }
 
@@ -39,6 +33,6 @@ class CreateAlmacensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('almacens');
+        Schema::dropIfExists('tipo_pago_detalles');
     }
 }

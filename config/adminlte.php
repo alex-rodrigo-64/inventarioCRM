@@ -554,7 +554,7 @@ return [
             
             [
                 'text' => 'Opciones',
-                'url'  => 'opciones/nuevo',
+                'url'  => 'configuraciones',
                 'icon'    => 'fas fa-fw fa-filse',
                 'can' => 'ver-opciones',
 

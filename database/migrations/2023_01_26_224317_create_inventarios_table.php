@@ -29,6 +29,7 @@ class CreateInventariosTable extends Migration
             $table->String('detalle')->nullable();
             $table->unsignedBigInteger('id_sucursal')->nullable();
             $table->unsignedBigInteger('id_almacen')->nullable();
+            
             $table->timestamps();
 
             $table->foreign('id_sucursal')
