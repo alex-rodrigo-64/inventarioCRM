@@ -18,7 +18,32 @@ class InventarioController extends Controller
         $sucursales = DB::table('sucursals')
                         ->select('*')
                         ->get();
-        return view('inventario.index',compact('sucursales'));
+
+        $almacenes = DB::table('almacens')
+                        ->select('*')
+                        ->get();
+
+        $arreglo = [];
+        
+        foreach ($sucursales as $sucursal) {
+            $contador = 0;
+            $sucu = [
+                'contador' => 0,
+            ];
+            array_push($sucu , $sucursal);
+            foreach ($almacenes as $almacen) {
+                if($almacen->id_sucursal == $sucursal->id){
+                   array_push($sucu , $almacen); 
+                   $contador = $contador + 1;
+                }
+            }
+            $sucu['contador']=$contador;
+            array_push($arreglo , $sucu); 
+        }
+
+       // dd($arreglo);
+
+        return view('inventario.index',compact('arreglo'));
     }
 
     /**
@@ -28,10 +53,13 @@ class InventarioController extends Controller
      */
     public function create()
     {
+        $unidad = DB::table('tipo_unidads')
+                        ->select('*')
+                        ->get();
         $sucursales = DB::table('sucursals')
                         ->select('*')
                         ->get();
-        return view('inventario.create',compact('sucursales'));
+        return view('inventario.create',compact('sucursales','unidad'));
     }
 
     public function datosAlmacen()

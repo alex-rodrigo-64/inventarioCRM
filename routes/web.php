@@ -87,7 +87,7 @@ Route::post('/almacen/editar/{id}',[AlmacenController::class,'update']);
 Route::delete('/almacen/{id}',[AlmacenController::class,'destroy']);
 
 //INVENTARIOS
-Route::get('/inventario',[InventarioController::class,'index']);
+Route::get('/inventarios',[InventarioController::class,'index']);
 Route::get('/inventario/nuevo',[InventarioController::class,'create']);
 Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventario/{id}',[InventarioController::class,'inventarioSucursal']);

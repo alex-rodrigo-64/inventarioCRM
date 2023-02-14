@@ -403,10 +403,10 @@ return [
                 ],
                 [
                     'text' => 'Ver Inventario',
-                    'url'  => 'inventario',
+                    'url'  => 'inventarios',
                     'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
-                    //'active' => ['inventario', 'inventario/*'],
+                    'active' => ['inventarios', 'inventarios/*'],
                 ],
             ]
         ],

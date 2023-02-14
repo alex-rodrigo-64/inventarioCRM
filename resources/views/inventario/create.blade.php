@@ -74,6 +74,9 @@
                         required   onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                           <select name="cantidadP" required id="cantidadP" class="form-control">
                             <option disabled value="" selected>Seleccione una Unidad</option>
+                            @foreach ($unidad as $unidad)
+                                  <option value="{{$unidad->nombre_unidad}}">{{$unidad->nombre_unidad}}</option>
+                                @endforeach
                           </select> 
                         </div>
                          <span id="estadoCantidad"></span>
