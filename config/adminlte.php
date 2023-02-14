@@ -406,7 +406,7 @@ return [
                     'url'  => 'inventario',
                     'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['inventario', 'inventario/*'],
+                    //'active' => ['inventario', 'inventario/*'],
                 ],
             ]
         ],
