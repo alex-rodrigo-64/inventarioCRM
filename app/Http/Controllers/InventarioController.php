@@ -105,18 +105,18 @@ class InventarioController extends Controller
 
     public function inventarioSucursal($id){
 
-        $sucursal = DB::table('sucursals')
-                    ->select('nombre_sucursal')
-                    ->where('id',$id)
-                    ->first();
-
-
-        $almacenes = DB::table('almacens')
+        $inventario = DB::table('inventarios')
                     ->select('*')
-                    ->where('id_sucursal',$id)
+                    ->where('id_almacen',$id)
                     ->get();
 
-        return view('inventario.sucursal',compact('almacenes','sucursal'));
+        $almacen = DB::table('almacens')
+                    ->select('nombre_almacen')
+                    ->where('id',$id)
+                    ->first();
+ 
+
+        return view('inventario.sucursal',compact('inventario','almacen'));
     }
 
     public function show(Inventario $inventario)
