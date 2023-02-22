@@ -443,7 +443,7 @@ return [
                 ],
                 [
                     'text' => 'Ver Ventas',
-                    'url'  => 'venta',
+                    'url'  => 'ventas',
                     'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],

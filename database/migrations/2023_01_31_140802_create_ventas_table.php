@@ -14,8 +14,26 @@ class CreateVentasTable extends Migration
     public function up()
     {
         Schema::create('ventas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_sucursal')->nullable();
+            $table->unsignedBigInteger('id_almacen')->nullable();
+            $table->String('cliente')->nullable();
+            $table->String('producto')->nullable();
+            $table->String('tipo_pago')->nullable();
+            $table->String('detalle_pago')->nullable();
+            $table->String('descripcion')->nullable();
+            $table->String('bandera')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_sucursal')
+            ->references('id')
+            ->on('sucursals')
+            ->onDelete('cascade');
+
+            $table->foreign('id_almacen')
+            ->references('id')
+            ->on('almacens')
+            ->onDelete('cascade');
         });
     }
 
