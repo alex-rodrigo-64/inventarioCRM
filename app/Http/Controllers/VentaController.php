@@ -109,8 +109,13 @@ class VentaController extends Controller
 
     public function datosDetalle(){
         
+        $venta = DB::table('ventas')
+                ->select('id')
+                ->get();
+
         $datos = DB::table('detalle_ventas')
                 ->select('*')
+                ->where('id_venta','=',$venta->id)
                 ->get();
 
         return json_encode(array('data'=>$datos));
