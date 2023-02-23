@@ -84,35 +84,28 @@ class TipoPagoDetallesController extends Controller
         //
     }
 
-    public function agregarTipoPagoDetalles()
+    public function agregarPagoDetalles()
     {
         $detalle = new TipoPagoDetalles();
-        $detalle->pago_detalle = $_POST["nombrePago"];
+        $detalle->pago_detalle = $_POST["pagoDetalle"];
+        $detalle->id_tipo_pago = $_POST["pago"];
         $detalle->save();
 
         return json_encode(array('data'=>true));
 
     }
 
-    public function datosTipoPagoDetalles(){
+    public function datosPagoDetalles(){
         
-        $datos = DB::table('tipo_pagos')
-                ->select('*')
+        $datos = DB::table('tipo_pago_detalles')
+                ->join('tipo_pagos','tipo_pagos.id','=','tipo_pago_detalles.id_tipo_pago')
+                ->select('tipo_pagos.nombre_pago','tipo_pago_detalles.pago_detalle')
                 ->get();
 
         return json_encode(array('data'=>$datos));
     }
 
-    public function actualizarTipoPagoDetalles(){
-
-        $datoPagoDetalle = TipoPagoDetalles::find($_POST["id_detalle"]);
-        $datoPagoDetalle->pago_detalle = $_POST["detalle"];
-        $datoPagoDetalle->update();
-
-        return json_encode(array('data'=>true));
-    }
-
-    public function eliminarTipoPagoDetalles(){
+    public function eliminarPagoDetalles(){
  
                     
         $detalle=TipoPagoDetalles::findOrFail($_POST["id"]);

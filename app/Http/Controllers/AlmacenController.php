@@ -62,7 +62,7 @@ class AlmacenController extends Controller
      */
     public function show(Almacen $almacen)
     {
-        //
+        //  
     }
 
     /**

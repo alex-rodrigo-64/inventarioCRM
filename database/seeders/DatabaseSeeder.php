@@ -129,5 +129,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->assignRole('ADMINISTRADOR');
+
+        $this->call(ConfiguracionSeeder::class);
     }
 }

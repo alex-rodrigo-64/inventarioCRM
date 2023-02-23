@@ -92,10 +92,14 @@ Route::post('/inventario/getAlmacen',[InventarioController::class,'datosAlmacen'
 Route::get('/ventas',[VentaController::class,'index']);
 Route::get('/venta/nuevo',[VentaController::class,'create']);
 Route::post('/venta/nuevo',[VentaController::class,'store']);
-Route::get('/venta/editar/{id}',[VentaController::class,'edit']);
-Route::post('/venta/editar/{id}',[VentaController::class,'update']);
+Route::get('/ventas/mostrar/{id}',[VentaController::class,'show']);
 Route::delete('/venta/{id}',[VentaController::class,'destroy']);
 Route::post('/venta/getAlmacen',[VentaController::class,'datosAlmacen']);
+Route::post('/venta/getPago',[VentaController::class,'datosPagos']);
+Route::post('/venta/nuevoDetalle',[VentaController::class,'nuevoDetalle']);
+Route::post('/venta/datos',[VentaController::class,'datosDetalle']);
+Route::post('/venta/datosShow',[VentaController::class,'datosDetalleShow']);
+Route::post('/venta/eliminar',[VentaController::class,'eliminarDetalle']);
 
 //TRANSFERENCIA
 Route::get('/transferencias',[TransferenciaController::class,'index']);
@@ -116,10 +120,9 @@ Route::post('/configuracion/actualizarPago',[TipoPagoController::class,'actualiz
 Route::post('/configuracion/eliminarPago',[TipoPagoController::class,'eliminarTipoPago']);
 
 //Detalle de tipo de pago
-Route::post('/configuracion/nuevoTipoPagoDetalle',[TipoPagoDetallesController::class,'agregarTipoPagoDetalles']);
-Route::post('/configuracion/datosPagoDetalle',[TipoPagoDetallesController::class,'datosTipoPagoDetalles']);
-Route::post('/configuracion/actualizarPagoDetalle',[TipoPagoDetallesController::class,'actualizarTipoPagoDetalles']);
-Route::post('/configuracion/eliminarPagoDetalle',[TipoPagoDetallesController::class,'eliminarTipoPagoDetalles']);
+Route::post('/configuracion/nuevoPagoDetalle',[TipoPagoDetallesController::class,'agregarPagoDetalles']);
+Route::post('/configuracion/datosDetalle',[TipoPagoDetallesController::class,'datosPagoDetalles']);
+Route::post('/configuracion/eliminarPagoDetalle',[TipoPagoDetallesController::class,'eliminarPagoDetalles']);
 
 //script
 Route::post('/usuario/nuevo/validarCorreo', [UsuarioController::class,'validarCorreo']);

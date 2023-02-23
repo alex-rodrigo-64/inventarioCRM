@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Compra;
+use App\Models\DetalleVenta;
 use Illuminate\Http\Request;
 
-class CompraController extends Controller
+class DetalleVentaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CompraController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Compra  $compra
+     * @param  \App\Models\DetalleVenta  $detalleVenta
      * @return \Illuminate\Http\Response
      */
-    public function show(Compra $compra)
+    public function show(DetalleVenta $detalleVenta)
     {
         //
     }
@@ -52,10 +52,10 @@ class CompraController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Compra  $compra
+     * @param  \App\Models\DetalleVenta  $detalleVenta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Compra $compra)
+    public function edit(DetalleVenta $detalleVenta)
     {
         //
     }
@@ -64,10 +64,10 @@ class CompraController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Compra  $compra
+     * @param  \App\Models\DetalleVenta  $detalleVenta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Compra $compra)
+    public function update(Request $request, DetalleVenta $detalleVenta)
     {
         //
     }
@@ -75,10 +75,10 @@ class CompraController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Compra  $compra
+     * @param  \App\Models\DetalleVenta  $detalleVenta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Compra $compra)
+    public function destroy(DetalleVenta $detalleVenta)
     {
         //
     }

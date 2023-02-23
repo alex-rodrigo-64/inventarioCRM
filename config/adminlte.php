@@ -443,26 +443,7 @@ return [
                 ],
                 [
                     'text' => 'Ver Ventas',
-                    'url'  => 'venta',
-                    'can' => 'ver-clientes',
-                    'icon'    => 'fas fa-fw fa-filse',
-                ],
-            ]
-        ],
-        [
-            'text'    => 'Compras',
-            'icon'    => 'fas fa-fw fa-money-check-alt',
-            'can' => 'ver-clientes',
-            'submenu' => [
-                [
-                    'text' => 'Nueva Compra',
-                    'url'  => 'compra/nuevo',
-                    'can' => 'crear-clientes',
-                    'icon'    => 'fas fa-fw fa-filse',
-                ],
-                [
-                    'text' => 'Ver Compras',
-                    'url'  => 'compra',
+                    'url'  => 'ventas',
                     'can' => 'ver-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
