@@ -53,9 +53,11 @@ class UsuarioController extends Controller
     public function create()
     {
         try {
-            
+            $sucursal = DB::table('sucursals')
+                        ->select('*')
+                        ->get();
             $roles = Role::pluck('name','name')->all();
-            return view('usuarios.create',compact('roles'));
+            return view('usuarios.create',compact('roles','sucursal'));
 
         } catch (\Throwable $th) {
             return view('errors.error');
@@ -78,23 +80,6 @@ class UsuarioController extends Controller
 
             $user = User::create($input);
             $user->assignRole($request->input('roles'));
-
-            $identificado = DB::table('users')
-                ->select('id')
-                ->where('name','=',$request->get('name'))
-                ->first();
-
-                $datoCliente = new Cliente();
-                $datoCliente->nombreCliente = $request->get('name');
-                $datoCliente->calle = $request->get('direccionSocial');
-                $datoCliente->numero = $request->get('telefono');
-                $datoCliente->correo =  $request->get('email');
-                $datoCliente->telefono = $request->get('telefono');
-                $datoCliente->codigoPostal = $request->get('codigoPostal');
-                $datoCliente->provincia = $request->get('provincia');
-                $datoCliente->pais = $request->get('ciudad');
-                $datoCliente->id_user = $identificado->id;
-                $datoCliente->save();
 
             return redirect('usuarios');
 

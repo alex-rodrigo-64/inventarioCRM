@@ -85,20 +85,64 @@
                                                 <div class="col-5">
                                                     <div class="card1">
                                                         <div class="card-header">
+                                                            @foreach ($permission as $value)
+                                                            @foreach ($rolePermission as $item)
+                                                            @if ($value->tipo == 'sucursal' )
+                                                            @if ($item == $value->id)
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                            @endif
+                                                            @endforeach
+                                                            @if ($value->tipo == 'sucursal' )
+                                                            @if (!in_array($value->id, $rolePermission))
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                            @endif
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="col-5">
+                                                    <div class="card1">
+                                                        <div class="card-header">
                                                         @foreach ($permission as $value)
                                                         @foreach ($rolePermission as $item)
-                                                        @if ($value->tipo == 'trabajo' )
+                                                        @if ($value->tipo == 'almacen' )
                                                             @if ($item == $value->id)
                                                                 <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
                                                             @endif
                                                             @endif
                                                         @endforeach
-                                                        @if ($value->tipo == 'trabajo' )
+                                                        @if ($value->tipo == 'almacen' )
                                                             @if (!in_array($value->id, $rolePermission))
                                                                 <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
                                                             @endif
                                                             @endif
                                                         @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br/> 
+                                            <div class="row justify-content-center">
+                                                <div class="col-5">
+                                                    <div class="card1">
+                                                        <div class="card-header">
+                                                            @foreach ($permission as $value)
+                                                            @foreach ($rolePermission as $item)
+                                                            @if ($value->tipo == 'inventario' )
+                                                            @if ($item == $value->id)
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                            @endif
+                                                            @endforeach
+                                                            @if ($value->tipo == 'inventario' )
+                                                            @if (!in_array($value->id, $rolePermission))
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                            @endif
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,6 +168,50 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <br/> 
+                                            <div class="row justify-content-center">
+                                                <div class="col-5">
+                                                    <div class="card1">
+                                                        <div class="card-header">
+                                                            @foreach ($permission as $value)
+                                                            @foreach ($rolePermission as $item)
+                                                            @if ($value->tipo == 'venta' )
+                                                            @if ($item == $value->id)
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                            @endif
+                                                            @endforeach
+                                                            @if ($value->tipo == 'venta' )
+                                                            @if (!in_array($value->id, $rolePermission))
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                            @endif
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="col-5">
+                                                    <div class="card1">
+                                                        <div class="card-header">
+                                                        @foreach ($permission as $value)
+                                                        @foreach ($rolePermission as $item)
+                                                        @if ($value->tipo == 'reporte' )
+                                                            @if ($item == $value->id)
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                            @endif
+                                                        @endforeach
+                                                        @if ($value->tipo == 'reporte' )
+                                                            @if (!in_array($value->id, $rolePermission))
+                                                                <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                            @endif
+                                                            @endif
+                                                        @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <br/>   
                                             <div class="row justify-content-center">
                                                 <div class="col-5">
@@ -131,13 +219,13 @@
                                                         <div class="card-header">
                                                         @foreach ($permission as $value)
                                                         @foreach ($rolePermission as $item)
-                                                        @if ($value->tipo == 'inventario' )
+                                                        @if ($value->tipo == 'transferencia' )
                                                             @if ($item == $value->id)
                                                                 <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}" checked> {{$value->name}}</span></label><br>
                                                             @endif
                                                             @endif
                                                         @endforeach
-                                                        @if ($value->tipo == 'inventario' )
+                                                        @if ($value->tipo == 'transferencia' )
                                                             @if (!in_array($value->id, $rolePermission))
                                                                 <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
                                                             @endif

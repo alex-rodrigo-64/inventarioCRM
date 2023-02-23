@@ -4,9 +4,8 @@
 
 
 
-<body>
-
     <div class="card">
+
         <div class="card-body">
             <form action="{{url('/inventario/nuevo')}}" id="formulario" method="POST">
               @csrf
@@ -120,7 +119,7 @@
                     </div>
                   </div>
                      
-
+</div>
                 </div> 
                 <h6><strong>DETALLE / DESCRIPCION</strong></h6>
 
@@ -135,7 +134,6 @@
     </div>
  
 
-</body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   <script>
     function getAlmacen(){
