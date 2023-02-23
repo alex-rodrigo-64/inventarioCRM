@@ -54,7 +54,7 @@
                       <div class="col-4">
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo de Pago</span>
-                              <input name="pago" id="pago" onchange="getPago()" placeholder="Tpo de pago" disabled value="{{$pago_elegido->nombre_pago}}" class="form-control"> 
+                              <input name="pago" id="pago" placeholder="Tipo de pago" disabled value="{{$pago_elegido->nombre_pago}}" class="form-control"> 
                           </div>
                         <span id="estado"></span>
                       </div>
@@ -112,21 +112,22 @@
 <script>
   $(document).ready(function() {
 
-datosDetalle();
+    datosDetalle();
 
-});
+    });
 
    function datosDetalle(){
         $.ajax({
-                url: "/venta/datos",
+                url: "/venta/datosShow",
                 type: "POST",
                 data:{ 
                     "_token": "{{ csrf_token() }}",
+                    "id":"{{$pago_definido->id_venta}",
                 },
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                //console.log(dataResult);
+                console.log(dataResult);
                 $('#tablaDetalle > tbody').empty();
                 var filas = dataResult.data.length;
                 var count = 0;

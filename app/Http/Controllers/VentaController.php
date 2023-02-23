@@ -121,6 +121,16 @@ class VentaController extends Controller
         return json_encode(array('data'=>$datos));
     }
 
+    public function datosDetalleShow(){
+
+        $datos = DB::table('detalle_ventas')
+                ->select('*')
+                ->where('id_venta','=',$_POST["id"])
+                ->get();
+
+        return json_encode(array('data'=>$datos));
+    }
+
     public function eliminarDetalle(){
  
                     
@@ -145,21 +155,25 @@ class VentaController extends Controller
                     ->join('almacens','ventas.id_almacen','=','almacens.id')
                     ->select('ventas.cliente','ventas.producto','ventas.descripcion',
                                 'sucursals.nombre_sucursal','almacens.nombre_almacen')
-                    ->where('ventas.id_sucursal','=',$id)
-                    ->where('ventas.id_almacen','=',$id)
+                    ->where('ventas.id','=',$id)
+                    ->where('ventas.id','=',$id)
                     ->first();
 
             $pago_elegido = DB::table('ventas')
                     ->join('tipo_pagos','ventas.tipo_pago','=','tipo_pagos.id')
                     ->join('tipo_pago_detalles','ventas.detalle_pago','=','tipo_pago_detalles.id')
                     ->select('tipo_pagos.nombre_pago','tipo_pago_detalles.pago_detalle')
-                    ->where('ventas.tipo_pago','=',$id)
-                    ->where('ventas.detalle_pago','=',$id)
+                    ->where('ventas.id','=',$id)
+                    ->where('ventas.id','=',$id)
                     ->first();
+
+                    //dd($pago_elegido);
             
-            return view('venta.show',compact('venta_elegida','pago_elegido'));
+            return view('venta.show',compact('venta_elegida','pago_elegido','venta'));
+
         } catch (\Throwable $th) {
-            //throw $th;
+            
+            return view('errors.errorShowVenta');
         }
         
     }

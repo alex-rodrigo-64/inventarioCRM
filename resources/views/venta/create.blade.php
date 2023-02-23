@@ -373,6 +373,15 @@
                     }
                 });
           }
+          ///
+          $(document).on("click", ".borrar", function(){
+              $("#codigo").val(''); 
+              $("#cantidad").val('');
+              $("#unidad").val('Seleccione una Unidad');
+              $("#detalle").val('');
+              $("#precioUnitario").val('');
+              $("#precioTotal").val('');
+        });
 </script>
 
 @endsection
