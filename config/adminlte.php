@@ -488,7 +488,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Nueva Solicitud',
-                    'url'  => 'compra/nuevo',
+                    'url'  => 'transferencias',
                     'can' => 'crear-clientes',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
