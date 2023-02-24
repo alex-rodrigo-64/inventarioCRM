@@ -122,7 +122,6 @@
                 type: "POST",
                 data:{ 
                     "_token": "{{ csrf_token() }}",
-                    "id":"{{$pago_definido->id_venta}",
                 },
                 cache: false,
                 dataType: 'json',

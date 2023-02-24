@@ -125,7 +125,6 @@ class VentaController extends Controller
 
         $datos = DB::table('detalle_ventas')
                 ->select('*')
-                ->where('id_venta','=',$_POST["id"])
                 ->get();
 
         return json_encode(array('data'=>$datos));
