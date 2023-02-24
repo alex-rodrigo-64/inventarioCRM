@@ -235,136 +235,28 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
-        /*// Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],*/
         [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-save',
             'can' => 'ver-rol',
         ],
-       /* [
-            'text'    => 'Facturación',
-            'icon'    => 'fas fa-fw fa-file-invoice',
-            'can' => 'ver-facturacion',
-            'submenu' => [
-                [
-                    'text' => 'Crear Factura',
-                    'url'  => 'facturacion/nuevo',
-                    'can' => 'crear-facturacion',
-                    'icon'    => 'fas fa-fw fa-file-receipt',
-                ],
-                [
-                    'text' => 'Ver Facturas',
-                    'url'  => 'facturacion',
-                    'can' => 'ver-facturacion',
-                    'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['facturacion', 'facturacion/editar*'],
-                ],
-                // [
-                //     'text' => 'Discos en Uso',
-                //     'url'  => 'inventario/discosUso',
-                //     'can' => 'ver-inventario',
-                //     'icon'    => 'fas fa-fw fa-filse',
-                // ],
-            ]
-        ],*/
+       
         [
             'text'    => 'Sucursales',
             'icon'    => 'fas fa-bezier-curve',
-            'can' => 'ver-sucursales',
+            'can' => 'ver sucursales',
             'submenu' => [
                 [
                     'text' => 'Nueva Sucursal',
                     'url'  => 'sucursal/nuevo',
-                    'can' => 'crear-sucursales',
+                    'can' => 'crear sucursal',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Sucursales',
                     'url'  => 'sucursales',
-                    'can' => 'ver-sucursales',
+                    'can' => 'ver sucursales',
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['sucursales', 'sucursales/editar*'],
                 ],
@@ -373,18 +265,18 @@ return [
         [
             'text'    => 'Almacen',
             'icon'    => 'fas fa-fw fa-warehouse',
-            'can' => 'ver-almacenes',
+            'can' => 'ver almacenes',
             'submenu' => [
                 [
                     'text' => 'Nuevo Almacen',
                     'url'  => 'almacen/nuevo',
-                    'can' => 'crear-almacenes',
+                    'can' => 'crear almacen',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Almacenes',
                     'url'  => 'almacenes',
-                    'can' => 'ver-almacenes',
+                    'can' => 'ver almacenes',
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['almacenes', 'almacenes/editar*'],
                 ],
@@ -393,18 +285,18 @@ return [
         [
             'text'    => 'Inventario',
             'icon'    => 'fas fa-fw fa-dolly-flatbed',
-            'can' => 'ver-clientes',
+            'can' => 'ver inventarios',
             'submenu' => [
                 [
                     'text' => 'Nuevo Producto',
                     'url'  => 'inventario/nuevo',
-                    'can' => 'crear-clientes',
+                    'can' => 'crear inventario',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Inventario',
                     'url'  => 'inventarios',
-                    'can' => 'ver-clientes',
+                    'can' => 'ver inventarios',
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['inventarios', 'inventarios/*'],
                 ],
@@ -413,18 +305,18 @@ return [
         [
             'text'    => 'Clientes',
             'icon'    => 'fas fa-fw fa-users',
-            'can' => 'ver-clientes',
+            'can' => 'ver clientes',
             'submenu' => [
                 [
                     'text' => 'Nuevo Cliente',
                     'url'  => 'cliente/nuevo',
-                    'can' => 'crear-clientes',
+                    'can' => 'crear cliente',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Clientes',
                     'url'  => 'clientes',
-                    'can' => 'ver-clientes',
+                    'can' => 'ver clientes',
                     'icon'    => 'fas fa-fw fa-filse',
                     'active' => ['clientes', 'cliente/editar*'],
                 ],
@@ -433,18 +325,18 @@ return [
         [
             'text'    => 'Ventas',
             'icon'    => 'fas fa-fw fa-cash-register',
-            'can' => 'ver-clientes',
+            'can' => 'ver ventas',
             'submenu' => [
                 [
                     'text' => 'Nueva Venta',
                     'url'  => 'venta/nuevo',
-                    'can' => 'crear-clientes',
+                    'can' => 'crear venta',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Ventas',
                     'url'  => 'ventas',
-                    'can' => 'ver-clientes',
+                    'can' => 'ver ventas',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
             ]
@@ -452,12 +344,12 @@ return [
         [
             'text'    => 'Reportes',
             'icon'    => 'fas fa-fw fa-file-pdf',
-            'can' => 'ver-clientes',
+            'can' => 'ver reportes',
             'submenu' => [
                 [
-                    'text' => 'Ver Reportes',
+                    'text' => 'Generar Reportes',
                     'url'  => 'reporte',
-                    'can' => 'ver-clientes',
+                    'can' => 'ver reportes',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
             ]
@@ -465,18 +357,18 @@ return [
         [
             'text'    => 'Transferencia',
             'icon'    => 'fas fa-fw fa-people-carry',
-            'can' => 'ver-clientes',
+            'can' => 'ver transferencias',
             'submenu' => [
                 [
                     'text' => 'Nueva Solicitud',
-                    'url'  => 'compra/nuevo',
-                    'can' => 'crear-clientes',
+                    'url'  => 'transferencias',
+                    'can' => 'crear transferencia',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
                     'text' => 'Ver Historial',
                     'url'  => 'reporte',
-                    'can' => 'ver-clientes',
+                    'can' => 'ver transferencias',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
             ]
@@ -486,20 +378,20 @@ return [
         [
             'text'    => 'Usuarios  ',
             'icon'    => 'fas fa-fw fa-user',
-            'can' => 'ver-usuario',
+            'can' => 'ver usuarios',
             'submenu' => [
                 
                 [
                     'text' => 'Nuevo Usuario  ',
                     'url'  => 'usuario/nuevo',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'can' => 'crear-usuario',
+                    'can' => 'crear usuario',
                 ],
                 [
                     'text' => 'Ver Todos los Usuarios  ',
                     'url'  => 'usuarios',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'can' => 'ver-usuario',
+                    'can' => 'ver usuarios',
                     'active' => ['usuarios', 'usuario/editar*'],
                 ],
             ]
@@ -507,21 +399,21 @@ return [
         [
             'text'    => 'Roles  ',
             'icon'    => 'fas fa-fw fa-pen-square',
-            'can' => 'ver-rol',
+            'can' => 'ver roles',
             'submenu' => [
                 
                 [
                     'text' => 'Nuevo Rol  ',
                     'url'  => 'roles/nuevo',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'can' => 'crear-rol',
+                    'can' => 'crear rol',
 
                 ],
                 [
                     'text' => 'Ver Todos los Roles  ',
                     'url'  => 'roles',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'can' => 'ver-rol',
+                    'can' => 'ver roles',
                     'active' => ['roles', 'roles/editar*'],
                 ],
             ]
@@ -530,7 +422,7 @@ return [
        ],[
         'text'    => 'Configuracion  ',
         'icon'    => 'fas fa-fw fa-pen-square',
-        'can' => 'ver-rol',
+        'can' => 'ver sistema',
         'submenu' => [
             
             [

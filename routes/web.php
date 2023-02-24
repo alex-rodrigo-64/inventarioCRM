@@ -2,26 +2,17 @@
 
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\ClonesController;
 use App\Http\Controllers\ConfiguracionController;
-use App\Http\Controllers\ConfiguracionVentaController;
 use App\Http\Controllers\InventarioController;
-use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\RolesController;
-use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginClienteController;
-use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\FacturacionController;
-use App\Http\Controllers\MailController;
-use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoPagoController;
 use App\Http\Controllers\TipoPagoDetallesController;
 use App\Http\Controllers\TipoUnidadController;
 use App\Http\Controllers\VentaController;
-use App\Models\TipoPago;
+use App\Http\Controllers\TransferenciaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -109,6 +100,9 @@ Route::post('/venta/nuevoDetalle',[VentaController::class,'nuevoDetalle']);
 Route::post('/venta/datos',[VentaController::class,'datosDetalle']);
 Route::post('/venta/datosShow',[VentaController::class,'datosDetalleShow']);
 Route::post('/venta/eliminar',[VentaController::class,'eliminarDetalle']);
+
+//TRANSFERENCIA
+Route::get('/transferencias',[TransferenciaController::class,'index']);
 
 //CONFIGURACION
 Route::get('/configuraciones',[ConfiguracionController::class,'index']);

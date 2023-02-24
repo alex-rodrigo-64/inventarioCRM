@@ -171,89 +171,6 @@
             
              <br>
             <div class="row justify-content-center">
-                    <div class="col-5">
-                        <div class="input-group">
-                            <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Ciudad</span>
-                            <input type="text" id="ciudad" name="ciudad" class="form-control" 
-                            required onkeyup="validarDireccion()" Placeholder="Ciudad" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
-                        </div>
-                    <span></span>
-                    </div>
-                    <div class="col-5">
-                        <div class="input-group">
-                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
-                        <input type="text" id="telefono" name="telefono" class="form-control" 
-                        required onkeyup="validarDireccion()" Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
-                        </div>
-                        <span></span>
-                    </div>
-            </div>
-             <br>
-             <div class="row justify-content-center">
-                <div class="col-5">
-                    <div class="input-group">
-                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue"> Provincia</span>
-                        <input type="text" id="provincia" name="provincia" class="form-control" 
-                        required onkeyup="validarDireccion()" Placeholder=" Provincia" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
-                    </div>
-                <span></span>
-                </div>
-                <div class="col-3">
-                    <div class="input-group">
-                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Codigo Postal</span>
-                    <input type="text" id="codigoPostal" name="codigoPostal" class="form-control" 
-                    required onkeyup="validarDireccion()" Placeholder="Codigo Postal" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
-                    </div>
-                    <span></span>
-                </div>
-                <div class="col-2">
-                    <div class="input-group">
-                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">CIF</span>
-                          <input type="text" id="cif" name="cif" class="form-control" Placeholder="CIF" onkeyup="mayus(this);"
-                              required onkeyup="" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57))">
-                    </div>
-                </div>
-        </div>
-         <br>
-            <div class="row justify-content-center">
-                <div class="col-5">
-                    <div class="input-group">
-                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Razon Social</span>
-                        <input type="text" id="razonSocial" name="razonSocial" class="form-control" 
-                        required onkeyup="validarDireccion()" Placeholder="Razon Social" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
-                    </div>
-                <span></span>
-                </div>
-                <div class="col-5">
-                    <div class="input-group">
-                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Direccion Social</span>
-                    <input type="text" id="direccionSocial" name="direccionSocial" class="form-control" 
-                    required onkeyup="validarDireccion()"Placeholder="Direccion Social" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
-                    </div>
-                    <span></span>
-                </div>
-            </div>
-             <br>
-            <div class="row justify-content-center">
-                <div class="col-5">
-                    <div class="input-group">
-                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre Comercial</span>
-                        <input type="text" id="nombreComercial" name="nombreComercial" class="form-control" 
-                        required onkeyup="validarDireccion()" Placeholder="Nombre Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
-                    </div>
-                <span></span>
-                </div>
-                <div class="col-5">
-                    <div class="input-group">
-                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Direccion Comercial</span>
-                    <input type="text" id="direccionComercial" name="direccionComercial" class="form-control" 
-                    required onkeyup="validarDireccion()" Placeholder="Direccion Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
-                    </div>
-                    <span></span>
-                </div>
-            </div>
-             <br>
-            <div class="row justify-content-center">
                 <div class="col-5">
                     <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Contraseña</span>
@@ -264,14 +181,14 @@
                     </div>
                     <span id="estadoPassword"></span>
                 </div>
-                <div class="col-5">
-                    <div class="input-group">
-                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Horario Comercial</span>
-                    <input type="text" id="horarioComercial" name="horarioComercial" class="form-control" 
-                    required onkeyup="validarDireccion()" Placeholder="Horario Comercial" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209) || (event.charCode == 58) || (event.charCode == 45))">
+                    <div class="col-5">
+                        <div class="input-group">
+                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Celular</span>
+                        <input type="text" id="celular" name="celular" class="form-control" 
+                        required Placeholder="Celular" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
+                        </div>
+                        <span></span>
                     </div>
-                    <span></span>
-                </div>
             </div>
              <br>
             <div class="row justify-content-center">
@@ -287,14 +204,29 @@
                 </div>
                 <div class="col-5">
                     <div class="input-group">
-                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Persona de Contacto</span>
-                    <input type="text" id="personaContacto" name="personaContacto" class="form-control" 
-                    required onkeyup="validarDireccion()" Placeholder="Persona Contacto" autocomplete="off" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241)|| (event.charCode == 209))">
+                    <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Telefono</span>
+                    <input type="text" id="telefono" name="telefono" class="form-control" 
+                    required Placeholder="Telefono" autocomplete="off" onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) )">
+                    </div>
+                    <span></span>
+                </div>
+            </div>
+             <br>
+            <div class="row justify-content-center">
+                
+                <div class="col-5">
+                    <div class="input-group">
+                        <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Seleccione una Sucursal</span>
+                        <select name="sucursal" id="sucursal"
+                        class="form-control" >
+                        <option selected value="" disabled>Elige una Sucursal</option>
+                                @foreach ($sucursal as $item)
+                                <option   value="{{$item->id}}">
+                                    {{$item->nombre_sucursal}}</option>
+                                 @endforeach
+                        </select>               
                     </div>
                 </div>
-           </div>
-          <br>
-            <div class="row justify-content-center">
                 <div class="col-5">
                     <div class="input-group">
                         <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Seleccione un Rol</span>
@@ -309,7 +241,7 @@
                     </div>
                     <span id="estadoRol"></span>
                 </div>
-            </div>
+           </div>
                 </br>
                  </br>
     <div class="text-center">
@@ -320,77 +252,6 @@
     </div> 
   </div>
 
-    {{--<BR>
-        <div class="row justify-content-center">
-                <div class="col-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="text-center  "style ="font-family:serif,new time roman;" > <b> NUEVO USUARIO </b> </h4>
-                    </div>
-                    
-                        <div class="card-body">
-
-                           
-                            <form action="{{ url('usuario/nuevo')}}" method="post">
-                                {{csrf_field()}}
-                                
-                                    <label form="name">Nombre</label>
-                                    <input class="form-control " type="text" name="name" id="name" 
-                                            placeholder="Nombre Completo" value="{{ old('name') }}" onkeyup="validarNombre()"
-                                            autocomplete="off" 
-                                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32)) ">
-                                            <span id="estadoName"></span>
-                
-                                        <label form="email" class="control-label">Correo Electronico</label>
-                                        <input class="form-control " type="text" name="email" id="email"  autocomplete="off" 
-                                                Placeholder="example@gmail.com" value="{{ old('email') }}" onblur="validarCorreo()">
-                                                <span id="estadoEmail"></span>
-
-                                        <label form="password">Contraseña</label>
-                                        <input class="form-control " type="password" name="password" id="password"   
-                                            Placeholder="Escriba una contraseña" value="{{ old('password') }}" 
-                                            onkeyup="validarContraseña()"
-                                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)) ">
-                                            <span id="estadoPassword"></span>
-                
-                                
-                                        <label form="confirm-password">Confirmar Contraseña</label>
-                                        <input class="form-control " type="password" name="confirm-password" id="confirm-password" 
-                                                Placeholder="Vuelva a escribir la contraseña" value="{{ old('confirm-password') }}"
-                                                onkeyup="validarConfirmarContraseña()"
-                                                onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)) ">
-                                                <span id="estadoConfirmarContraseña"></span>
-
-
-                                        <label for="roles">Selecciona un Rol</label>
-                                        <select name="roles" id="roles" onblur="validarRoles()" onchange="validarRoles()"
-                                            class="form-control">
-                                            <option selected value="Elige un Rol" disabled>Elige un Rol</option>
-                                            @foreach ($roles as $rol)
-                                            <option   value="{{$rol}}">
-                                                {{$rol}}</option>
-                                            @endforeach
-                                        </select><span id="estadoRol"></span>
-                                
-                                        </br>
-                                        </br>
-                                        <div class="text-center">
-                                            <button class="btn btn-success "  id="sig" name="sig" >Agregar</button>
-                                        </div>
-                                        
-                                                    
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    <div class="card-footer">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>--}}
         
 
     
