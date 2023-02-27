@@ -8,11 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class SucursalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    function __construct()
+    {
+        $this->middleware('permission:ver sucursales|crear sucursal|editar sucursal|borrar sucursal',['only'=>['index']]);
+        $this->middleware('permission:crear sucursal',['only'=>['create','store']]);
+        $this->middleware('permission:editar sucursal',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar sucursal',['only'=>['destroy']]);
+    }
+
+
     public function index()
     {
         $sucursal = DB::table('sucursals')

@@ -112,6 +112,25 @@
                                                             <div class="card-body">
                                                                 <input type="checkbox" onClick="toggle(this)" style="font-weight:bold;" > <b class="text-white">Seleccionar todos</b><br><br>
 
+                                                                <div class="row justify-content-center">
+                                                                    <div class="col-5">
+                                                                        <div class="card1" >
+                                                                            <div class="card-header">
+                                                                                @foreach ($permission as $value)
+                                                                                    @if ($value->tipo == 'dashboard' )
+                                                                                        <label><span><input type="checkbox" id="cbox1" name="permission[]" value="{{$value->id}}"> {{$value->name}}</span></label><br>
+                                                                                    @endif
+                                                                                @endforeach 
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br/>
+                                                                    <div class="col-5">
+                                                                        <div class="card1">
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
+                                                            <br/>
                                                             <div class="row justify-content-center">
                                                                     <div class="col-5">
                                                                         <div class="card1" >

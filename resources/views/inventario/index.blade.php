@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="card-body text-left">
-                            <a href="{{ url('/inventario/'.$item[0]->id) }}">
+                            <a href="{{ url('/inventarios') }}">
                                 @php
                                 {{$codigo = App\Models\Inventario::randomColor();}}
                                 @endphp   

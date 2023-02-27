@@ -239,7 +239,7 @@ return [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-save',
-            'can' => 'ver-rol',
+            'can' => 'dashboard',
         ],
        
         [
@@ -374,7 +374,7 @@ return [
             ]
         ],
         ['header' => 'ADMINISTRACION',
-        'can' => 'ver-trabajo'],
+        'can' => 'ver usuarios'],
         [
             'text'    => 'Usuarios  ',
             'icon'    => 'fas fa-fw fa-user',
@@ -419,7 +419,8 @@ return [
             ]
         ],
         ['header' => 'SISTEMA',
-       ],[
+        'can' => 'ver-sistema'],
+        [
         'text'    => 'Configuracion  ',
         'icon'    => 'fas fa-fw fa-pen-square',
         'can' => 'ver sistema',
