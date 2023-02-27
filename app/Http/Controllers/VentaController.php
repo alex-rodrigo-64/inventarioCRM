@@ -108,14 +108,10 @@ class VentaController extends Controller
     }
 
     public function datosDetalle(){
-        
-        $venta = DB::table('ventas')
-                ->select('id')
-                ->get();
 
         $datos = DB::table('detalle_ventas')
                 ->select('*')
-                ->where('id_venta','=',$venta->id)
+                ->where('bandera','=','no')
                 ->get();
 
         return json_encode(array('data'=>$datos));
@@ -125,6 +121,7 @@ class VentaController extends Controller
 
         $datos = DB::table('detalle_ventas')
                 ->select('*')
+                ->where('id_venta','=',$_POST["id"])
                 ->get();
 
         return json_encode(array('data'=>$datos));
@@ -152,7 +149,7 @@ class VentaController extends Controller
             $venta_elegida = DB::table('ventas')
                     ->join('sucursals','ventas.id_sucursal','=','sucursals.id')
                     ->join('almacens','ventas.id_almacen','=','almacens.id')
-                    ->select('ventas.cliente','ventas.producto','ventas.descripcion',
+                    ->select('ventas.id','ventas.cliente','ventas.producto','ventas.descripcion',
                                 'sucursals.nombre_sucursal','almacens.nombre_almacen')
                     ->where('ventas.id','=',$id)
                     ->where('ventas.id','=',$id)
@@ -166,7 +163,7 @@ class VentaController extends Controller
                     ->where('ventas.id','=',$id)
                     ->first();
 
-                    //dd($pago_elegido);
+                    //dd($venta_elegida->id);
             
             return view('venta.show',compact('venta_elegida','pago_elegido','venta'));
 

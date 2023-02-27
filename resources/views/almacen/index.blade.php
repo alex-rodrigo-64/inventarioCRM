@@ -24,7 +24,7 @@
                 <td class="text-center" >{{$almacen->nombre_almacen}}</td>
                 <td class="text-center" >{{$almacen->direccion_almacen}}</td>
                 <td class="text-center" >{{$almacen->id_sucursal}}</td>
-                <td class="text-center" >{{$almacen->created_at}}</td>
+                <td class="text-center" >{{ \Carbon\Carbon::parse($almacen->created_at)->format('d-m-Y')}}</td>
                 <td class="text-center" >
 
                 <div style="text-align: right;width:px">

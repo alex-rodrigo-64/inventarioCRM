@@ -92,15 +92,15 @@
                       <div class="col-3">
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Codigo</span>
-                            <input type="text" class="form-control " name="codigo" id="codigo"
-                            onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57))">
+                            <input type="text" class="form-control " name="codigo" id="codigo" onkeyup="mayus(this);"
+                            onkeypress="return ( (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 45))">
                         </div>
                     </div>
                     <div class="col-4">
                       <div class="input-group">
                           <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Cantidad</span>
                           <input type="text" class="form-control " name="cantidad" id="cantidad"
-                          onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57))">
+                          onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 45) || (event.charCode == 46))">
                       </div>
                   </div>
                       <div class="col-4">
@@ -130,14 +130,14 @@
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Precio Unitario</span>
                             <input type="text" class="form-control " name="precioUnitario" id="precioUnitario"
-                            onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                            onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46))">
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Precio Total</span>
                             <input type="text" class="form-control " name="precioTotal" id="precioTotal"
-                            onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
+                            onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46))">
                         </div>
                       </div>
                       <div class="col-1">
@@ -284,6 +284,13 @@
                     success: function (dataResult) {
                         //console.log(dataResult);
                         datosDetalle();
+
+                        $("#codigo").val(''); 
+                        $("#cantidad").val('');
+                        $("#unidad").val('Seleccione una Unidad');
+                        $("#detalle").val('');
+                        $("#precioUnitario").val('');
+                        $("#precioTotal").val('');
                     }
                 });
         });
@@ -374,14 +381,10 @@
                 });
           }
           ///
-          $(document).on("click", ".borrar", function(){
-              $("#codigo").val(''); 
-              $("#cantidad").val('');
-              $("#unidad").val('Seleccione una Unidad');
-              $("#detalle").val('');
-              $("#precioUnitario").val('');
-              $("#precioTotal").val('');
-        });
+          function mayus(e) {
+              $("#stateRow").html("<span  class='bien'><h5 ></h5></span>");
+                e.value = e.value.toUpperCase();
+            }
 </script>
 
 @endsection

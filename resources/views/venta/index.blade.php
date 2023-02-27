@@ -9,7 +9,7 @@
         <table class="table table-striped table-hover table-responsive" id="Table">
         <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
             <tr>
-            <th class="column1 text-center">Id</th>
+            <th class="column1 text-center"># Venta</th>
             <th class="column2 text-center">Sucursal</th>
             <th class="column3 text-center">Almacen</th>
             <th class="column3 text-center">Cliente</th>
@@ -26,7 +26,7 @@
                 <td class="text-center" >{{$ventas->id_almacen}}</td>
                 <td class="text-center" >{{$ventas->cliente}}</td>
                 <td class="text-center" >{{$ventas->producto}}</td>
-                <td class="text-center">{{  \Carbon\Carbon::parse($ventas->created_at)->format('d-m-Y')}}</td>
+                <td class="text-center">{{ \Carbon\Carbon::parse($ventas->created_at)->format('d-m-Y')}}</td>
                 <td class="text-center" >
 
                 <div style="text-align: right;width:px">

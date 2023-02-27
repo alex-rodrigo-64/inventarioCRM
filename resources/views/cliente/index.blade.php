@@ -48,7 +48,7 @@
         <td class="text-center">{{$cliente->numero_departamento}}</td>
         <td class="text-center">{{$cliente->provincia}}</td>
         <td class="text-center">{{$cliente->nota}}</td>
-        <td class="text-center">{{$cliente->created_at}}</td>
+        <td class="text-center">{{ \Carbon\Carbon::parse($cliente->created_at)->format('d-m-Y')}}</td>
         <td style="width: 10%">
 
           <div style="text-align: center;width:90px">

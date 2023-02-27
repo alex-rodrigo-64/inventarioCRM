@@ -122,11 +122,12 @@
                 type: "POST",
                 data:{ 
                     "_token": "{{ csrf_token() }}",
+                    "id":"{{$venta_elegida->id}}",
                 },
                 cache: false,
                 dataType: 'json',
                 success: function(dataResult){
-                console.log(dataResult);
+               // console.log(dataResult);
                 $('#tablaDetalle > tbody').empty();
                 var filas = dataResult.data.length;
                 var count = 0;
