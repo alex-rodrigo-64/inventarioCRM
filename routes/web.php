@@ -112,6 +112,8 @@ Route::post('/reporte/nuevo',[ReporteController::class,'store']);
 //TRANSFERENCIA
 Route::get('/transferencias',[TransferenciaController::class,'index']);
 Route::get('/solicitudes',[TransferenciaController::class,'solicitudes']);
+Route::get('/solicitudes/{id}',[TransferenciaController::class,'verSolicitudes']);
+Route::delete('/solicitudes/{id}',[TransferenciaController::class,'destroy']);
 Route::post('/transferencias',[TransferenciaController::class,'nuevaSolicitud']);
 Route::post('/transferencias/solicitar',[TransferenciaController::class,'sucursalAlmacen']);
 

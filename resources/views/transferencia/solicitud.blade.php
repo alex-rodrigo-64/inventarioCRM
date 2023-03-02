@@ -35,20 +35,18 @@
 
                 <div style="text-align: right;width:px">
                 
-                @can('editar sucursal')
-                     {{-- EDITAR --}}
-                <a href="{{ url('/sucursal/editar/'.$transferencia->id)}}">
-                  <button class="btn btn-light-active btn-sm d-inline"  >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="rgb(168, 166, 14)" viewBox="0 0 16 16" width="18" height="20">
-                      <path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 
-                      0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z">
-                      </path>
+                @can('editar solicitud')
+                     {{-- VER --}}
+                <a href="{{ url('/solicitudes/'.$transferencia->id)}}">
+                  <button class="btn btn-light-active btn-sm d-inline">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="rgb(2, 117, 216)" viewBox="0 0 576 512" width="18" height="20"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                      <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/>
                     </svg>
                   </button>
                 </a> 
                 @endcan
                  
-                @can('borrar sucursal')
+                @can('borrar solicitud')
                   {{-- ELIMINAR --}}
                   <button class="btn d-inline" style="color: red"  data-toggle="modal" data-target="#eliminar{{$transferencia->id}}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -66,15 +64,15 @@
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Eliminar Sucursal</h5>
+                          <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Solicitud</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                         <div class="modal-body">
-                         ¿Realmente Desea Borrar la Sucursal?
+                         ¿Realmente Desea Borrar esta Peticion?
                         </div>
-                        <form action="{{url('/transferencia/'.$transferencia->id)}}" method="POST">
+                        <form action="{{url('/solicitudes/'.$transferencia->id)}}" method="POST">
                           @csrf
                           @method('DELETE')
                         <div class="modal-footer">
@@ -94,6 +92,7 @@
 
         </tbody> 
         </table>
+        {!! $transferencias->links() !!}
         </div>
 </div>
 </div>

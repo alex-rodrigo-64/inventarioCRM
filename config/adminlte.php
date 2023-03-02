@@ -376,6 +376,7 @@ return [
                     'url'  => 'solicitudes',
                     'can' => 'ver solicitudes',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['solicitudes', 'solicitudes/*'],
                 ],
                 [
                     'text' => 'Historial',

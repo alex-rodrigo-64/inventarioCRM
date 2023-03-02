@@ -33,10 +33,19 @@ class TransferenciaController extends Controller
 
         $transferencias = DB::table('transferencias')
                 ->select('*')
-                ->get();
-
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
 
         return view('transferencia.solicitud',compact('transferencias'));
+    }
+
+    public function verSolicitudes($id){
+
+        $transfe = DB::table('transferencias')
+                ->select('*')
+                ->where('id',$id)
+                ->first();
+        return view('transferencia.show',compact('transfe'));
     }
 
 
@@ -69,6 +78,14 @@ class TransferenciaController extends Controller
                 ->get();
     
         return json_encode(array('data'=>$almacen));
+    }
+
+    public function destroy($id)
+    {
+        $detalle=Transferencia::findOrFail($id);
+        $detalle->delete();
+
+        return redirect('/solicitudes');
     }
 
 
