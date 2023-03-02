@@ -14,7 +14,14 @@ class CreateTransferenciasTable extends Migration
     public function up()
     {
         Schema::create('transferencias', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->String('id_origen')->nullable();
+            $table->String('id_destino')->nullable();
+            $table->String('nombre_producto')->nullable();
+            $table->String('cantidad')->nullable();
+            $table->String('unidad')->nullable();
+            $table->String('detalle')->nullable();
+            $table->String('estado')->nullable();
             $table->timestamps();
         });
     }

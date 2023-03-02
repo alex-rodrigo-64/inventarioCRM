@@ -29,7 +29,7 @@
 
                 <div style="text-align: right;width:px">
                 
-                @can('editar producto')
+                @can('editar almacen')
                      {{-- EDITAR --}}
                 <a href="{{ url('/almacen/editar/'.$almacen->id)}}">
                   <button class="btn btn-light-active btn-sm d-inline"  >
@@ -42,7 +42,7 @@
                 </a> 
                 @endcan
                  
-                @can('eliminar producto')
+                @can('borrar almacen')
                   {{-- ELIMINAR --}}
                   <button class="btn d-inline" style="color: red"  data-toggle="modal" data-target="#eliminar{{$almacen->id}}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">

@@ -9,11 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    function __construct()
+    {
+        $this->middleware('permission:ver clientes|crear cliente|editar cliente|borrar cliente',['only'=>['index']]);
+        $this->middleware('permission:crear cliente',['only'=>['create','store']]);
+        $this->middleware('permission:editar cliente',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar cliente',['only'=>['destroy']]);
+    }
+
     public function index(Request $request)
     {
         $busqueda=trim($request->get('busqueda'));

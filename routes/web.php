@@ -87,7 +87,7 @@ Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
 Route::delete('/inventario/{id}',[InventarioController::class,'destroy']);
 Route::post('/inventario/getAlmacen',[InventarioController::class,'datosAlmacen']);
-
+ 
 
 //VENTAS
 Route::get('/ventas',[VentaController::class,'index']);
@@ -111,6 +111,9 @@ Route::post('/reporte/nuevo',[ReporteController::class,'store']);
 
 //TRANSFERENCIA
 Route::get('/transferencias',[TransferenciaController::class,'index']);
+Route::get('/solicitudes',[TransferenciaController::class,'solicitudes']);
+Route::post('/transferencias',[TransferenciaController::class,'nuevaSolicitud']);
+Route::post('/transferencias/solicitar',[TransferenciaController::class,'sucursalAlmacen']);
 
 //CONFIGURACION
 Route::get('/configuraciones',[ConfiguracionController::class,'index']);

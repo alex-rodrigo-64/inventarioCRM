@@ -22,6 +22,10 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\User::factory(10)->create();
         Permission::create([
+            'name' => 'dashboard',
+            'tipo' => 'dashboard',
+        ]);
+        Permission::create([
             'name' => 'ver roles',
             'tipo' => 'rol',
         ]);
@@ -110,11 +114,11 @@ class DatabaseSeeder extends Seeder
             'tipo' => 'clientes',
         ]);
         Permission::create([
-            'name' => 'editar clientes',
+            'name' => 'editar cliente',
             'tipo' => 'clientes',
         ]);
         Permission::create([
-            'name' => 'borrar clientes',
+            'name' => 'borrar cliente',
             'tipo' => 'clientes',
         ]);
         Permission::create([

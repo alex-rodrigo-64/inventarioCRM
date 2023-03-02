@@ -239,7 +239,7 @@ return [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-save',
-            'can' => 'ver-rol',
+            'can' => 'dashboard',
         ],
        
         [
@@ -372,6 +372,12 @@ return [
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
+                    'text' => 'Ver Solicitudes',
+                    'url'  => 'transferencias/solicitudes',
+                    'can' => 'ver solicitudes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
                     'text' => 'Ver Historial',
                     'url'  => 'reporte',
                     'can' => 'ver transferencias',
@@ -380,7 +386,7 @@ return [
             ]
         ],
         ['header' => 'ADMINISTRACION',
-        'can' => 'ver-trabajo'],
+        'can' => 'ver usuarios'],
         [
             'text'    => 'Usuarios  ',
             'icon'    => 'fas fa-fw fa-user',
@@ -425,7 +431,8 @@ return [
             ]
         ],
         ['header' => 'SISTEMA',
-       ],[
+        'can' => 'ver-sistema'],
+        [
         'text'    => 'Configuracion  ',
         'icon'    => 'fas fa-fw fa-pen-square',
         'can' => 'ver sistema',

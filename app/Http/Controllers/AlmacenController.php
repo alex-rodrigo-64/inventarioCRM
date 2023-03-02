@@ -8,11 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class AlmacenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    function __construct()
+    {
+        $this->middleware('permission:ver almacenes|crear almacen|editar almacen|borrar almacen',['only'=>['index']]);
+        $this->middleware('permission:crear almacen',['only'=>['create','store']]);
+        $this->middleware('permission:editar almacen',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar almacen',['only'=>['destroy']]);
+    }
+
     public function index()
     {
         $almacen = DB::table('almacens')

@@ -8,11 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class InventarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    function __construct()
+    {
+        $this->middleware('permission:ver inventarios|crear inventario|editar inventario|borrar inventario',['only'=>['index']]);
+        $this->middleware('permission:crear inventario',['only'=>['create','store']]);
+        $this->middleware('permission:editar inventario',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar inventario',['only'=>['destroy']]);
+    }
+
+
     public function index()
     {   
         $sucursales = DB::table('sucursals')
