@@ -19,26 +19,37 @@ class TransferenciaController extends Controller
                         ->select('*')
                         ->get();
 
+        $sucursales = DB::table('sucursals')
+                        ->select('*')
+                        ->get();                
+
         $unidad = DB::table('tipo_unidads')
                         ->select('*')
                         ->get();
-        return view('transferencia.index',compact('sucursal','unidad'));
+        return view('transferencia.index',compact('sucursal','unidad','sucursales'));
     }
 
     public function solicitudes(){
-        return view('transferencia.solicitud');
+
+        $transferencias = DB::table('transferencias')
+                ->select('*')
+                ->get();
+
+
+        return view('transferencia.solicitud',compact('transferencias'));
     }
 
 
     public function nuevaSolicitud(Request $request){
 
         $inventario = new Transferencia();
-        $inventario->id_origen = $request->get('codigo');
-        $inventario->id_destino = $request->get('nombreProducto');
-        $inventario->nombre_producto = $request->get('proveedor');
+        $inventario->id_origen = $request->get('sucursalOrigen');
+        $inventario->id_almacen = $request->get('almacen');
+        $inventario->id_destino = $request->get('sucursalDestino');
+        $inventario->nombre_producto = $request->get('nombreProducto');
         $inventario->cantidad = $request->get('cantidad');
         $inventario->unidad = $request->get('cantidadP');
-        $inventario->detalle = $request->get('cantidadUnitaria');
+        $inventario->detalle = $request->get('detalle');
         $inventario->estado = "Pendiente";
         $inventario->save();
 
@@ -47,9 +58,14 @@ class TransferenciaController extends Controller
 
     public function sucursalAlmacen(){
 
+        $sucur =  DB::table('sucursals')
+                ->select('id')
+                ->where('nombre_sucursal',$_POST["sucursal"])
+                ->first();
+
         $almacen =  DB::table('almacens')
                 ->select('*')
-                ->where('id_sucursal',$_POST["sucursal"])
+                ->where('id_sucursal',$sucur->id)
                 ->get();
     
         return json_encode(array('data'=>$almacen));

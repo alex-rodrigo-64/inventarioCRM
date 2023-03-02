@@ -16,6 +16,7 @@ class CreateTransferenciasTable extends Migration
         Schema::create('transferencias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->String('id_origen')->nullable();
+            $table->String('id_almacen')->nullable();
             $table->String('id_destino')->nullable();
             $table->String('nombre_producto')->nullable();
             $table->String('cantidad')->nullable();
