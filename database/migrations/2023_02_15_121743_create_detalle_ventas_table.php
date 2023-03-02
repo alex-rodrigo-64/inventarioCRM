@@ -18,7 +18,7 @@ class CreateDetalleVentasTable extends Migration
             $table->String('codigo')->nullable();
             $table->String('cantidad')->nullable();
             $table->String('unidad')->nullable();
-            $table->String('detalle')->nullable();
+            $table->String('descripcion')->nullable();
             $table->String('precio_unitario')->nullable();
             $table->String('precio_total')->nullable();
             $table->unsignedBigInteger('id_venta')->nullable();

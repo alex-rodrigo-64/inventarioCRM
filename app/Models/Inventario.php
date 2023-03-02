@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Inventario extends Model
 {
@@ -31,5 +32,15 @@ class Inventario extends Model
         }
         return $str;
        }
+
+
+       public function validarCodigo($codigo){
+
+        $result  = DB::table('inventarios')
+                    ->where('codigo','=', $codigo)
+                    ->exists();
+        return $result;
+
+    }
     
 }

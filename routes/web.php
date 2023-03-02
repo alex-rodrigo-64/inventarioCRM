@@ -6,6 +6,7 @@ use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoPagoController;
@@ -94,12 +95,19 @@ Route::get('/venta/nuevo',[VentaController::class,'create']);
 Route::post('/venta/nuevo',[VentaController::class,'store']);
 Route::get('/ventas/mostrar/{id}',[VentaController::class,'show']);
 Route::delete('/venta/{id}',[VentaController::class,'destroy']);
+Route::post('/autocompletarCliente',[VentaController::class,'autoCompletar']);
+Route::post('/venta/validarCodigo',[VentaController::class,'validarCodigo']);
 Route::post('/venta/getAlmacen',[VentaController::class,'datosAlmacen']);
 Route::post('/venta/getPago',[VentaController::class,'datosPagos']);
 Route::post('/venta/nuevoDetalle',[VentaController::class,'nuevoDetalle']);
 Route::post('/venta/datos',[VentaController::class,'datosDetalle']);
 Route::post('/venta/datosShow',[VentaController::class,'datosDetalleShow']);
 Route::post('/venta/eliminar',[VentaController::class,'eliminarDetalle']);
+
+//REPORTES
+Route::get('/reportes',[ReporteController::class,'index']);
+Route::get('/reporte/nuevo',[ReporteController::class,'create']);
+Route::post('/reporte/nuevo',[ReporteController::class,'store']);
 
 //TRANSFERENCIA
 Route::get('/transferencias',[TransferenciaController::class,'index']);

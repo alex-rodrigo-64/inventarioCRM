@@ -13,7 +13,7 @@
             <th class="column2 text-center">Nombre de Almacen</th>
             <th class="column3 text-center">Direccion</th>
             <th class="column4 text-center">Sucursal</th>
-            <th class="column5 text-center">Fecha de Alta</th>
+            <th class="column5 text-center">Fecha</th>
             <th class="column6 text-center">Acciones &nbsp;&nbsp;&nbsp;</th>
             </tr>
         </thead>
@@ -24,7 +24,7 @@
                 <td class="text-center" >{{$almacen->nombre_almacen}}</td>
                 <td class="text-center" >{{$almacen->direccion_almacen}}</td>
                 <td class="text-center" >{{$almacen->id_sucursal}}</td>
-                <td class="text-center" >{{$almacen->created_at}}</td>
+                <td class="text-center" >{{ \Carbon\Carbon::parse($almacen->created_at)->format('d-m-Y')}}</td>
                 <td class="text-center" >
 
                 <div style="text-align: right;width:px">

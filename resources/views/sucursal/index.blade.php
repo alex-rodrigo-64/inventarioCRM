@@ -13,7 +13,7 @@
             <th class="column2 text-center">Nombre de Sucursal</th>
             <th class="column3 text-center">Nombre de Propietario</th>
             <th class="column4 text-center" >Direccion</th>
-            <th class="column5 text-center">Fecha de Alta</th>
+            <th class="column5 text-center">Fecha</th>
             <th class="column6 text-center">Acciones &nbsp;&nbsp;&nbsp;</th>
             </tr>
         </thead>
@@ -24,7 +24,7 @@
                 <td class="text-center" >{{$sucursales->nombre_sucursal}}</td>
                 <td class="text-center" >{{$sucursales->nombre_propietario}}</td>
                 <td class="text-center" >{{$sucursales->direccion_sucursal}}</td>
-                <td class="text-center" >{{$sucursales->created_at}}</td>
+                <td class="text-center" >{{ \Carbon\Carbon::parse($sucursales->created_at)->format('d-m-Y')}}</td>
                 <td class="text-center" >
 
                 <div style="text-align: right;width:px">
