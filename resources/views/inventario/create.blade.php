@@ -68,7 +68,7 @@
                     <div class="row">
                       <div class="col-5">
                         <div class="input-group">
-                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">cantidad</span>
+                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Cantidad</span>
                             <input type="text" id="cantidad" name="cantidad" class="form-control text-center"
                         required   onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
                           <select name="cantidadP" required id="cantidadP" class="form-control">

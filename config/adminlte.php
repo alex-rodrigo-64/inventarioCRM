@@ -366,6 +366,12 @@ return [
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
+                    'text' => 'Ver Solicitudes',
+                    'url'  => 'transferencias/solicitudes',
+                    'can' => 'ver solicitudes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
                     'text' => 'Ver Historial',
                     'url'  => 'reporte',
                     'can' => 'ver transferencias',
