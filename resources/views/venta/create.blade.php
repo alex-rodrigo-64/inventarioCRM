@@ -2,7 +2,17 @@
 @section('content')
 <h1 align="center" style="font-weight: 700">REGISTRAR NUEVA VENTA</h1>
 
-
+<style>
+        
+  .menor{
+          color:#ff3333;
+          font-size: medium;
+      }
+  .mayor{
+          color:#29a01e;
+          font-size: medium;
+      }
+</style>
 
 <body>
 
@@ -20,7 +30,7 @@
                                 <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Sucursal</span>
                                 <select name="sucursal" id="sucursal" required onchange="getAlmacen()"
                                 class="form-control" >
-                                <option selected value="Elige un Rol" disabled>Elige una Sucursal</option>
+                                <option selected value="" disabled>Elige una Sucursal</option>
                                         @foreach ($sucursal as $sucursal)
                                         <option   value="{{$sucursal->id}}"> {{$sucursal->nombre_sucursal}}</option>
                                          @endforeach
@@ -32,7 +42,7 @@
                             <div class="input-group">
                                 <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Almacen</span>
                                 <select name="almacen" id="almacen" required class="form-control" >
-                                <option selected value="Elige un Rol" disabled>Almacenes Disponibles</option>
+                                <option selected value="" disabled>Almacenes Disponibles</option>
                                 </select>               
                             </div>
                             <span id="estadoRol"></span>
@@ -40,19 +50,13 @@
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-8">
                             <div class="input-group">
                               <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Cliente</span>
-                              <input type="text" name="cliente" id="cliente" required value="{{ old('Nombre') }}" class="form-control" onkeyup="validarNombre()" 
+                              <input type="text" name="cliente" id="cliente" required autocomplete="off" list="codigo" class="form-control"
                               placeholder="Ingrese nuevo cliente" tabindex="1"  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)) ">
-                            </div>
-                          <span id="estadoNombre"></span>
-                        </div>
-                        <div class="col-6">
-                            <div class="input-group">
-                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre del Producto</span>
-                              <input type="text" name="producto" id="producto" required value="{{ old('Nombre') }}" class="form-control" onkeyup="validarNombre()" 
-                              placeholder="Ingrese nuevo producto" tabindex="1"  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)  || (event.charCode == 32) || (event.charCode == 46) || (event.charCode == 241) || (event.charCode == 209))">
+                              <datalist id="codigoDatalist" >
+                              </datalist>
                             </div>
                           <span id="estadoNombre"></span>
                         </div>
@@ -63,7 +67,7 @@
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Tipo de Pago</span>
                               <select name="pago" id="pago" onchange="getPago()" class="form-control"> 
-                                <option disabled selected>Seleccione una opcion</option>
+                                <option  selected value="" disabled>Seleccione una opcion</option>
                                 @foreach ($tipoPago as $tipoPagos)
                                         <option   value="{{$tipoPagos->id}}"> {{$tipoPagos->nombre_pago}}</option>
                                          @endforeach
@@ -75,7 +79,7 @@
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Detalle de Pago</span>
                               <select name="detallePago" id="detallePago" class="form-control">
-                                <option disabled selected>Tipo de Pago </option>
+                                <option  selected value="" disabled>Tipo de Pago </option>
                               </select>
                           </div>
                         <span id="estado"></span>
@@ -92,14 +96,15 @@
                       <div class="col-3">
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Codigo</span>
-                            <input type="text" class="form-control " name="codigo" id="codigo" onkeyup="mayus(this);"
+                            <input type="text" class="form-control " name="codigoVenta" id="codigoVenta" onblur="validarCodigo()" onkeyup="mayus(this);" 
                             onkeypress="return ( (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 45))">
                         </div>
+                        <span id="estadoCodigo"></span>
                     </div>
                     <div class="col-4">
                       <div class="input-group">
                           <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Cantidad</span>
-                          <input type="text" class="form-control " name="cantidad" id="cantidad"
+                          <input type="text" class="form-control " name="cantidad" id="cantidad" 
                           onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 45) || (event.charCode == 46))">
                       </div>
                   </div>
@@ -121,22 +126,23 @@
                     <div class="row">
                       <div class="col-4">
                         <div class="input-group">
-                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Detalle</span>
-                            <input type="text" class="form-control " name="detalle" id="detalle"
+                            <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Descripcion</span>
+                            <input type="text" class="form-control " name="descripcion" id="descripcion" 
                             onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57))">
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Precio Unitario</span>
-                            <input type="text" class="form-control " name="precioUnitario" id="precioUnitario"
+                            <input type="text" class="form-control " name="precioUnitario" id="precioUnitario"  onkeyup="validarPrecioUnitario()"
                             onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46))">
                         </div>
+                        <span id="estadoPrecioUnitario"></span>
                       </div>
                       <div class="col-3">
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Precio Total</span>
-                            <input type="text" class="form-control " name="precioTotal" id="precioTotal"
+                            <input type="text" class="form-control " name="precioTotal" id="precioTotal" 
                             onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46))">
                         </div>
                       </div>
@@ -165,7 +171,7 @@
                                 <th class="text-center" >Codigo</th>
                                 <th class="text-center" >Cantidad</th>
                                 <th class="text-center" >Unidad</th>
-                                <th class="text-center" >Detalle</th>
+                                <th class="text-center" >Descripcion</th>
                                 <th class="text-center" >Precio Unitario</th>
                                 <th class="text-center" >Precio Total</th>
                                 <th class="text-center" ></th>
@@ -185,7 +191,7 @@
                                 <!----->
                                 <div class="card">
                                   <div class="card-body">
-                                    <h6><strong>DESCRIPCION</strong></h6>
+                                    <h6><strong>DETALLE / DESCRIPCION</strong></h6>
                                     <textarea class="embed-responsive form-control " style="resize: none;padding-left: 20px;padding-top: 20px" name="descripcion" id="descripcion" cols="140" rows="4"></textarea>
                                   </div>
                                 </div>
@@ -208,6 +214,7 @@
     datosDetalle();
 
   });
+  
    function getAlmacen(){
       var sucursal = $("#sucursal").val();
       $.ajax({
@@ -257,12 +264,66 @@
                 });
     }
     ////
+    if ($('#cliente').val() != "") {
+    $('#cliente').prop('readonly', true);
+  }
+
+  $('#cliente').keyup(function() {
+      var query = $(this).val();
+      //console.log(query);
+      if (query != '') {
+          $.ajax({
+              url: '/autocompletarCliente',
+              type: 'POST',
+              data: {
+                "_token": "{{ csrf_token() }}",
+                  query: query,
+              },
+              success: function(data) {
+              //  console.log(data);
+                  $('#codigoDatalist').fadeIn();
+                  $('#codigoDatalist').html(data);
+              }
+          
+          });
+      }
+  });
+  //
+        function validarCodigo() {
+          
+          var url1 = $('#codigoVenta').val();
+          //console.log(url1);
+            jQuery.ajax({
+                url: "/venta/validarCodigo",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "codigoVenta": url1,
+                },
+                asycn: false,
+                type: "POST",
+                success: function(data) {
+                   //console.log(data);
+                   $('#estadoCodigo').empty();
+                    if(data == 1){
+                        $("#estadoCodigo").append("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Codigo de Producto no Existe</h5></span>");
+
+                    }else{
+                        $("#estadoCodigo").append("<span  class='mayor'><h5 class='mayor'>&nbsp;&nbsp;Codigo de Producto Existe</h5></span>");
+                    }
+                },
+                error: function() {
+                    console.log('Error');
+                }
+            });
+        } 
+
+    ////
 
       $("#guardarDetalle").on('click',function(){
-            var url1 = $('#codigo').val();
+            var url1 = $('#codigoVenta').val();
             var url2 = $('#cantidad').val();
             var url3 = $('#unidad').val();
-            var url4 = $('#detalle').val();
+            var url4 = $('#descripcion').val();
             var url5 = $('#precioUnitario').val();
             var url6 = $('#precioTotal').val();
 
@@ -272,10 +333,10 @@
                     type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
-                        codigo: url1,
+                        codigoVenta: url1,
                         cantidad: url2,
                         unidad: url3,
-                        detalle: url4,
+                        descripcion: url4,
                         precioUnitario: url5,
                         precioTotal: url6,
                     },
@@ -285,10 +346,10 @@
                         //console.log(dataResult);
                         datosDetalle();
 
-                        $("#codigo").val(''); 
+                        $("#codigoVenta").val(''); 
                         $("#cantidad").val('');
                         $("#unidad").val('Seleccione una Unidad');
-                        $("#detalle").val('');
+                        $("#descripcion").val('');
                         $("#precioUnitario").val('');
                         $("#precioTotal").val('');
                     }
@@ -311,6 +372,9 @@
                 var filas = dataResult.data.length;
                 var count = 0;
 
+                for (  i = 0 ; i < filas; i++){ 
+                        count = Number(count) + Number(dataResult.data[i].precio_total); 
+                    }
 
                     for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
                         var text = "";
@@ -323,7 +387,7 @@
                           dataResult.data[i].codigo  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].cantidad  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].unidad   + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
-                           dataResult.data[i].detalle  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
+                           dataResult.data[i].descripcion  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].precio_unitario  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].precio_total  + 
                             "</td><td class='text-center' style='width: 3%;background: rgb(209, 244, 255)' >" +
@@ -358,6 +422,14 @@
                         
                         $("#detallesGuardados").append(nuevafila);
                     }
+
+                    var nueva= "<tr><td class='text-center text-white' style='background: rgb(2, 117, 216)' colspan='5'>"+
+                                "TOTAL" +
+                                "</td><td class='text-center' colspan='2' style= 'background: rgb(209, 244, 255)'>" +
+                                count + "</td></tr>"
+                        
+                        $("#detallesGuardados").append(nueva) ;
+                        $('#precioUnico').val(count);
                     
                     }
                 });

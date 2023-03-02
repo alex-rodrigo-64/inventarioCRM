@@ -17,13 +17,17 @@ class CreateVentasTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_sucursal')->nullable();
             $table->unsignedBigInteger('id_almacen')->nullable();
-            $table->String('cliente')->nullable();
-            $table->String('producto')->nullable();
+            $table->unsignedBigInteger('id_cliente')->nullable();
             $table->String('tipo_pago')->nullable();
             $table->String('detalle_pago')->nullable();
-            $table->String('descripcion')->nullable();
+            $table->String('detalle')->nullable();
             $table->String('bandera')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_cliente')
+            ->references('id')
+            ->on('clientes')
+            ->onDelete('cascade');
 
             $table->foreign('id_sucursal')
             ->references('id')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetalleVenta;
+use App\Models\Inventario;
 use App\Models\Venta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,9 +18,12 @@ class VentaController extends Controller
     public function index()
     {
         $venta = DB::table('ventas')
-                    ->select('*')
+                    ->join('sucursals','ventas.id_sucursal','=','sucursals.id')
+                    ->join('almacens','ventas.id_almacen','=','almacens.id')
+                    ->select('ventas.id','ventas.detalle', 'ventas.created_at','ventas.id_cliente',
+                                'sucursals.nombre_sucursal','almacens.nombre_almacen')
                     ->paginate(25);
-
+                    
         return view('venta.index',compact('venta'));
     }
 
@@ -57,14 +61,25 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
+        $posicion_coincidencia = strpos($request->get('cliente'), ',');
+
+        $cliente = substr($request->get('cliente'), 0, $posicion_coincidencia);
+
+        $identificado = DB::table('clientes')
+                    ->select('id')
+                    ->where('nombreCliente','=',$cliente)
+                    ->first();
+                        
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $acceso = substr(str_shuffle($permitted_chars), 0, 16);
+
         $datoVenta = new Venta();
         $datoVenta-> id_sucursal = $request->get('sucursal');
         $datoVenta-> id_almacen = $request->get('almacen');
-        $datoVenta-> cliente = $request->get('cliente');
-        $datoVenta-> producto = $request->get('producto');
+        $datoVenta-> id_cliente = $identificado->id;
         $datoVenta-> tipo_pago = $request->get('pago');
         $datoVenta-> detalle_pago = $request->get('detallePago');
-        $datoVenta-> descripcion = $request->get('descripcion');
+        $datoVenta-> detalle = $request->get('detalle');
         $datoVenta-> bandera = 'no';
         $datoVenta-> save();
 
@@ -94,10 +109,10 @@ class VentaController extends Controller
     { 
 
          $detalle = new DetalleVenta();
-         $detalle-> codigo = $_POST["codigo"];
+         $detalle-> codigo = $_POST["codigoVenta"];
          $detalle-> cantidad = $_POST["cantidad"];
          $detalle-> unidad = $_POST["unidad"];
-         $detalle-> detalle = $_POST["detalle"];
+         $detalle-> descripcion = $_POST["descripcion"];
          $detalle-> precio_unitario = $_POST["precioUnitario"];
          $detalle-> precio_total = $_POST["precioTotal"];
          $detalle-> bandera = 'no';
@@ -136,6 +151,28 @@ class VentaController extends Controller
         return json_encode(array('data'=>true));
     }
 
+    function autoCompletar(Request $request){
+
+        if($request->get('query'))
+            {
+            $query = $request->get('query');
+
+            $data = DB::table('clientes')
+                    ->where('nombreCliente', 'LIKE', "{$query}%")
+                    ->get();
+                        
+            $output = '<datalist id="codigo">';
+            foreach($data as $row)
+            {
+            $output .= '
+            <option>'.$row->nombreCliente.', '.$row->direccion.'</option>
+            ';
+            }
+            $output .= '</datalist>';
+            echo $output;
+            }
+    }
+
     /**
      * Display the specified resource.
      *
@@ -145,11 +182,16 @@ class VentaController extends Controller
     public function show(Venta $venta, $id)
     {
         try {
+            $cliente_elegido = DB::table('ventas')
+                    ->join('clientes','ventas.id_cliente','=','clientes.id')
+                    ->select('clientes.nombreCliente')
+                    ->where('ventas.id','=',$id)
+                    ->first();
 
             $venta_elegida = DB::table('ventas')
                     ->join('sucursals','ventas.id_sucursal','=','sucursals.id')
                     ->join('almacens','ventas.id_almacen','=','almacens.id')
-                    ->select('ventas.id','ventas.cliente','ventas.producto','ventas.descripcion',
+                    ->select('ventas.id','ventas.detalle',
                                 'sucursals.nombre_sucursal','almacens.nombre_almacen')
                     ->where('ventas.id','=',$id)
                     ->where('ventas.id','=',$id)
@@ -163,9 +205,9 @@ class VentaController extends Controller
                     ->where('ventas.id','=',$id)
                     ->first();
 
-                    //dd($venta_elegida->id);
+                   // dd($pago_elegido);
             
-            return view('venta.show',compact('venta_elegida','pago_elegido','venta'));
+            return view('venta.show',compact('venta_elegida','pago_elegido','venta','cliente_elegido'));
 
         } catch (\Throwable $th) {
             
@@ -229,5 +271,24 @@ class VentaController extends Controller
             ->get();
         
         return json_encode(array('data'=>$detalle));
+    }
+
+    public function validarCodigo(){
+        
+        $db_handle = new Inventario();
+
+        if(!empty($_POST["codigoVenta"])) {
+            
+            $code_count = $db_handle->validarCodigo($_POST["codigoVenta"]);
+
+            if($code_count){
+                return 0;
+            }else{
+                if($code_count == false) {
+                    return 1;
+                }
+            }
+            
+        }
     }
 }

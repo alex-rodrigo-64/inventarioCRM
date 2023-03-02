@@ -13,8 +13,7 @@
             <th class="column2 text-center">Sucursal</th>
             <th class="column3 text-center">Almacen</th>
             <th class="column3 text-center">Cliente</th>
-            <th class="column4 text-center">Producto</th>
-            <th class="column5 text-center">Fecha de Alta</th>
+            <th class="column5 text-center">Fecha</th>
             <th class="column6 text-center">Acciones &nbsp;&nbsp;&nbsp;</th>
             </tr>
         </thead>
@@ -22,10 +21,9 @@
             @foreach ($venta as $ventas)
             <tr>
                 <td class="text-center" >{{$ventas->id}}</td>
-                <td class="text-center" >{{$ventas->id_sucursal}}</td>
-                <td class="text-center" >{{$ventas->id_almacen}}</td>
-                <td class="text-center" >{{$ventas->cliente}}</td>
-                <td class="text-center" >{{$ventas->producto}}</td>
+                <td class="text-center" >{{$ventas->nombre_sucursal}}</td>
+                <td class="text-center" >{{$ventas->nombre_almacen}}</td>
+                <td class="text-center" >{{$ventas->id_cliente}}</td>
                 <td class="text-center">{{ \Carbon\Carbon::parse($ventas->created_at)->format('d-m-Y')}}</td>
                 <td class="text-center" >
 

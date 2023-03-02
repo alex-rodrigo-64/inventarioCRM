@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class DetalleVenta extends Model
 {
@@ -12,4 +13,5 @@ class DetalleVenta extends Model
     protected $fillable = [
         'codigo','cantidad','unidad','detalle','serial','precio_unitario','precio_total','id_venta','bandera',
     ];
+
 }

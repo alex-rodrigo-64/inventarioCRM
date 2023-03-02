@@ -32,19 +32,11 @@
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-8">
                             <div class="input-group">
                               <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Cliente</span>
-                              <input type="text" name="cliente" id="cliente" required class="form-control" disabled value="{{$venta_elegida->cliente}}" 
+                              <input type="text" name="cliente" id="cliente" required class="form-control" disabled value="{{$cliente_elegido->nombreCliente}}" 
                               placeholder="Ingrese nuevo cliente" tabindex="1"  >
-                            </div>
-                          <span id="estadoNombre"></span>
-                        </div>
-                        <div class="col-6">
-                            <div class="input-group">
-                              <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre del Producto</span>
-                              <input type="text" name="producto" id="producto" required  class="form-control" disabled value="{{$venta_elegida->producto}}"
-                              placeholder="Ingrese nuevo producto" tabindex="1" >
                             </div>
                           <span id="estadoNombre"></span>
                         </div>
@@ -80,7 +72,7 @@
                                 <th class="text-center" >Codigo</th>
                                 <th class="text-center" >Cantidad</th>
                                 <th class="text-center" >Unidad</th>
-                                <th class="text-center" >Detalle</th>
+                                <th class="text-center" >Descripcion</th>
                                 <th class="text-center" >Precio Unitario</th>
                                 <th class="text-center" >Precio Total</th>
                               </tr>
@@ -98,7 +90,7 @@
                 <!----->
                 <h6><strong>DETALLE / DESCRIPCION</strong></h6>
 
-                <textarea class="embed-responsive form-control " style="resize: none;padding-left: 20px;padding-top: 20px" name="descripcion" id="descripcion" cols="140" rows="4" disabled>{{$venta_elegida->descripcion}}</textarea>
+                <textarea class="embed-responsive form-control " style="resize: none;padding-left: 20px;padding-top: 20px" name="detalle" id="detalle" cols="140" rows="4" disabled>{{$venta_elegida->detalle}}</textarea>
                 <br>    
                 <div class="form-group">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="/ventas" class="btn btn-danger my-2 my-sm-0">Atras</a>
@@ -132,6 +124,9 @@
                 var filas = dataResult.data.length;
                 var count = 0;
 
+                for (  i = 0 ; i < filas; i++){ 
+                        count = Number(count) + Number(dataResult.data[i].precio_total); 
+                    }
 
                     for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de busquedas por id
                         var text = "";
@@ -144,13 +139,20 @@
                           dataResult.data[i].codigo  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].cantidad  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].unidad   + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
-                           dataResult.data[i].detalle  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
+                           dataResult.data[i].descripcion  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].precio_unitario  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].precio_total  + 
                         "</td></tr>"
                         
                         $("#detallesGuardados").append(nuevafila);
                     }
+                    var nueva= "<tr><td class='text-center text-white' style='background: rgb(2, 117, 216)' colspan='5'>"+
+                                "TOTAL" +
+                                "</td><td class='text-center' colspan='2' style= 'background: rgb(209, 244, 255)'>" +
+                                count + "</td></tr>"
+                        
+                        $("#detallesGuardados").append(nueva) ;
+                        $('#precioUnico').val(count);
                     
                     }
                 });

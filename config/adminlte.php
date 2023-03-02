@@ -348,7 +348,13 @@ return [
             'submenu' => [
                 [
                     'text' => 'Generar Reportes',
-                    'url'  => 'reporte',
+                    'url'  => 'reporte/nuevo',
+                    'can' => 'ver reportes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Reportes',
+                    'url'  => 'reportes',
                     'can' => 'ver reportes',
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
