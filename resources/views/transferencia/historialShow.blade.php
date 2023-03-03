@@ -48,6 +48,7 @@
                 </div>
               <span id="estadoNombre"></span>
             </div>
+            <div class="col-1" ></div>
             <div class="col-5">
                 <div class="input-group">
                   <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Cantidad</span>
@@ -55,9 +56,8 @@
                 <input type="text" name="nombreProducto" id="nombreProducto" required value="{{ $transfe->unidad }}" readonly class="form-control text-center" placeholder="Nombre de Producto" tabindex="1"> 
                 </div>
               </div>
-              <div class="col-1" ></div>
         </div>
-        @if ($transfe->estado == 'Enviado')
+        @if ($transfe->estado == 'Transferencia Exitosa')
               <br> 
           <div class="row justify-content-center">
               <div class="col-5" >
@@ -67,8 +67,32 @@
                   </div>
               </div>
               <div class="col-1" ></div>
-              <div class="col-5" ></div>
+              <div class="col-5" >
+                <div class="input-group">
+                  <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Fecha de Confirmacion</span>
+                  <input type="text" name="confirmacion" id="confirmacion" required value="{{ $transfe->confirmacion }}" readonly class="form-control text-center" placeholder="Nombre de Producto" tabindex="1">
+                </div>
+            </div>
           </div>
+        @else
+
+        <br> 
+        <div class="row justify-content-center">
+            <div class="col-5" >
+                <div class="input-group">
+                  <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Fecha de Rechazo</span>
+                  <input type="text" name="nombreProducto" id="nombreProducto" required value="{{ $transfe->hora_confirmacion }}" readonly class="form-control text-center" placeholder="Nombre de Producto" tabindex="1">
+                </div>
+            </div>
+            <div class="col-1" ></div>
+            <div class="col-5" >
+                <div class="input-group">
+                  <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Fecha de Confirmacion</span>
+                  <input type="text" name="confirmacion" id="confirmacion" required value="{{ $transfe->confirmacion }}" readonly class="form-control text-center" placeholder="Nombre de Producto" tabindex="1">
+                </div>
+            </div>
+        </div>
+            
         @endif
         
         <br>
@@ -91,9 +115,6 @@
 
       </div>
           
-      @if ($transfe->estado == 'Enviado')
-
-            @if ($transfe->nota != '')
               <div class="row justify-content-center">
                 <div class="col-11">
                     <label style="font-size: 16px;">Nota</label>
@@ -103,47 +124,12 @@
                             </textarea>
                 </div>
               </div>
-              <br>
-            @endif
-          <div class="text-center">
-            <a href="/solicitudes" class="btn btn-secondary">volver</a>
-            <button class="btn btn-success my-2 my-sm-0" onclick="solicitudRecibida({{$transfe->id}})" type="button" >Solicitud Recibida</button>
-          </div>
-      @else
-          @if ($transfe->estado == 'Rechazado')
-            @if ($transfe->nota == ' ')
-              <div class="row justify-content-center">
-                <div class="col-11">
-                    <label style="font-size: 16px;">Nota</label>
-                            <br>
-                            <textarea class="embed-responsive form-control " readonly style="resize: none;padding-left: 0px;padding-top: 20px" name="nota" id="nota" cols="140" rows="4">
-                              {{$transfe->nota}}
-                            </textarea>
-                </div>
-              </div>
-              <br>
-            @endif
-              <div class="text-center">
-                <a href="/solicitudes" class="btn btn-secondary">volver</a>
-                <button class="btn btn-danger my-2 my-sm-0" onclick="solicitudNoRecibida({{$transfe->id}})" type="button" >Solicitud no Recibida</button>
-              </div>
-            
-          @else
-          <div class="row justify-content-center">
-            <div class="col-11">
-                <label style="font-size: 16px;">Nota</label>
-                        <br>
-            <textarea class="embed-responsive form-control " style="resize: none;padding-left: 20px;padding-top: 20px" name="nota" id="nota" cols="140" rows="4"></textarea>
-            </div>
-          </div>
           <br>
             <div class="text-center">
-              <button class="btn btn-danger my-2 my-sm-0" onclick="cancelarSolicitud({{$transfe->id}})" type="button" >Cancelar Solicitud</button>
-              <a href="/solicitudes" class="btn btn-secondary">volver</a>
-              <button class="btn btn-success my-2 my-sm-0" onclick="aceptarSolicitud({{$transfe->id}})" type="button" >Enviar Solicitud</button>
+              
+              <a href="/historial" class="btn btn-secondary">volver</a>
+              
             </div>
-          @endif
-      @endif
       
         
       <br>
@@ -152,89 +138,6 @@
     </div>
 </div>
 
-
-  <script>
-    function aceptarSolicitud(params) {
-
-          var texto = $('#nota').val();
-            //console.log(sucursal);
-            $.ajax({
-                url: "/solicitudes/aceptarSolicitud",
-                type: "POST",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id": params,
-                    "nota": texto,
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (dataResult) {
-                    //console.log(dataResult);
-                    top.location.href="/solicitudes";//redirection
-                    
-                }
-            });
-    }
-
-    function cancelarSolicitud(params) {
-            var texto = $('#nota').val();
-            //console.log(sucursal);
-            $.ajax({
-                url: "/solicitudes/cancelarSolicitud",
-                type: "POST",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id": params,
-                    "nota": texto,
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (dataResult) {
-                    //console.log(dataResult);
-                    top.location.href="/solicitudes";//redirection
-                    
-                }
-            });
-    }
-
-    function solicitudRecibida(params) {
-            //console.log(sucursal);
-            $.ajax({
-                url: "/solicitudes/solicitudRecibida",
-                type: "POST",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id": params,
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (dataResult) {
-                    //console.log(dataResult);
-                    top.location.href="/solicitudes";//redirection
-                    
-                }
-            });
-    }
-
-    function solicitudNoRecibida(params) {
-            //console.log(sucursal);
-            $.ajax({
-                url: "/solicitudes/solicitudNoRecibida",
-                type: "POST",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id": params,
-                },
-                cache: false,
-                dataType: 'json',
-                success: function (dataResult) {
-                    //console.log(dataResult);
-                    top.location.href="/solicitudes";//redirection
-                    
-                }
-            });
-    }
-  </script>
 
 
 @endsection

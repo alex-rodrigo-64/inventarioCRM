@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transferencia;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -33,6 +34,8 @@ class TransferenciaController extends Controller
 
         $transferencias = DB::table('transferencias')
                 ->select('*')
+                ->where('estado','<>','Transferencia Exitosa')
+                ->where('estado','<>','Transferencia Rechazada')
                 ->orderBy('created_at', 'desc')
                 ->paginate(15);
 
@@ -45,6 +48,7 @@ class TransferenciaController extends Controller
                 ->select('*')
                 ->where('id',$id)
                 ->first();
+                
         return view('transferencia.show',compact('transfe'));
     }
 
@@ -88,6 +92,84 @@ class TransferenciaController extends Controller
         return redirect('/solicitudes');
     }
 
+    public function aceptarSolicitud(){
 
+        $date = Carbon::now();
+        
+        DB::table('transferencias')
+                ->where('id', $_POST["id"])
+                ->update(['estado' => 'Enviado',
+                            'nota' => $_POST["nota"],
+                            'hora_confirmacion' => $date,
+                            ]);
+
+        return true;
+    }
+
+    public function cancelarSolicitud(){
+        $date = Carbon::now();
+        DB::table('transferencias')
+                ->where('id', $_POST["id"])
+                ->update(['estado' => 'Rechazado',
+                            'nota' => $_POST["nota"],
+                            'hora_confirmacion' => $date,
+                            ]);
+
+        return true;
+    }
+
+    public function solicitudRecibida(){
+        $date = Carbon::now();
+        DB::table('transferencias')
+                ->where('id', $_POST["id"])
+                ->update(['estado' => 'Transferencia Exitosa',
+                                'confirmacion' => $date,
+                            ]);
+
+        return true;
+    }
+
+    public function solicitudNoRecibida(){
+        $date = Carbon::now();
+        DB::table('transferencias')
+                ->where('id', $_POST["id"])
+                ->update(['estado' => 'Transferencia Rechazada',
+                            'confirmacion' => $date,
+                            ]);
+
+        return true;
+    }
+
+
+    public function historial()
+    {
+        $transferencias = DB::table('transferencias')
+                ->select('*')
+                ->where('estado','<>','Pendiente')
+                ->where('estado','<>','Enviado')
+                ->where('estado','<>','Rechazado')
+                ->orderBy('confirmacion', 'desc')
+                ->paginate(15);
+
+        return view('transferencia.historial',compact('transferencias'));
+    }
+
+    public function verHistorial($id){
+
+        $transfe = DB::table('transferencias')
+                ->select('*')
+                ->where('id',$id)
+                ->first();
+                
+        return view('transferencia.historialShow',compact('transfe'));
+    }
+
+    public function destroyHistorial($id)
+    {
+        $detalle=Transferencia::findOrFail($id);
+        $detalle->delete();
+
+        return redirect('/historial');
+    }
   
 }

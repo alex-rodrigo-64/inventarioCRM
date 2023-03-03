@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('content')
 
-<h1 align="center" style="font-weight: 700">LISTA DE SOLICITUDES </h1>
+<h1 align="center" style="font-weight: 700">TRANSFERENCIAS </h1>
 
 <div class="container">
   <br>
@@ -21,15 +21,10 @@
         <tbody class="table-bordered" id="myTable"> 
             @foreach ($transferencias as $transferencia)
             <tr>
-                @if ($transferencia->estado == "Pendiente")
-                  <td class="text-center" style="background: rgb(229, 255, 0)" ><b>{{$transferencia->estado}}</b></td>  
+                @if ($transferencia->estado == 'Transferencia Rechazada')
+                <td class="text-center text-white" style="background: #08737a91" ><b>{{$transferencia->estado}}</b></td>
                 @else
-                  @if ($transferencia->estado == "Rechazado")
-                    <td class="text-center text-white" style="background: red" ><b>{{$transferencia->estado}}</b></td> 
-                  @else
-                    <td class="text-center text-white" style="background: #29c900" ><b>{{$transferencia->estado}}</b></td>
-                  @endif
-                    
+                    <td class="text-center text-white" style="background: #00c9a7" ><b>{{$transferencia->estado}}</b></td>
                 @endif
                 
                 <td class="text-center" >{{$transferencia->id_origen}}</td>
@@ -42,7 +37,7 @@
                 
                 @can('editar solicitud')
                      {{-- VER --}}
-                <a href="{{ url('/solicitudes/'.$transferencia->id)}}">
+                <a href="{{ url('/historial/'.$transferencia->id)}}">
                   <button class="btn btn-light-active btn-sm d-inline">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="rgb(2, 117, 216)" viewBox="0 0 576 512" width="18" height="20"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                       <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/>
@@ -69,15 +64,15 @@
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Solicitud</h5>
+                          <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Eliminar Transferencia</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                         <div class="modal-body">
-                         ¿Realmente Desea Borrar esta Peticion?
+                         ¿Realmente Desea Borrar esta Transferencia?
                         </div>
-                        <form action="{{url('/solicitudes/'.$transferencia->id)}}" method="POST">
+                        <form action="{{url('/historial/'.$transferencia->id)}}" method="POST">
                           @csrf
                           @method('DELETE')
                         <div class="modal-footer">

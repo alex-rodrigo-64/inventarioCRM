@@ -380,9 +380,10 @@ return [
                 ],
                 [
                     'text' => 'Historial',
-                    'url'  => 'reporte',
-                    'can' => 'ver transferencias',
+                    'url'  => 'historial',
+                    'can' => 'ver historial',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['historial', 'historial/*'],
                 ],
             ]
         ],

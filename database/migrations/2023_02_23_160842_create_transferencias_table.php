@@ -23,6 +23,9 @@ class CreateTransferenciasTable extends Migration
             $table->String('unidad')->nullable();
             $table->String('detalle')->nullable();
             $table->String('estado')->nullable();
+            $table->String('nota')->nullable();
+            $table->dateTime('hora_confirmacion')->nullable();
+            $table->dateTime('confirmacion')->nullable();
             $table->timestamps();
         });
     }

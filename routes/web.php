@@ -114,8 +114,15 @@ Route::get('/transferencias',[TransferenciaController::class,'index']);
 Route::get('/solicitudes',[TransferenciaController::class,'solicitudes']);
 Route::get('/solicitudes/{id}',[TransferenciaController::class,'verSolicitudes']);
 Route::delete('/solicitudes/{id}',[TransferenciaController::class,'destroy']);
+Route::post('/solicitudes/aceptarSolicitud',[TransferenciaController::class,'aceptarSolicitud']);
+Route::post('/solicitudes/cancelarSolicitud',[TransferenciaController::class,'cancelarSolicitud']);
+Route::post('/solicitudes/solicitudRecibida',[TransferenciaController::class,'solicitudRecibida']);
+Route::post('/solicitudes/solicitudNoRecibida',[TransferenciaController::class,'solicitudNoRecibida']);
 Route::post('/transferencias',[TransferenciaController::class,'nuevaSolicitud']);
 Route::post('/transferencias/solicitar',[TransferenciaController::class,'sucursalAlmacen']);
+Route::get('/historial',[TransferenciaController::class,'historial']);
+Route::get('/historial/{id}',[TransferenciaController::class,'verHistorial']);
+Route::delete('/historial/{id}',[TransferenciaController::class,'destroyHistorial']);
 
 //CONFIGURACION
 Route::get('/configuraciones',[ConfiguracionController::class,'index']);
