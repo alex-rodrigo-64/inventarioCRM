@@ -283,6 +283,26 @@ return [
             ]
         ],
         [
+            'text'    => 'Proveedores',
+            'icon'    => 'fas fa-shipping-fast',
+            'can' => 'ver proveedores',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Proveedor',
+                    'url'  => 'proveedor/nuevo',
+                    'can' => 'crear proveedor',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Proveedores',
+                    'url'  => 'proveedores',
+                    'can' => 'ver proveedores',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['proveedores', 'proveedor/editar*','proveedores/*'],
+                ],
+            ]
+        ],
+        [
             'text'    => 'Inventario',
             'icon'    => 'fas fa-fw fa-dolly-flatbed',
             'can' => 'ver inventarios',
@@ -298,7 +318,7 @@ return [
                     'url'  => 'inventarios',
                     'can' => 'ver inventarios',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['inventarios', 'inventarios/*'],
+                    'active' => ['inventarios', 'inventarios/*', 'inventario/almacen*'],
                 ],
             ]
         ],

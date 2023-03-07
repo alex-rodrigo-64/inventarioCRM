@@ -6,6 +6,7 @@ use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\SucursalController;
@@ -78,12 +79,20 @@ Route::get('/almacen/editar/{id}',[AlmacenController::class,'edit']);
 Route::post('/almacen/editar/{id}',[AlmacenController::class,'update']);
 Route::delete('/almacen/{id}',[AlmacenController::class,'destroy']);
 
+//PROVEEDOR
+Route::get('/proveedores',[ProveedorController::class,'index']);
+Route::get('/proveedor/nuevo',[ProveedorController::class,'create']);
+Route::post('/proveedor/nuevo',[ProveedorController::class,'store']);
+Route::get('/proveedor/editar/{id}',[ProveedorController::class,'edit']);
+Route::post('/proveedor/editar/{id}',[ProveedorController::class,'update']);
+Route::delete('/proveedor/{id}',[ProveedorController::class,'destroy']);
+
 //INVENTARIOS
 Route::get('/inventarios',[InventarioController::class,'index']);
 Route::get('/inventario/nuevo',[InventarioController::class,'create']);
 Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventarios/almacen/{id}',[InventarioController::class,'inventarioSucursal']);
-Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
+Route::get('/inventario/almacen/{id}/{id_edit}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
 Route::delete('/inventario/{id}',[InventarioController::class,'destroy']);
 Route::post('/inventario/getAlmacen',[InventarioController::class,'datosAlmacen']);

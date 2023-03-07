@@ -64,7 +64,10 @@ class InventarioController extends Controller
         $sucursales = DB::table('sucursals')
                         ->select('*')
                         ->get();
-        return view('inventario.create',compact('sucursales','unidad'));
+        $proveedores = DB::table('proveedors')
+                        ->select('*')
+                        ->get();
+        return view('inventario.create',compact('sucursales','unidad','proveedores'));
     }
 
     public function datosAlmacen()
@@ -135,9 +138,27 @@ class InventarioController extends Controller
      * @param  \App\Models\Inventario  $inventario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inventario $inventario)
+    public function edit(Inventario $inventario,$id)
     {
-        //
+        $inventario = DB::table('inventarios')
+                        ->select('*')
+                        ->where('id',$id)
+                        ->first();
+
+        $unidad = DB::table('tipo_unidads')
+                        ->select('*')
+                        ->get();
+        $sucursales = DB::table('sucursals')
+                        ->select('*')
+                        ->get();
+         $almacen = DB::table('almacens')
+                        ->select('*')
+                        ->get();
+        $proveedores = DB::table('proveedors')
+                        ->select('*')
+                        ->get();
+        $id_almacen = $id;
+        return view('inventario.edit',compact('sucursales','unidad','proveedores','inventario','almacen','id_almacen'));
     }
 
     /**

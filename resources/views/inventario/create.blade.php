@@ -41,7 +41,7 @@
                       <div class="col-3">
                             <div class="input-group">
                               <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Codigo</span>
-                              <input type="text" name="codigo" id="codigo" required value="{{ old('Codigo') }}" class="form-control" onkeyup="validarNombre()" placeholder="#" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209) || (event.charCode >= 48 && event.charCode <= 57)) ">
+                              <input type="text" name="codigo" id="codigo" required value="{{ old('Codigo') }}" class="form-control" onkeyup="validarNombre()" placeholder="#" tabindex="1" >
                             </div>
                           <span id="estadoNombre"></span>
                         </div>
@@ -59,8 +59,12 @@
                         <div class="col-6">
                           <div class="input-group">
                             <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Proveedor</span>
-                          <input type="text" id="proveedor" name="proveedor" class="form-control" 
-                            required onkeyup=""  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)) ">
+                            <select name="proveedor" required id="proveedor" class="form-control">
+                              <option disabled value="" selected>Seleccione un Proveedor</option>
+                              @foreach ($proveedores as $proveedor)
+                                    <option value="{{$proveedor->nombre_proveedor}}">{{$proveedor->nombre_proveedor}}</option>
+                                  @endforeach
+                            </select> 
                           </div>
                         </div>
                     </div>
