@@ -16,6 +16,7 @@ class CreateDetalleVentasTable extends Migration
         Schema::create('detalle_ventas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->String('codigo')->nullable();
+            $table->String('producto')->nullable();
             $table->String('cantidad')->nullable();
             $table->String('unidad')->nullable();
             $table->String('descripcion')->nullable();

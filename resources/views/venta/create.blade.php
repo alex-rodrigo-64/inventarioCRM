@@ -101,18 +101,25 @@
                         </div>
                         <span id="estadoCodigo"></span>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
+                      <div class="input-group">
+                          <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Producto</span>
+                          <input type="text" class="form-control " name="producto" id="producto" 
+                          onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57))">
+                      </div>
+                    </div>
+                    <div class="col-3">
                       <div class="input-group">
                           <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Cantidad</span>
                           <input type="text" class="form-control " name="cantidad" id="cantidad" 
                           onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 45) || (event.charCode == 46))">
                       </div>
                   </div>
-                      <div class="col-4">
+                      <div class="col-3">
                         <div class="input-group">
                           <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Unidad</span>
                             <select name="unidad" id="unidad" class="form-control">
-                              <option disabled selected>Seleccione una Unidad</option>
+                              <option disabled selected>Seleccione Unidad</option>
                                  @foreach ($unidad as $unidades)
                                   <option   value="{{$unidades->nombre_unidad}}"> {{$unidades->nombre_unidad}}</option>
                                   @endforeach
@@ -169,6 +176,7 @@
                           <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
                               <tr>
                                 <th class="text-center" >Codigo</th>
+                                <th class="text-center" >Producto</th>
                                 <th class="text-center" >Cantidad</th>
                                 <th class="text-center" >Unidad</th>
                                 <th class="text-center" >Descripcion</th>
@@ -302,7 +310,7 @@
                 asycn: false,
                 type: "POST",
                 success: function(data) {
-                   //console.log(data);
+                   console.log(data);
                    $('#estadoCodigo').empty();
                     if(data == 1){
                         $("#estadoCodigo").append("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Codigo de Producto no Existe</h5></span>");
@@ -318,14 +326,15 @@
         } 
 
     ////
-
+ 
       $("#guardarDetalle").on('click',function(){
             var url1 = $('#codigoVenta').val();
-            var url2 = $('#cantidad').val();
-            var url3 = $('#unidad').val();
-            var url4 = $('#descripcion').val();
-            var url5 = $('#precioUnitario').val();
-            var url6 = $('#precioTotal').val();
+            var url2 = $('#producto').val();
+            var url3 = $('#cantidad').val();
+            var url4 = $('#unidad').val();
+            var url5 = $('#descripcion').val();
+            var url6 = $('#precioUnitario').val();
+            var url7 = $('#precioTotal').val();
 
           //  console.log(url1);
                 $.ajax({
@@ -334,11 +343,12 @@
                     data: {
                         "_token": "{{ csrf_token() }}",
                         codigoVenta: url1,
-                        cantidad: url2,
-                        unidad: url3,
-                        descripcion: url4,
-                        precioUnitario: url5,
-                        precioTotal: url6,
+                        producto: url2,
+                        cantidad: url3,
+                        unidad: url4,
+                        descripcion: url5,
+                        precioUnitario: url6,
+                        precioTotal: url7,
                     },
                     cache: false,
                     dataType: 'json',
@@ -347,6 +357,7 @@
                         datosDetalle();
 
                         $("#codigoVenta").val(''); 
+                        $("#producto").val(''); 
                         $("#cantidad").val('');
                         $("#unidad").val('Seleccione una Unidad');
                         $("#descripcion").val('');
@@ -385,6 +396,7 @@
                             
                           var nuevafila= "<tr><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                           dataResult.data[i].codigo  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
+                           dataResult.data[i].producto  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].cantidad  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].unidad   + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].descripcion  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
@@ -423,7 +435,7 @@
                         $("#detallesGuardados").append(nuevafila);
                     }
 
-                    var nueva= "<tr><td class='text-center text-white' style='background: rgb(2, 117, 216)' colspan='5'>"+
+                    var nueva= "<tr><td class='text-center text-white' style='background: rgb(2, 117, 216)' colspan='6'>"+
                                 "TOTAL" +
                                 "</td><td class='text-center' colspan='2' style= 'background: rgb(209, 244, 255)'>" +
                                 count + "</td></tr>"

@@ -107,7 +107,9 @@ Route::post('/venta/eliminar',[VentaController::class,'eliminarDetalle']);
 //REPORTES
 Route::get('/reportes',[ReporteController::class,'index']);
 Route::get('/reporte/nuevo',[ReporteController::class,'create']);
-Route::post('/reporte/nuevo',[ReporteController::class,'store']);
+Route::get('/reporte/showReporte/{id}/{fecha_inicial}/{fecha_fin}',[ReporteController::class,'show']);
+Route::post('/reporte/getAlmacen',[ReporteController::class,'datosAlmacen']);
+Route::post('/reporte/nuevoReporte',[ReporteController::class,'nuevoReporte']);
 
 //TRANSFERENCIA
 Route::get('/transferencias',[TransferenciaController::class,'index']);

@@ -110,6 +110,7 @@ class VentaController extends Controller
 
          $detalle = new DetalleVenta();
          $detalle-> codigo = $_POST["codigoVenta"];
+         $detalle-> producto = $_POST["producto"];
          $detalle-> cantidad = $_POST["cantidad"];
          $detalle-> unidad = $_POST["unidad"];
          $detalle-> descripcion = $_POST["descripcion"];
@@ -282,7 +283,13 @@ class VentaController extends Controller
             $code_count = $db_handle->validarCodigo($_POST["codigoVenta"]);
 
             if($code_count){
-                return 0;
+
+                $producto =  DB::table('inventarios')
+                        ->select('*')
+                        ->get();
+            
+            return json_encode(array('data'=>$producto));
+                    
             }else{
                 if($code_count == false) {
                     return 1;

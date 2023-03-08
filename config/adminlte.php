@@ -347,10 +347,11 @@ return [
             'can' => 'ver reportes',
             'submenu' => [
                 [
-                    'text' => 'Generar Reportes',
+                    'text' => 'Reporte de Venta',
                     'url'  => 'reporte/nuevo',
                     'can' => 'ver reportes',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['reporte', 'reporte/showReporte*'],
                 ],
                 [
                     'text' => 'Reportes',
