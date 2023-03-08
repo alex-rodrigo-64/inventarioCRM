@@ -44,7 +44,7 @@
                           <div style="text-align: center;width:90px">
                             
                             {{-- EDITAR --}}
-                          <a href="{{ url('/item/editar/'.$item->id)}}">
+                          <a href="{{ url('/inventario/almacen/'.$item->id_sucursal.'/'.$item->id)}}">
                             <button class="btn btn-light-active btn-sm d-inline"  >
                               <svg xmlns="http://www.w3.org/2000/svg" fill="rgb(168, 166, 14)" viewBox="0 0 16 16" width="18" height="20">
                                 <path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 
@@ -78,7 +78,7 @@
                                 <div class="modal-title w-100 text-center">
                                   ¿Realmente Desea Borrar el item?
                                 </div>
-                                <form action="{{url('/inventarios/almacen'.$item->id)}}" method="POST">
+                                <form action="{{url('/inventario/almacen/'.$item->id)}}" method="POST">
                                   @csrf
                                   @method('DELETE')
                                 <div class="modal-footer">

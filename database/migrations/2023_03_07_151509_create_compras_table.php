@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransferenciasTable extends Migration
+class CreateComprasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,20 @@ class CreateTransferenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('transferencias', function (Blueprint $table) {
+        Schema::create('compras', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('id_origen')->nullable();
+            $table->String('id_sucursal')->nullable();
             $table->String('id_almacen')->nullable();
-            $table->String('id_destino')->nullable();
-            $table->String('nombre_producto')->nullable();
+            $table->String('codigo_producto')->nullable();
+            $table->String('proveedor')->nullable();
             $table->String('cantidad')->nullable();
             $table->String('unidad')->nullable();
+            $table->String('cantidad_unitaria')->nullable();
+            $table->String('costo_adquisicion')->nullable();
+            $table->String('costo_adquisicion_antiguo')->nullable();
+            $table->String('precio_venta')->nullable();
+            $table->String('precio_venta_unitario')->nullable();
             $table->String('detalle')->nullable();
-            $table->String('estado')->nullable();
-            $table->String('nota')->nullable();
-            $table->dateTime('hora_confirmacion')->nullable();
-            $table->dateTime('confirmacion')->nullable();
             $table->timestamps();
         });
     }
@@ -37,6 +38,6 @@ class CreateTransferenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transferencias');
+        Schema::dropIfExists('compras');
     }
 }

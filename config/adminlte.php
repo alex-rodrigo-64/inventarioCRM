@@ -283,6 +283,26 @@ return [
             ]
         ],
         [
+            'text'    => 'Proveedores',
+            'icon'    => 'fas fa-shipping-fast',
+            'can' => 'ver proveedores',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Proveedor',
+                    'url'  => 'proveedor/nuevo',
+                    'can' => 'crear proveedor',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Proveedores',
+                    'url'  => 'proveedores',
+                    'can' => 'ver proveedores',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['proveedores', 'proveedor/editar*','proveedores/*'],
+                ],
+            ]
+        ],
+        [
             'text'    => 'Inventario',
             'icon'    => 'fas fa-fw fa-dolly-flatbed',
             'can' => 'ver inventarios',
@@ -298,7 +318,7 @@ return [
                     'url'  => 'inventarios',
                     'can' => 'ver inventarios',
                     'icon'    => 'fas fa-fw fa-filse',
-                    'active' => ['inventarios', 'inventarios/*'],
+                    'active' => ['inventarios', 'inventarios/*', 'inventario/almacen*'],
                 ],
             ]
         ],
@@ -342,6 +362,25 @@ return [
             ]
         ],
         [
+            'text'    => 'Compras',
+            'icon'    => 'fas fa-cart-arrow-down',
+            'can' => 'ver compras',
+            'submenu' => [
+                [
+                    'text' => 'Nueva Compra',
+                    'url'  => 'compra/nueva',
+                    'can' => 'crear compra',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Compras',
+                    'url'  => 'compras',
+                    'can' => 'ver compras',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+            ]
+        ],
+        [
             'text'    => 'Reportes',
             'icon'    => 'fas fa-fw fa-file-pdf',
             'can' => 'ver reportes',
@@ -373,16 +412,18 @@ return [
                     'icon'    => 'fas fa-fw fa-filse',
                 ],
                 [
-                    'text' => 'Ver Solicitudes',
-                    'url'  => 'transferencias/solicitudes',
+                    'text' => 'Solicitudes',
+                    'url'  => 'solicitudes',
                     'can' => 'ver solicitudes',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['solicitudes', 'solicitudes/*'],
                 ],
                 [
-                    'text' => 'Ver Historial',
-                    'url'  => 'reporte',
-                    'can' => 'ver transferencias',
+                    'text' => 'Historial',
+                    'url'  => 'historial',
+                    'can' => 'ver historial',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['historial', 'historial/*'],
                 ],
             ]
         ],

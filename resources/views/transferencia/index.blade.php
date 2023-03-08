@@ -17,8 +17,8 @@
                     class="form-control" >
                     <option selected value="" disabled>Elige una Sucursal</option>
                     @foreach ($sucursal as $sucursal)
-                            <option   value="{{$sucursal->id}}"> {{$sucursal->nombre_sucursal}}</option>
-                             @endforeach
+                            <option   value="{{$sucursal->nombre_sucursal}}"> {{$sucursal->nombre_sucursal}}</option>
+                    @endforeach
                     </select>
                 </div>
               <span id="estadoNombre"></span>
@@ -32,17 +32,19 @@
                     <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Sucursal Destino</span>
                     <select name="sucursalDestino" id="sucursalDestino" required
                     class="form-control" >
-                    <option selected value="" disabled>Elige una Sucursal de Origen</option>
-                            
+                    <option selected value="" disabled>Elige una Sucursal de Destino</option>
+                    @foreach ($sucursales as $sucursal)
+                        <option   value="{{$sucursal->nombre_sucursal}}"> {{$sucursal->nombre_sucursal}}</option>
+                    @endforeach  
                     </select>               
                 </div>
                 <span id="estadoRol"></span>
             </div>
         </div>
 
-        <br>
-        <div class="row ">
-            <div class="col-5" style="left: 42px;">
+        <br> 
+        <div class="row justify-content-center">
+            <div class="col-5" >
                 <div class="input-group">
                   <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Almacen</span>
                   <select name="almacen" id="almacen"  required
@@ -51,14 +53,15 @@
                     </select>
                 </div>
             </div>
-            
+            <div class="col-1" ></div>
+            <div class="col-5" ></div>
         </div>
 
         <br>
         <div class="row justify-content-center">
-            <div class="col-5">
+            <div class="col-5" >
                 <div class="input-group">
-                  <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre del Producto</span>
+                  <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Nombre de Producto</span>
                   <input type="text" name="nombreProducto" id="nombreProducto" required value="{{ old('Nombre') }}" class="form-control" onkeyup="validarNombre()" placeholder="Nombre de Producto" tabindex="1" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 241) || (event.charCode == 209)) ">
                 </div>
               <span id="estadoNombre"></span>
@@ -75,8 +78,8 @@
                         @endforeach
                   </select> 
                 </div>
-                 <span id="estadoCantidad"></span>
               </div>
+              <div class="col-1" ></div>
         </div>
         <br>
         <div class="row justify-content-center">
@@ -108,7 +111,7 @@
     <script>
 
         function sucursalAlmacen() {
-            var sucursal = $("#almacen").val();
+            var sucursal = $("#sucursalOrigen").val();
             //console.log(sucursal);
             $.ajax({
                 url: "/transferencias/solicitar",
@@ -125,7 +128,7 @@
                     $("#almacen").append("<option value='' selected disabled>Seleccione un  Almacen</option>");
                     dataResult.data.forEach(element => {
                     //console.log(element.nombre_almacen);
-                    $("#almacen").append("<option value='"+element.id+"'>"+element.nombre_almacen+"</option>");
+                    $("#almacen").append("<option value='"+element.nombre_almacen+"'>"+element.nombre_almacen+"</option>");
                     });
                     
                 }

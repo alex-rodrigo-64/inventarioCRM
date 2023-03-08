@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\SucursalController;
@@ -78,12 +80,20 @@ Route::get('/almacen/editar/{id}',[AlmacenController::class,'edit']);
 Route::post('/almacen/editar/{id}',[AlmacenController::class,'update']);
 Route::delete('/almacen/{id}',[AlmacenController::class,'destroy']);
 
+//PROVEEDOR
+Route::get('/proveedores',[ProveedorController::class,'index']);
+Route::get('/proveedor/nuevo',[ProveedorController::class,'create']);
+Route::post('/proveedor/nuevo',[ProveedorController::class,'store']);
+Route::get('/proveedor/editar/{id}',[ProveedorController::class,'edit']);
+Route::post('/proveedor/editar/{id}',[ProveedorController::class,'update']);
+Route::delete('/proveedor/{id}',[ProveedorController::class,'destroy']);
+
 //INVENTARIOS
 Route::get('/inventarios',[InventarioController::class,'index']);
 Route::get('/inventario/nuevo',[InventarioController::class,'create']);
 Route::post('/inventario/nuevo',[InventarioController::class,'store']);
 Route::get('/inventarios/almacen/{id}',[InventarioController::class,'inventarioSucursal']);
-Route::get('/inventario/editar/{id}',[InventarioController::class,'edit']);
+Route::get('/inventario/almacen/{id}/{id_edit}',[InventarioController::class,'edit']);
 Route::post('/inventario/editar/{id}',[InventarioController::class,'update']);
 Route::delete('/inventario/{id}',[InventarioController::class,'destroy']);
 Route::post('/inventario/getAlmacen',[InventarioController::class,'datosAlmacen']);
@@ -104,6 +114,16 @@ Route::post('/venta/datos',[VentaController::class,'datosDetalle']);
 Route::post('/venta/datosShow',[VentaController::class,'datosDetalleShow']);
 Route::post('/venta/eliminar',[VentaController::class,'eliminarDetalle']);
 
+//COMPRAS   
+Route::get('/compras',[CompraController::class,'index']);
+Route::get('/compra/nueva',[CompraController::class,'create']);
+Route::post('/compra/nueva',[CompraController::class,'store']);
+Route::get('/compra/mostrar/{id}',[CompraController::class,'show']);
+Route::delete('/compra/{id}',[CompraController::class,'destroy']);
+Route::post('/compra/getAlmacen',[CompraController::class,'datosAlmacen']);
+Route::post('/autocompletarProducto',[CompraController::class,'autoCompletar']);
+Route::post('/unidadProducto',[CompraController::class,'unidad']);
+
 //REPORTES
 Route::get('/reportes',[ReporteController::class,'index']);
 Route::get('/reporte/nuevo',[ReporteController::class,'create']);
@@ -114,8 +134,17 @@ Route::post('/reporte/nuevoReporte',[ReporteController::class,'nuevoReporte']);
 //TRANSFERENCIA
 Route::get('/transferencias',[TransferenciaController::class,'index']);
 Route::get('/solicitudes',[TransferenciaController::class,'solicitudes']);
+Route::get('/solicitudes/{id}',[TransferenciaController::class,'verSolicitudes']);
+Route::delete('/solicitudes/{id}',[TransferenciaController::class,'destroy']);
+Route::post('/solicitudes/aceptarSolicitud',[TransferenciaController::class,'aceptarSolicitud']);
+Route::post('/solicitudes/cancelarSolicitud',[TransferenciaController::class,'cancelarSolicitud']);
+Route::post('/solicitudes/solicitudRecibida',[TransferenciaController::class,'solicitudRecibida']);
+Route::post('/solicitudes/solicitudNoRecibida',[TransferenciaController::class,'solicitudNoRecibida']);
 Route::post('/transferencias',[TransferenciaController::class,'nuevaSolicitud']);
 Route::post('/transferencias/solicitar',[TransferenciaController::class,'sucursalAlmacen']);
+Route::get('/historial',[TransferenciaController::class,'historial']);
+Route::get('/historial/{id}',[TransferenciaController::class,'verHistorial']);
+Route::delete('/historial/{id}',[TransferenciaController::class,'destroyHistorial']);
 
 //CONFIGURACION
 Route::get('/configuraciones',[ConfiguracionController::class,'index']);
