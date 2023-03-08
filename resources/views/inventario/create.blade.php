@@ -99,7 +99,6 @@
                                required  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
                                <span class="input-group-text" id="basic-addon1" >Bs.</span>
                       </div>
-                       <span id="estadoCostoA"></span>
                     </div>
                   </div>
                   <br>
@@ -119,7 +118,7 @@
                                required  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
                                <span class="input-group-text" id="basic-addon1" >Bs.</span>
                       </div>
-                       <span id="estadoCostoA"></span>
+                       
                     </div>
                   </div>
                      

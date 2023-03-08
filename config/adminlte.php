@@ -362,6 +362,25 @@ return [
             ]
         ],
         [
+            'text'    => 'Compras',
+            'icon'    => 'fas fa-cart-arrow-down',
+            'can' => 'ver compras',
+            'submenu' => [
+                [
+                    'text' => 'Nueva Compra',
+                    'url'  => 'compra/nueva',
+                    'can' => 'crear compra',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+                [
+                    'text' => 'Ver Compras',
+                    'url'  => 'compras',
+                    'can' => 'ver compras',
+                    'icon'    => 'fas fa-fw fa-filse',
+                ],
+            ]
+        ],
+        [
             'text'    => 'Reportes',
             'icon'    => 'fas fa-fw fa-file-pdf',
             'can' => 'ver reportes',

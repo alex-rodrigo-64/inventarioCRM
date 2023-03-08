@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\RolesController;
@@ -112,6 +113,16 @@ Route::post('/venta/nuevoDetalle',[VentaController::class,'nuevoDetalle']);
 Route::post('/venta/datos',[VentaController::class,'datosDetalle']);
 Route::post('/venta/datosShow',[VentaController::class,'datosDetalleShow']);
 Route::post('/venta/eliminar',[VentaController::class,'eliminarDetalle']);
+
+//COMPRAS   
+Route::get('/compras',[CompraController::class,'index']);
+Route::get('/compra/nueva',[CompraController::class,'create']);
+Route::post('/compra/nueva',[CompraController::class,'store']);
+Route::get('/compra/mostrar/{id}',[CompraController::class,'show']);
+Route::delete('/compra/{id}',[CompraController::class,'destroy']);
+Route::post('/compra/getAlmacen',[CompraController::class,'datosAlmacen']);
+Route::post('/autocompletarProducto',[CompraController::class,'autoCompletar']);
+Route::post('/unidadProducto',[CompraController::class,'unidad']);
 
 //REPORTES
 Route::get('/reportes',[ReporteController::class,'index']);
