@@ -209,6 +209,16 @@ class CompraController extends Controller
         if($request->get('query'))
             {
 
+                $sucursal = DB::table('sucursals')
+                        ->select('*')
+                        ->where('nombre_sucursal',$_POST["sucursal"])
+                        ->first();
+
+                $almacen =  DB::table('almacens')
+                        ->select('*')
+                        ->where('nombre_almacen',$_POST["almacen"])
+                        ->first();
+
                 if (strpos($request->get('query'), ',')) {
                      $posicion_coincidencia = strpos($request->get('query'), ',');
         
@@ -219,11 +229,15 @@ class CompraController extends Controller
 
             $existe = DB::table('inventarios')
                     ->where('nombre_producto', 'LIKE', "{$query}%")
+                    ->where('id_sucursal', $sucursal->id)
+                    ->where('id_almacen', $almacen->id )
                     ->orWhere('codigo', 'LIKE', "{$query}%")
                     ->exists();
 
             $data = DB::table('inventarios')
                     ->where('nombre_producto', 'LIKE', "{$query}%")
+                    ->where('id_sucursal', $sucursal->id)
+                    ->where('id_almacen', $almacen->id )
                     ->orWhere('codigo', 'LIKE', "{$query}%")
                     ->get();
                         
