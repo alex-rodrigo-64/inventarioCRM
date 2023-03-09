@@ -170,33 +170,53 @@
 
     $('#producto').keyup(function() {
       var query = $(this).val();
+      var sucursal = $('#sucursal').val();
+      var almacen = $('#almacen').val();
       $('#productoMensaje').html("<span  class='menor'></span>");
-      //console.log(query);
-      if (query != '') {
-          $.ajax({
-              url: '/autocompletarProducto',
-              type: 'POST',
-              data: {
-                "_token": "{{ csrf_token() }}",
+      console.log(sucursal == null);
+
+      if (sucursal == null) {
+          $('#productoMensaje').html("<span  class='menor'>Seleccione Una Sucursal</span>");
+      }else{
+        if (almacen == null ) {
+           $('#productoMensaje').html("<span  class='menor'>Seleccione Un Almacen</span>");
+        }else{
+          
+        //console.log(query);
+        if (query != '') {
+            $.ajax({
+                url: '/autocompletarProducto',
+                type: 'POST',
+                data: {
+                  "_token": "{{ csrf_token() }}",
                   query: query,
-              },
-              success: function(data) {
-                
-                //console.log(data);
-                if (data == 0) {
-                    $('#productoMensaje').html("<span  class='menor'><h5 class='menor'>Producto no Registrado</h5></span>");
-                }else{
-                   $('#codigoDatalist').fadeIn();
-                    $('#codigoDatalist').html(data); 
-                    
+                  sucursal: sucursal,
+                  almacen: almacen,
+                },
+                success: function(data) {
+                  
+                  //console.log(data);
+                  if (data == 0) {
+                      $('#productoMensaje').html("<span  class='menor'><h5 class='menor'>Producto no Registrado</h5></span>");
+                  }else{
+                    $('#codigoDatalist').fadeIn();
+                      $('#codigoDatalist').html(data); 
+                      
+                  }
+                  
                 }
                 
-              }
-              
-          });
-      }else{
-        $('#productoMensaje').html("<span  class='menor'></span>");
+            });
+        }else{
+          $('#productoMensaje').html("<span  class='menor'></span>");
+        }
+      
+      
+     
+          $('#productoMensaje').html("<span  class='menor'></span>");
+        }
       }
+         
   });
 
     function llenarUnidad() {
