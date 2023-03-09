@@ -6,6 +6,11 @@
         <br>
         <div class="card">
             <div class="card-body">
+                <a href="/reporte/nuevo/venta">
+                    <button type="button" class="btn btn-secondary">
+                        <i class="fas fa-arrow-alt-circle-left"></i>
+                    </button>
+                </a>
                 <div class="row justify-content-center">
                     <div class="col-5">
                         <div class="input-group">

@@ -79,7 +79,7 @@ class CompraController extends Controller
         $compra-> unidad = $request->get('cantidadP');
         $compra-> cantidad_unitaria = $request->get('cantidadUnitaria');
         $compra-> costo_adquisicion = $request->get('costoAdqui');
-        $compra-> costo_adquisicion_antiguo = $identificado->cantida;
+        $compra-> costo_adquisicion_antiguo = $identificado->cantidad;
         $compra-> precio_venta = $request->get('costoVenta');
         $compra-> precio_venta_unitario = $request->get('costoUni');
         $compra-> detalle = $request->get('descripcion');
@@ -244,7 +244,7 @@ class CompraController extends Controller
            
             }
     }
-
+ 
     public function unidad()
     {
 

@@ -102,6 +102,30 @@ class VentaController extends Controller
                     ->update(['bandera' => 'si']);
 
 
+            $productoDes = DB::table('detalle_ventas')
+                        ->select('*')
+                        ->where('id_venta','=',$detalle->id)
+                        ->get();
+
+            
+            //dd($productoDes);
+
+            for ($i=0; $i < sizeof($productoDes); $i++) { 
+
+                $cantidadInventario = DB::table('inventarios')
+                        ->select('cantidad')
+                        ->where('codigo','=', $productoDes[$i]->codigo)
+                        ->first();
+
+                $cantidad_descontada = $cantidadInventario->cantidad - $productoDes[$i]->cantidad;
+
+                 DB::table('inventarios')
+                        ->select('*')
+                        ->where('codigo','=',$productoDes[$i]->codigo)
+                        ->update(['cantidad' => $cantidad_descontada]);
+            }
+
+
         return redirect('/ventas');
     }
 
@@ -273,19 +297,22 @@ class VentaController extends Controller
         
         return json_encode(array('data'=>$detalle));
     }
-
+ 
     public function validarCodigo(){
         
         $db_handle = new Inventario();
 
         if(!empty($_POST["codigoVenta"])) {
             
-            $code_count = $db_handle->validarCodigo($_POST["codigoVenta"]);
+            $code_count = $db_handle->validarCodigo($_POST["codigoVenta"],$_POST["sucursal"],$_POST["almacen"]);
+
+            $codigo = $_POST["codigoVenta"];
 
             if($code_count){
 
                 $producto =  DB::table('inventarios')
                         ->select('*')
+                        ->where('codigo','=',$codigo)
                         ->get();
             
             return json_encode(array('data'=>$producto));

@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('content')
 <h1 align="center" style="font-weight: 700">REGISTRAR NUEVA COMPRA</h1>
-
+    
 <style>
         
   .menor{
@@ -210,6 +210,7 @@
                 valor: valor,
               },
               success: function(data) {
+                //console.log(data);;
                 //console.log(re.datos[0].unidad);
                 var re = JSON.parse(data);
                 

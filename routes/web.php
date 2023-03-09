@@ -9,6 +9,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\ReporteInventarioController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoPagoController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\TipoPagoDetallesController;
 use App\Http\Controllers\TipoUnidadController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\TransferenciaController;
+use App\Models\ReporteInventario;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -125,11 +127,21 @@ Route::post('/autocompletarProducto',[CompraController::class,'autoCompletar']);
 Route::post('/unidadProducto',[CompraController::class,'unidad']);
 
 //REPORTES
+//compra
+
+//venta
 Route::get('/reportes',[ReporteController::class,'index']);
-Route::get('/reporte/nuevo',[ReporteController::class,'create']);
-Route::get('/reporte/showReporte/{id}/{fecha_inicial}/{fecha_fin}',[ReporteController::class,'show']);
+Route::get('/reporte/nuevo/venta',[ReporteController::class,'create']);
+Route::get('/reporte/showReporte/venta/{id}/{fecha_inicial}/{fecha_fin}',[ReporteController::class,'show']);
 Route::post('/reporte/getAlmacen',[ReporteController::class,'datosAlmacen']);
 Route::post('/reporte/nuevoReporte',[ReporteController::class,'nuevoReporte']);
+
+//inventario
+Route::get('/reportes',[ReporteInventarioController::class,'index']);
+Route::get('/reporte/nuevo/inventario',[ReporteInventarioController::class,'create']);
+Route::get('/reporte/showReporte/inventario/{id}/{fecha_inicial}/{fecha_fin}',[ReporteInventarioController::class,'show']);
+Route::post('/reporte/getAlmacen',[ReporteInventarioController::class,'datosAlmacen']);
+Route::post('/reporte/nuevoReporte',[ReporteInventarioController::class,'nuevoReporte']);
 
 //TRANSFERENCIA
 Route::get('/transferencias',[TransferenciaController::class,'index']);

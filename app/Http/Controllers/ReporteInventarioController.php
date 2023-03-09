@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reporte;
-use App\Models\Venta;
+use App\Models\ReporteInventario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ReporteController extends Controller
+class ReporteInventarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class ReporteController extends Controller
      */
     public function index()
     {
-        return view('reporteVenta.index');
+        //
     }
 
     /**
@@ -34,7 +33,7 @@ class ReporteController extends Controller
                 ->select('*')
                 ->get();
 
-        return view('reporteVenta.create',compact('sucursal','almacen'));
+        return view('reporteInventario.create',compact('sucursal','almacen'));
     }
 
     /**
@@ -51,34 +50,32 @@ class ReporteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Reporte  $reporte
+     * @param  \App\Models\ReporteInventario  $reporteInventario
      * @return \Illuminate\Http\Response
      */
-    public function show(Reporte $reporte, $id, $fecha_inicial, $fecha_fin)
-    {           
- 
-        $venta_elegida = DB::table('ventas')
-                    ->join('detalle_ventas','detalle_ventas.id_venta','=','ventas.id')
-                    ->join('sucursals','sucursals.id','=','ventas.id_sucursal')
-                    ->join('almacens','almacens.id','=','ventas.id_almacen')
+    public function show(ReporteInventario $reporteInventario, $id, $fecha_inicial, $fecha_fin)
+    {
+        $inventario_elegido = DB::table('inventarios')
+                    ->join('sucursals','sucursals.id','=','inventarios.id_sucursal')
+                    ->join('almacens','almacens.id','=','inventarios.id_almacen')
                     ->select('*')
-                    ->where('ventas.created_at', '>=' ,$fecha_inicial)
-                    ->where('ventas.created_at', '<=' ,$fecha_fin)
-                    ->where('ventas.id_almacen','=',$id)
+                    ->where('inventarios.created_at', '>=' ,$fecha_inicial)
+                    ->where('inventarios.created_at', '<=' ,$fecha_fin)
+                    ->where('inventarios.id_almacen','=',$id)
                     ->get();
 
-                   // dd($venta_elegida);
+                   // dd($inventario_elegido);
 
-        return view('reporteVenta.show',compact('venta_elegida','fecha_inicial','fecha_fin'));
+        return view('reporteInventario.show',compact('inventario_elegido','fecha_inicial','fecha_fin'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Reporte  $reporte
+     * @param  \App\Models\ReporteInventario  $reporteInventario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reporte $reporte)
+    public function edit(ReporteInventario $reporteInventario)
     {
         //
     }
@@ -87,10 +84,10 @@ class ReporteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Reporte  $reporte
+     * @param  \App\Models\ReporteInventario  $reporteInventario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reporte $reporte)
+    public function update(Request $request, ReporteInventario $reporteInventario)
     {
         //
     }
@@ -98,14 +95,13 @@ class ReporteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Reporte  $reporte
+     * @param  \App\Models\ReporteInventario  $reporteInventario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reporte $reporte)
+    public function destroy(ReporteInventario $reporteInventario)
     {
         //
     }
-
     public function datosAlmacen()
     {
         $almacen =  DB::table('almacens')
@@ -121,7 +117,7 @@ class ReporteController extends Controller
         $fecha_inicial = date("Y-m-d", strtotime($_POST['fechaInicio']));
         $fecha_fin = date("Y-m-d", strtotime($_POST['fechaFin']));
                 
-         $reporteNuevo = DB::table('ventas')
+         $reporteNuevo = DB::table('inventarios')
                 //->whereBetween('created_at', array($date1,$date2))
                 ->where('created_at', '>=' ,$fecha_inicial)
                 ->where('created_at', '<=' ,$fecha_fin)

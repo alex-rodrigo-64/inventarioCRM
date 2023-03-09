@@ -96,7 +96,7 @@
                       <div class="col-3">
                         <div class="input-group">
                             <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Codigo</span>
-                            <input type="text" class="form-control " name="codigoVenta" id="codigoVenta" onblur="validarCodigo()" onkeyup="mayus(this);" 
+                            <input type="text" class="form-control " name="codigoVenta" id="codigoVenta" onkeyup="mayus(this);validarCodigo()" 
                             onkeypress="return ( (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 45))">
                         </div>
                         <span id="estadoCodigo"></span>
@@ -104,7 +104,7 @@
                     <div class="col-3">
                       <div class="input-group">
                           <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Producto</span>
-                          <input type="text" class="form-control " name="producto" id="producto" 
+                          <input type="text" class="form-control " name="producto" id="producto"  readonly
                           onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode >= 48 && event.charCode <= 57))">
                       </div>
                     </div>
@@ -300,23 +300,30 @@
         function validarCodigo() {
           
           var url1 = $('#codigoVenta').val();
+          var url2 = $('#sucursal').val();
+          var url3 = $('#almacen').val();
           //console.log(url1);
             jQuery.ajax({
                 url: "/venta/validarCodigo",
                 data: {
                     "_token": "{{ csrf_token() }}",
                     "codigoVenta": url1,
+                    "sucursal": url2,
+                    "almacen": url3,
                 },
                 asycn: false,
                 type: "POST",
                 success: function(data) {
-                   console.log(data);
+                  // console.log(data);
                    $('#estadoCodigo').empty();
                     if(data == 1){
                         $("#estadoCodigo").append("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Codigo de Producto no Existe</h5></span>");
 
                     }else{
                         $("#estadoCodigo").append("<span  class='mayor'><h5 class='mayor'>&nbsp;&nbsp;Codigo de Producto Existe</h5></span>");
+                        var re = JSON.parse(data);
+                       // console.log(re);
+                       $('#producto').val(re.data[0].nombre_producto);
                     }
                 },
                 error: function() {
@@ -324,7 +331,7 @@
                 }
             });
         } 
-
+ 
     ////
  
       $("#guardarDetalle").on('click',function(){
