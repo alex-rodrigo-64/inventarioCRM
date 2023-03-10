@@ -61,13 +61,16 @@ class InventarioController extends Controller
         $unidad = DB::table('tipo_unidads')
                         ->select('*')
                         ->get();
+        $unidads = DB::table('tipo_unidads')
+                ->select('*')
+                ->get();
         $sucursales = DB::table('sucursals')
                         ->select('*')
                         ->get();
         $proveedores = DB::table('proveedors')
                         ->select('*')
                         ->get();
-        return view('inventario.create',compact('sucursales','unidad','proveedores'));
+        return view('inventario.create',compact('sucursales','unidad','proveedores','unidads'));
     }
 
     public function datosAlmacen()
@@ -99,6 +102,7 @@ class InventarioController extends Controller
         $inventario->cantidad = $request->get('cantidad');
         $inventario->unidad = $request->get('cantidadP');
         $inventario->cantidad_unitaria = $request->get('cantidadUnitaria');
+        $inventario->unidad_unitaria = $request->get('cantidadPUnitaria');
         $inventario->cantidad_unitaria_total = $valor;
         $inventario->costo_adquisicion = $request->get('costoAdqui');
         $inventario->precio_venta =$request->get('costoVenta');

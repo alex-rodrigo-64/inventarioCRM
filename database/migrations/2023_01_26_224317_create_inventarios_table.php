@@ -22,6 +22,7 @@ class CreateInventariosTable extends Migration
             $table->String('cantidad')->nullable();
             $table->String('unidad')->nullable();
             $table->String('cantidad_unitaria')->nullable();
+            $table->String('unidad_unitaria')->nullable();
             $table->String('cantidad_unitaria_total')->nullable();
             $table->String('costo_adquisicion')->nullable();
             $table->String('precio_venta')->nullable(); 

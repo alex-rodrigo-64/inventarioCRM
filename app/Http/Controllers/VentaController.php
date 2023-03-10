@@ -153,23 +153,34 @@ class VentaController extends Controller
 
     function autoCompletar(Request $request){
 
-        if($request->get('query'))
-            {
+        if($request->get('query')){
+
             $query = $request->get('query');
 
-            $data = DB::table('clientes')
+            $existe = DB::table('clientes')
                     ->where('nombreCliente', 'LIKE', "{$query}%")
-                    ->get();
-                        
-            $output = '<datalist id="codigo">';
-            foreach($data as $row)
-            {
-            $output .= '
-            <option>'.$row->nombreCliente.', '.$row->direccion.'</option>
-            ';
+                    ->exists();
+
+            if ($existe) {
+                $data = DB::table('clientes')
+                        ->where('nombreCliente', 'LIKE', "{$query}%")
+                        ->get();
+                            
+                $output = '<datalist id="codigo">';
+                foreach($data as $row)
+                {
+                $output .= '
+                <option>'.$row->nombreCliente.', '.$row->direccion.'</option>
+                ';
+                }
+                $output .= '</datalist>';
+                echo $output;
+            }else{
+                return 1;
             }
-            $output .= '</datalist>';
-            echo $output;
+            
+            }else{
+                return 0;
             }
     }
 

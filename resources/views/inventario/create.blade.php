@@ -70,7 +70,7 @@
                     </div>
                     <br>
                     <div class="row">
-                      <div class="col-5">
+                      <div class="col-6">
                         <div class="input-group">
                           <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Cantidad</span>
                             <input type="text" id="cantidad" name="cantidad" class="form-control text-center"
@@ -82,27 +82,32 @@
                                 @endforeach
                           </select> 
                         </div>
-                         <span id="estadoCantidad"></span>
                       </div>
-                    <div class="col-3">
+                    <div class="col-6">
                       <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Cantidad Unitaria</span>
                       <input type="text" id="cantidadUnitaria" name="cantidadUnitaria" class="form-control text-center" 
                         required onkeyup=""  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57))">
-                        
+                        <select name="cantidadPUnitaria" required id="cantidadPUnitaria" class="form-control">
+                          <option disabled value="" selected>Seleccione una Unidad</option>
+                          @foreach ($unidads as $unidad)
+                                <option value="{{$unidad->nombre_unidad}}">{{$unidad->nombre_unidad}}</option>
+                              @endforeach
+                        </select> 
                       </div>
                     </div>
-                    <div class="col-4">
-                      <div class="input-group">
-                        <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Costo de Adquisicion</span>
-                           <input type="text" id="costoAdqui" name="costoAdqui" class="form-control text-right" 
-                               required  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
-                               <span class="input-group-text" id="basic-addon1" >Bs.</span>
-                      </div>
-                    </div>
+                   
                   </div>
                   <br>
                     <div class="row">
+                      <div class="col-4">
+                        <div class="input-group">
+                          <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Costo de Adquisicion</span>
+                             <input type="text" id="costoAdqui" name="costoAdqui" class="form-control text-right" 
+                                 required  onkeypress="return ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 44) || (event.charCode == 46) || (event.charCode == 35) || (event.charCode == 47) || (event.charCode == 45) || (event.charCode == 124) || (event.charCode == 42))">
+                                 <span class="input-group-text" id="basic-addon1" >Bs.</span>
+                        </div>
+                      </div>
                     <div class="col-4">
                       <div class="input-group">
                         <span class="input-group-text"  style=" background:rgb(29, 145, 195); color: aliceblue">Precio de Venta</span>

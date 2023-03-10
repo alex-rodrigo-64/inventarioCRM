@@ -280,12 +280,23 @@
                   query: query,
               },
               success: function(data) {
-              //  console.log(data);
-                  $('#codigoDatalist').fadeIn();
+                console.log(data);
+                if (data == 1) {
+                  $('#estadoNombre').html("<span  class='menor'>Cliente no Registrado</span>");
+                } else {
+                  if (data == 0) {
+                    $('#estadoNombre').html("<span  class='menor'></span>");
+                  } else {
+                    $('#codigoDatalist').fadeIn();
                   $('#codigoDatalist').html(data);
+                  }
+                }
+                  
               }
           
           });
+      }else{
+        $('#estadoNombre').html("<span  class='menor'></span>");
       }
   });
   //
