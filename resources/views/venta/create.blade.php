@@ -120,10 +120,7 @@
                           <span class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Unidad</span>
                             <select name="unidad" id="unidad" class="form-control">
                               <option disabled selected>Seleccione Unidad</option>
-                                 @foreach ($unidad as $unidades)
-                                  <option   value="{{$unidades->nombre_unidad}}"> {{$unidades->nombre_unidad}}</option>
-                                  @endforeach
-                            </select>
+                              </select>
                         </div>
                       <span id="estado"></span>
                       </div>
@@ -313,6 +310,7 @@
           var url1 = $('#codigoVenta').val();
           var url2 = $('#sucursal').val();
           var url3 = $('#almacen').val();
+         
           //console.log(url1);
             jQuery.ajax({
                 url: "/venta/validarCodigo",
@@ -333,8 +331,13 @@
                     }else{
                         $("#estadoCodigo").append("<span  class='mayor'><h5 class='mayor'>&nbsp;&nbsp;Codigo de Producto Existe</h5></span>");
                         var re = JSON.parse(data);
-                      // console.log(re);
+                       console.log(re);
+                      $("#unidad").empty();
+                      $("#unidad").append("<option selected disabled>Seleccione Unidad</option>");
                        $('#producto').val(re.data[0].nombre_producto);
+                       $("#unidad").append("<option value='"+re.data[0].unidad+"'>"+re.data[0].unidad+"</option>");
+                       $("#unidad").append("<option value='"+re.data[0].unidad_unitario+"'>"+re.data[0].unidad_unitaria+"</option>");
+
                     }
                 },
                 error: function() {
