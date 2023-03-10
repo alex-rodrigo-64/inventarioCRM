@@ -34,11 +34,14 @@ class Inventario extends Model
        }
 
 
-       public function validarCodigo($codigo){
+       public function validarCodigo($codigo,$sucursal,$almacen){
 
         $result  = DB::table('inventarios')
                     ->where('codigo','=', $codigo)
+                    ->where('id_sucursal','=', $sucursal)
+                    ->where('id_almacen','=', $almacen)
                     ->exists();
+
         return $result;
 
     }

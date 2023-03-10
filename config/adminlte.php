@@ -386,16 +386,25 @@ return [
             'can' => 'ver reportes',
             'submenu' => [
                 [
-                    'text' => 'Generar Reportes',
-                    'url'  => 'reporte/nuevo',
+                    'text' => 'Reporte de Compra',
+                    'url'  => 'reporte/nuevo/compra',
                     'can' => 'ver reportes',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['reporte', 'reporte/showReporte*'],
                 ],
                 [
-                    'text' => 'Reportes',
-                    'url'  => 'reportes',
+                    'text' => 'Reporte de Venta',
+                    'url'  => 'reporte/nuevo/venta',
                     'can' => 'ver reportes',
                     'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['reporte', 'reporte/showReporte*'],
+                ],
+                [
+                    'text' => 'Reporte de Inventario',
+                    'url'  => 'reporte/nuevo/inventario',
+                    'can' => 'ver reportes',
+                    'icon'    => 'fas fa-fw fa-filse',
+                    'active' => ['reporte', 'reporte/showReporte*'],
                 ],
             ]
         ],

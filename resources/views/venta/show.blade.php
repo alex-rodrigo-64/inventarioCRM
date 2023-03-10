@@ -17,7 +17,7 @@
                         <div class="col-4">
                             <div class="input-group">
                                 <span  class="input-group-text" style=" background:rgb(29, 145, 195); color: aliceblue">Sucursal</span>
-                                <input name="sucursal" id="sucursal" onchange="getAlmacen()" placeholder="Sucursal registrada" disabled
+                                <input name="sucursal" id="sucursal" placeholder="Sucursal registrada" disabled
                                value="{{$venta_elegida->nombre_sucursal}}" class="form-control" >              
                             </div>
                             <span id="estadoRol"></span>
@@ -70,6 +70,7 @@
                           <thead class="table table-striped table-bordered text-white" style="background:rgb(2, 117, 216); color: aliceblue">
                               <tr>
                                 <th class="text-center" >Codigo</th>
+                                <th class="text-center" >Producto</th>
                                 <th class="text-center" >Cantidad</th>
                                 <th class="text-center" >Unidad</th>
                                 <th class="text-center" >Descripcion</th>
@@ -137,6 +138,7 @@
                             
                           var nuevafila= "<tr><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                           dataResult.data[i].codigo  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
+                            dataResult.data[i].producto  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].cantidad  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].unidad   + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +
                            dataResult.data[i].descripcion  + "</td><td class='text-center' style= 'background: rgb(209, 244, 255)'>" +

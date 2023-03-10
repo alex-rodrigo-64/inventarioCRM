@@ -258,7 +258,7 @@ class CompraController extends Controller
            
             }
     }
-
+ 
     public function unidad()
     {
 
