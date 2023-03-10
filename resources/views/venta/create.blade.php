@@ -314,7 +314,7 @@
                 asycn: false,
                 type: "POST",
                 success: function(data) {
-                  // console.log(data);
+                   //console.log(data);
                    $('#estadoCodigo').empty();
                     if(data == 1){
                         $("#estadoCodigo").append("<span  class='menor'><h5 class='menor'>&nbsp;&nbsp;Codigo de Producto no Existe</h5></span>");
@@ -322,7 +322,7 @@
                     }else{
                         $("#estadoCodigo").append("<span  class='mayor'><h5 class='mayor'>&nbsp;&nbsp;Codigo de Producto Existe</h5></span>");
                         var re = JSON.parse(data);
-                       // console.log(re);
+                      // console.log(re);
                        $('#producto').val(re.data[0].nombre_producto);
                     }
                 },

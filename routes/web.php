@@ -8,6 +8,7 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\ReporteCompraController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\ReporteInventarioController;
 use App\Http\Controllers\UsuarioController;
@@ -128,20 +129,25 @@ Route::post('/unidadProducto',[CompraController::class,'unidad'])->middleware('a
 
 //REPORTES
 //compra
+Route::get('/reportes',[ReporteCompraController::class,'index']);
+Route::get('/reporte/nuevo/compra',[ReporteCompraController::class,'create']);
+Route::get('/reporte/showReporte/compra/{id}/{fecha_inicial}/{fecha_fin}',[ReporteCompraController::class,'show']);
+Route::post('/reporte/getAlmacen',[ReporteCompraController::class,'datosAlmacen']);
+Route::post('/reporte/nuevoReporte',[ReporteCompraController::class,'nuevoReporteCompra']);
 
 //venta
-Route::get('/reportes',[ReporteController::class,'index']);
-Route::get('/reporte/nuevo/venta',[ReporteController::class,'create']);
-Route::get('/reporte/showReporte/venta/{id}/{fecha_inicial}/{fecha_fin}',[ReporteController::class,'show']);
-Route::post('/reporte/getAlmacen',[ReporteController::class,'datosAlmacen']);
-Route::post('/reporte/nuevoReporte',[ReporteController::class,'nuevoReporte']);
+Route::get('/reportes',[ReporteController::class,'index'])->middleware('auth');
+Route::get('/reporte/nuevo/venta',[ReporteController::class,'create'])->middleware('auth');
+Route::get('/reporte/showReporte/venta/{id}/{fecha_inicial}/{fecha_fin}',[ReporteController::class,'show'])->middleware('auth');
+Route::post('/reporte/getAlmacen',[ReporteController::class,'datosAlmacen'])->middleware('auth');
+Route::post('/reporte/nuevoReporte',[ReporteController::class,'nuevoReporte'])->middleware('auth');
 
 //inventario
-Route::get('/reportes',[ReporteInventarioController::class,'index']);
-Route::get('/reporte/nuevo/inventario',[ReporteInventarioController::class,'create']);
-Route::get('/reporte/showReporte/inventario/{id}/{fecha_inicial}/{fecha_fin}',[ReporteInventarioController::class,'show']);
-Route::post('/reporte/getAlmacen',[ReporteInventarioController::class,'datosAlmacen']);
-Route::post('/reporte/nuevoReporte',[ReporteInventarioController::class,'nuevoReporte']);
+Route::get('/reportes',[ReporteInventarioController::class,'index'])->middleware('auth');
+Route::get('/reporte/nuevo/inventario',[ReporteInventarioController::class,'create'])->middleware('auth');
+Route::get('/reporte/showReporte/inventario/{id}/{fecha_inicial}/{fecha_fin}',[ReporteInventarioController::class,'show'])->middleware('auth');
+Route::post('/reporte/getAlmacen',[ReporteInventarioController::class,'datosAlmacen'])->middleware('auth');
+Route::post('/reporte/nuevoReporte',[ReporteInventarioController::class,'nuevoReporte'])->middleware('auth');
 
 //TRANSFERENCIA
 Route::get('/transferencias',[TransferenciaController::class,'index'])->middleware('auth');
